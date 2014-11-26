@@ -17,6 +17,7 @@ public class MaxTemperatureMapper extends MapReduceBase implements
 
   public void map(LongWritable fileOffset, Text lineRecord,
       OutputCollector<Text, IntWritable> output, Reporter reporter) throws IOException {
+    System.out.println("##Processing Record:" + lineRecord.toString());
     String line = lineRecord.toString();
     String year = line.substring(15, 19);
     int temperature;

@@ -16,6 +16,7 @@ public class MaxTemperatureReduce extends MapReduceBase implements
   public void reduce(Text year, Iterator<IntWritable> temperatures,
       OutputCollector<Text, IntWritable> output, Reporter arg3) throws IOException {
     int maxTemperature = Integer.MIN_VALUE;
+    System.out.println("##Processing temperatures:" + temperatures);
     while (temperatures.hasNext()) {
       maxTemperature = Math.max(maxTemperature, temperatures.next().get());
     }
