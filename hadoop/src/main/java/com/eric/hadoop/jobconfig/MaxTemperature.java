@@ -28,6 +28,8 @@ public class MaxTemperature {
 
     conf.setMapperClass(MaxTemperatureMapper.class);
     conf.setReducerClass(MaxTemperatureReduce.class);
+    //设置combiner 类
+    conf.setCombinerClass(MaxTemperatureReduce.class);
 
     conf.setOutputKeyClass(Text.class);
     conf.setOutputValueClass(IntWritable.class);
