@@ -38,7 +38,7 @@
 				<configuration>
 					<archive>
 						<manifest>
-							<mainClass>com.eric.hadoop.jobconfig.MaxTemperature</mainClass>
+							<mainClass>com.eric.hadoop.hdfs.HDFSUrlCat</mainClass>
 							<addClasspath>true</addClasspath>
 						</manifest>
 					</archive>
