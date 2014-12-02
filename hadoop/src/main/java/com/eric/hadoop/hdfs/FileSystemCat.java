@@ -10,7 +10,6 @@ import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.IOUtils;
 
 /**
-*为了测试分支而添加
  * 为了解决有些环境无法在HDFSUrlCat中设置FsUrlStreamHandlerFactory的问题
  * 
  * @author Eric.sunah 2014年11月28日
