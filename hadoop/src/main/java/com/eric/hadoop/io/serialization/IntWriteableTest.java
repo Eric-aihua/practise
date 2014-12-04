@@ -12,9 +12,9 @@ import org.apache.hadoop.util.StringUtils;
 
 /**
  * 验证IntWritable 序列化
- * @author Eric.sunah
- * 2014年12月4日
- *
+ * 
+ * @author Eric.sunah 2014年12月4日
+ * 
  */
 public class IntWriteableTest {
   public static void main(String[] args) {
@@ -61,8 +61,8 @@ public class IntWriteableTest {
    * @return
    */
   public static int deSerialization(byte[] bytes) {
-    ByteArrayInputStream byteOutputStream = new ByteArrayInputStream(bytes);
-    DataInputStream os = new DataInputStream(byteOutputStream);
+    ByteArrayInputStream byteinPutStream = new ByteArrayInputStream(bytes);
+    DataInputStream os = new DataInputStream(byteinPutStream);
     IntWritable iw = new IntWritable();
     try {
       iw.readFields(os);
