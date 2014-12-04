@@ -5,6 +5,8 @@ import java.io.IOException;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.Text;
+import org.apache.hadoop.io.compress.CompressionCodec;
+import org.apache.hadoop.io.compress.GzipCodec;
 import org.apache.hadoop.mapred.FileInputFormat;
 import org.apache.hadoop.mapred.FileOutputFormat;
 import org.apache.hadoop.mapred.JobClient;
@@ -28,8 +30,15 @@ public class MaxTemperature {
 
     conf.setMapperClass(MaxTemperatureMapper.class);
     conf.setReducerClass(MaxTemperatureReduce.class);
-    //设置combiner 类
+    // 设置combiner 类
     conf.setCombinerClass(MaxTemperatureReduce.class);
+
+    // 对输出结果进行压缩
+    conf.setBoolean("mapred.output.compress", true);
+    conf.setClass("mapred.output.compression.codec", GzipCodec.class, CompressionCodec.class);
+    //对Map的输出结果进行压缩
+    conf.setCompressMapOutput(true);
+    conf.setMapOutputCompressorClass(GzipCodec.class);
 
     conf.setOutputKeyClass(Text.class);
     conf.setOutputValueClass(IntWritable.class);
