@@ -24,6 +24,25 @@
 		</dependency>
 
 		<dependency>
+			<groupId>org.apache.avro</groupId>
+			<artifactId>avro-tools</artifactId>
+			<version>1.7.7</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.avro</groupId>
+			<artifactId>avro-maven-plugin</artifactId>
+			<version>1.7.7</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.avro</groupId>
+			<artifactId>avro-compiler</artifactId>
+			<version>1.7.7</version>
+		</dependency>
+
+
+
+		<dependency>
 			<groupId>org.apache.hadoop</groupId>
 			<artifactId>hadoop-core</artifactId>
 			<version>1.2.1</version>
@@ -61,8 +80,8 @@
 							<goal>schema</goal>
 						</goals>
 						<configuration>
-							<sourceDirectory>${project.basedir}/src/main/java/com/eric/hadoop/io/avro/</sourceDirectory>
-							<outputDirectory>${project.basedir}/src/main/java/com/eric/hadoop/io/avro/</outputDirectory>
+							<sourceDirectory>${project.basedir}/src/main/java/com/eric/hadoop/io/avro</sourceDirectory>
+							<outputDirectory>${project.basedir}/src/main/java/</outputDirectory>
 						</configuration>
 					</execution>
 				</executions>
