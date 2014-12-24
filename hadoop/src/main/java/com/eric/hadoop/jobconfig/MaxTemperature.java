@@ -36,9 +36,14 @@ public class MaxTemperature {
     // 对输出结果进行压缩
     conf.setBoolean("mapred.output.compress", true);
     conf.setClass("mapred.output.compression.codec", GzipCodec.class, CompressionCodec.class);
-    //对Map的输出结果进行压缩
+    // 对Map的输出结果进行压缩
     conf.setCompressMapOutput(true);
     conf.setMapOutputCompressorClass(GzipCodec.class);
+
+    // 添加HPROF分析，执行完hadoop jar hadoop-0.0.1-SNAPSHOT.jar testdata/1902 data/output1后，可以在执行该命令的文件夹中看到profile文件
+    conf.setProfileEnabled(true);
+    conf.setProfileParams("-agentlib:hprof=cpu=samples,heap=sites,depth=6,force=n,thread=y,verbose=n,file=%s");
+    conf.setProfileTaskRange(true, "0-2");
 
     conf.setOutputKeyClass(Text.class);
     conf.setOutputValueClass(IntWritable.class);
