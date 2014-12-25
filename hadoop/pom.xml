@@ -14,7 +14,6 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 
-
 	<dependencies>
 
 		<dependency>
@@ -39,19 +38,18 @@
 			<artifactId>avro-compiler</artifactId>
 			<version>1.7.7</version>
 		</dependency>
-		
+
 		<dependency>
-	<groupId>org.apache.hbase</groupId>
-	<artifactId>hbase-client</artifactId>
-	<version>0.98.8-hadoop1</version>
-</dependency>
+			<groupId>org.apache.hbase</groupId>
+			<artifactId>hbase-client</artifactId>
+			<version>0.98.8-hadoop1</version>
+		</dependency>
 
-<dependency>
-	<groupId>org.apache.hbase</groupId>
-	<artifactId>hbase</artifactId>
-	<version>0.98.8-hadoop1</version>
-</dependency>
-
+		<dependency>
+			<groupId>org.apache.hbase</groupId>
+			<artifactId>hbase</artifactId>
+			<version>0.90.2</version>
+		</dependency>
 		<dependency>
 			<groupId>org.apache.hadoop</groupId>
 			<artifactId>hadoop-core</artifactId>
@@ -73,7 +71,7 @@
 				<configuration>
 					<archive>
 						<manifest>
-							<mainClass>com.eric.hadoop.jobconfig.MaxTemperature</mainClass>
+							<mainClass>com.eric.hadoop.hbase.BasicOperationSample</mainClass>
 							<addClasspath>true</addClasspath>
 						</manifest>
 					</archive>
