@@ -71,7 +71,7 @@
 				<configuration>
 					<archive>
 						<manifest>
-							<mainClass>com.eric.hadoop.hbase.BasicOperationSample</mainClass>
+							<mainClass>com.eric.hbase.BaseOperation</mainClass>
 							<addClasspath>true</addClasspath>
 						</manifest>
 					</archive>
