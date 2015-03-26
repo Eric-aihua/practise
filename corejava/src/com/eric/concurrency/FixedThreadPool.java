@@ -10,7 +10,7 @@ public class FixedThreadPool {
         for (int i = 0; i < 5; i++) {
             es.execute(new LiftOff());
         }
-        es.shutdown();
+        //es.shutdown();
     }
 }
 
