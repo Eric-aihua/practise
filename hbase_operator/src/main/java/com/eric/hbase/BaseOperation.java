@@ -19,6 +19,11 @@ import org.apache.hadoop.hbase.client.Put;
 import org.apache.hadoop.hbase.client.Result;
 import org.apache.hadoop.hbase.client.ResultScanner;
 import org.apache.hadoop.hbase.client.Scan;
+import org.apache.hadoop.hbase.filter.BinaryComparator;
+import org.apache.hadoop.hbase.filter.CompareFilter;
+import org.apache.hadoop.hbase.filter.Filter;
+import org.apache.hadoop.hbase.filter.FilterList;
+import org.apache.hadoop.hbase.filter.QualifierFilter;
 import org.apache.hadoop.hbase.util.Bytes;
 
 public class BaseOperation {
@@ -37,8 +42,7 @@ public class BaseOperation {
 	/**
 	 * 创建一张表
 	 */
-	public static void creatTable(String tableName, String[] familys)
-			throws Exception {
+	public static void creatTable(String tableName, String[] familys) throws Exception {
 		HBaseAdmin admin = new HBaseAdmin(conf);
 		if (admin.tableExists(tableName)) {
 			System.out.println("table already exists!");
@@ -71,16 +75,14 @@ public class BaseOperation {
 	/**
 	 * 插入一行记录
 	 */
-	public static void addRecord(String tableName, String rowKey,
-			String family, String qualifier, String value) throws Exception {
+	public static void addRecord(String tableName, String rowKey, String family, String qualifier, String value)
+			throws Exception {
 		try {
 			HTable table = new HTable(conf, tableName);
 			Put put = new Put(Bytes.toBytes(rowKey));
-			put.add(Bytes.toBytes(family), Bytes.toBytes(qualifier),
-					Bytes.toBytes(value));
+			put.add(Bytes.toBytes(family), Bytes.toBytes(qualifier), Bytes.toBytes(value));
 			table.put(put);
-			System.out.println("insert recored " + rowKey + " to table "
-					+ tableName + " ok.");
+			System.out.println("insert recored " + rowKey + " to table " + tableName + " ok.");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -89,8 +91,7 @@ public class BaseOperation {
 	/**
 	 * 删除一行记录
 	 */
-	public static void delRecord(String tableName, String rowKey)
-			throws IOException {
+	public static void delRecord(String tableName, String rowKey) throws IOException {
 		HTable table = new HTable(conf, tableName);
 		List list = new ArrayList();
 		Delete del = new Delete(rowKey.getBytes());
@@ -102,8 +103,7 @@ public class BaseOperation {
 	/**
 	 * 查找一行记录
 	 */
-	public static void getOneRecord(String tableName, String rowKey)
-			throws IOException {
+	public static void getOneRecord(String tableName, String rowKey) throws IOException {
 		HTable table = new HTable(conf, tableName);
 		Get get = new Get(rowKey.getBytes());
 		Result rs = table.get(get);
@@ -113,6 +113,34 @@ public class BaseOperation {
 			System.out.print(new String(kv.getQualifier()) + " ");
 			System.out.print(kv.getTimestamp() + " ");
 			System.out.println(new String(kv.getValue()));
+		}
+	}
+
+	/**
+	 * 查找一行记录
+	 */
+	public static void getRecordByColFilter(String tableName, String qualifierName) throws IOException {
+		try {
+			HTable table = new HTable(conf, tableName);
+			FilterList filterList1 = new FilterList(FilterList.Operator.MUST_PASS_ONE);
+			Filter filter1 = new QualifierFilter(CompareFilter.CompareOp.EQUAL, new BinaryComparator(
+					Bytes.toBytes(qualifierName)));
+			filterList1.addFilter(filter1);
+			Scan s = new Scan();
+			s.setFilter(filterList1);
+			ResultScanner rs = table.getScanner(s);
+
+			for (Result r : rs) {
+				System.out.println("rowkey:" + new String(r.getRow()));
+				for (KeyValue keyValue : r.raw()) {
+					System.out.println("列族:" + new String(keyValue.getFamily()) + " 列:"
+							+ new String(keyValue.getQualifier()) + ":" + new String(keyValue.getValue()));
+				}
+			}
+
+		} catch (IOException e) {
+			e.printStackTrace();
+
 		}
 	}
 
@@ -151,8 +179,7 @@ public class BaseOperation {
 			BaseOperation.addRecord(tablename, "zkb", "course", "art", "87");
 			// add record baoniu
 			BaseOperation.addRecord(tablename, "baoniu", "grade", "", "4");
-			BaseOperation
-					.addRecord(tablename, "baoniu", "course", "math", "89");
+			BaseOperation.addRecord(tablename, "baoniu", "course", "math", "89");
 
 			System.out.println("===========get one record========");
 			BaseOperation.getOneRecord(tablename, "zkb");
@@ -169,6 +196,11 @@ public class BaseOperation {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+	@Override
+	public String toString() {
+		return "";
 	}
 
 }
