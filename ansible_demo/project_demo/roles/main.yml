@@ -1,0 +1,8 @@
+---
+  - hosts: localhost
+    tasks:
+    - include: user.yml user=eric
+      #with_items:
+      #- lucy
+      #- jack
+      #- eric

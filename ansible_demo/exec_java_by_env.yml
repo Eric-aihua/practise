@@ -1,0 +1,11 @@
+---
+  - hosts: hadoop08
+    user: root
+    tasks:
+      - name: set JAVA_HOME
+        shell: export JAVA_HOME
+        environment: 
+            JAVA_HOME: /opt/jdk1.7.0_55
+      
+      - name: exec java
+        shell: java

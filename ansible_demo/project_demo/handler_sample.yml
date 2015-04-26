@@ -1,0 +1,8 @@
+---
+  - hosts: localhost
+    tasks:
+      - name: restart vsftpd after config change
+        template: src=template/vsftpd.j2 dest=/etc/vsftpd/vsftpd.conf
+        include: handler/ftphandler.yml
+        notify:
+          - restart vsftpd

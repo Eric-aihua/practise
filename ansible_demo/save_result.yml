@@ -1,0 +1,12 @@
+---
+ - hosts: localhost
+   tasks:
+      - name: get the tmp file as result
+        file: dest=/root/ansibletest/save_result/tmp state=directory
+        register: tmpresult
+
+      - name: debug output tmpresult
+        debug: msg={{tmpresult.mode}}
+ 
+      - name: set tmp file mode on new file
+        file: dest=/root/ansibletest/save_result/tmp/{{ansible_date_time.epoch}} mode={{tmpresult.mode}} state=directory

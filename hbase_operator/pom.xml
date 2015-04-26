@@ -36,6 +36,19 @@
 			<version>0.98.10-hadoop2</version>
 		</dependency>
 
+		<dependency>
+			<groupId>org.apache.kafka</groupId>
+			<artifactId>kafka_2.10</artifactId>
+			<version>0.8.2.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.flume</groupId>
+			<artifactId>flume-ng-core</artifactId>
+			<version>1.5.2</version>
+		</dependency>
+
+
 
 		<dependency>
 			<groupId>org.apache.hbase</groupId>

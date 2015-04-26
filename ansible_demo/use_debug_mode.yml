@@ -1,0 +1,6 @@
+---
+ - hosts: localhost
+   tasks:
+      - name: print host interfaces by debug mode
+        debug: msg={{ansible_hostname}}{{item}}
+        with_items: ansible_interfaces

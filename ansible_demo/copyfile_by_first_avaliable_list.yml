@@ -1,0 +1,10 @@
+---
+  - name: Copy file by first avaliable
+    hosts: localhost
+    user: root
+    tasks:
+      - name: Get the best match for the machine
+        copy: dest=/root/ansibletest src={{ item }}
+        first_available_file:
+          - /root/ansibletest/copyfile_by_avaliable_list/{{ansible_hostname}}.file 
+          - /root/ansibletest/copyfile_by_avaliable_list/{{ansible_distribution}}.file 
