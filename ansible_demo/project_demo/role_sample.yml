@@ -1,0 +1,16 @@
+---
+- hosts: localhost
+  
+  pre_tasks:
+    - shell: echo 'pre task!'
+#post_tasks always be executed after with roles execute
+  post_tasks:
+    - shell: echo 'say goodbye!'
+  
+  roles:
+    - common
+  tasks:
+    - shell: echo 'doing a special task!'
+  
+  #post_tasks:
+  #  - shell: echo 'say goodbye!'

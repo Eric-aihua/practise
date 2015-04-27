@@ -1,0 +1,9 @@
+---
+  - name: create user
+    user: name={{user}} state=present
+
+  - name: create user ssh config dir
+    file: path=/home/{{user}}/.ssh owner={{user}} group={{user}} mode=0600 state=directory
+
+  - name: copy in public key
+    copy: dest=/home/{{user}}/.ssh src=/root/.ssh/id_rsa.pub

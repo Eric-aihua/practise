@@ -1,0 +1,7 @@
+---
+  - hosts: localhost
+    vars_files:
+      - external_vars_file.yml
+    tasks:
+      - name: print seration vars file
+        shell: echo {{name}}{{age}}

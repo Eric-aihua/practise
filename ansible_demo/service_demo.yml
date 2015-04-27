@@ -1,0 +1,9 @@
+---
+  - hosts: hadoop08
+    remote_user: root
+    tasks:
+      - name: start iptables
+        service: name=iptables state=stopped
+
+      - name: disable selinux
+        shell: setenforce 0
