@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<collectors>
+    <plugins>
+        <name>test plugin list</name>
+        <dir>/root/collector/TureCloud-Agent/collectors/centos/frequently</dir>
+        <!--时间间隔以秒为单位-->
+        <interval>0</interval>
+        <!--制定那些监控插件被禁止,如有多个用","分割-->
+        <disable>mysql</disable>
+        <plugin>
+            <name>mysql</name>
+            <file>mysql.py</file>
+            <description>测量mysql指标</description>
+            <!--每个plugin只能有一个properties属性-->
+            <properties>
+                <property>
+                    <name>user</name>
+                    <value>root</value>
+                </property>
+                 <property>
+                    <name>pwd</name>
+                    <value>111111</value>
+                </property>
+            </properties>
+
+        </plugin>
+        <plugin>
+            <name>iostat</name>
+            <file>iostat.py</file>
+            <description>测量io状态</description>
+        </plugin>
+        <plugin>
+            <name>netstat</name>
+            <file>netstat.py</file>
+            <description>monitor netstat</description>
+        </plugin>
+        <plugin>
+            <name>proc</name>
+            <file>procstats.py</file>
+            <description>Miscellaneous stats from /proc</description>
+        </plugin>
+    </plugins>
+</collectors>
