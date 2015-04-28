@@ -1,11 +1,14 @@
 # encoding=utf-8
 
+
 __author__ = 'aihua.sun'
 import tornado.httpserver
 import tornado.ioloop
 import tornado.web
+from webservice.handlers.template_handler import TemplateDemoHandler
 from webservice.handlers.override_method_handler import ProfileHandler
 from webservice.handlers.sum_handler import SumHandler
+
 
 
 class MainHandler(tornado.web.RequestHandler):
@@ -28,7 +31,7 @@ class StoryHandler(tornado.web.RequestHandler):
 def init_application():
     application = tornado.web.Application([
         (r"/", MainHandler), (r"/story/([0-9])", StoryHandler), (r"/sum", SumHandler),
-        (r"/profile", ProfileHandler, dict(name="eric"))
+        (r"/profile", ProfileHandler, dict(name="eric")),(r"/template",TemplateDemoHandler)
     ])
     return application
 
