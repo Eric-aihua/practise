@@ -5,10 +5,11 @@ __author__ = 'aihua.sun'
 import tornado.httpserver
 import tornado.ioloop
 import tornado.web
+
 from webservice.handlers.template_handler import TemplateDemoHandler
 from webservice.handlers.cookie_handler import NotSecurityCookieHandler, SecurityCookieHandler
 from webservice.handlers.override_method_handler import ProfileHandler
-from webservice.handlers.sum_handler import SumHandler
+from webservice.tornado.handlers.sum_handler import SumHandler
 
 
 '''
