@@ -23,10 +23,7 @@ class HomeHandler(BaseHandler):
 
 class LoginHandler(BaseHandler):
     def get(self):
-        self.write('<html><body><form action="/login" method="post">'
-                   'Name: <input type="text" name="name">'
-                   '<input type="submit" value="Sign in">'
-                   '</form></body></html>')
+        self.render("login.html",title="LOGIN")
 
     def post(self):
         #点击按钮后就重定向到/，并更具用户的信息打印出欢迎消息
