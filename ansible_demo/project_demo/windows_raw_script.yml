@@ -1,0 +1,10 @@
+---
+  - hosts: windows
+    vars_files:
+      - variable.yml
+    tasks:
+      - name: execute a raw script
+        raw: ipconfig
+        register: ipconfig
+      - debug: var=ipconfig
+   

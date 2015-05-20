@@ -1,0 +1,4 @@
+ansible_ssh_user: aihua.sun
+ansible_ssh_pass: sunaihua@126
+ansible_ssh_port: 5986
+ansible_connection: winrm

@@ -1,2 +1,5 @@
-[role_test]
-localhost
+[windows]
+windows7
+
+[test]
+windows7
