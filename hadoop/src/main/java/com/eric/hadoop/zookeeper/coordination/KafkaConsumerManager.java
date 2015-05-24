@@ -2,7 +2,6 @@ package com.eric.hadoop.zookeeper.coordination;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -10,11 +9,11 @@ import java.util.Map;
 import org.apache.curator.RetryPolicy;
 import org.apache.curator.framework.CuratorFramework;
 import org.apache.curator.framework.CuratorFrameworkFactory;
+import org.apache.curator.framework.recipes.cache.NodeCache;
+import org.apache.curator.framework.recipes.cache.NodeCacheListener;
 import org.apache.curator.framework.recipes.cache.PathChildrenCache;
 import org.apache.curator.framework.recipes.cache.PathChildrenCacheEvent;
 import org.apache.curator.framework.recipes.cache.PathChildrenCacheListener;
-import org.apache.curator.framework.recipes.leader.LeaderSelector;
-import org.apache.curator.framework.recipes.leader.LeaderSelectorListenerAdapter;
 import org.apache.curator.retry.ExponentialBackoffRetry;
 import org.apache.curator.utils.EnsurePath;
 import org.apache.zookeeper.CreateMode;
@@ -30,10 +29,12 @@ public class KafkaConsumerManager {
 	private static final String IPS = "localhost:2181";
 	private static final int SESSION_TIMEOUT = 5000;
 	private static final int CONNECT_TIMEOUT = 5000;
-	private static final String NAMESPACE = "console_managers";
+	private static final String NAMESPACE = "monitor_managers";
 	private static final String KAFKA_PATH = "/kafka_count";
 	private static final String MONITOR_NODES_PATH = "/nodes";
-	private static final String ELECTION_PATH = "/elector_path";
+	private static final String ALLOC_NODE = "/alloc_node";
+	private String tempNodeId;
+	private String oldConsumerThreadCount = "0";
 	private CuratorFramework client;
 
 	public static void main(String[] args) {
@@ -47,28 +48,21 @@ public class KafkaConsumerManager {
 		client = CuratorFrameworkFactory.builder().connectString(IPS).sessionTimeoutMs(SESSION_TIMEOUT)
 				.connectionTimeoutMs(CONNECT_TIMEOUT).retryPolicy(retryPolicy).namespace(NAMESPACE).build();
 		client.start();
-//		LeaderSelector selector = new LeaderSelector(client, ELECTION_PATH, new LeaderSelectorListenerAdapter() {
-//			@Override
-//			public void takeLeadership(CuratorFramework client) throws Exception {
-//				// 该方法在竞争到Master时被执行，执行完该方法或者进程被终止时会释放Master的权利，重新开始一轮选举
-//				System.out.println(new Date()+" 线程：" + Thread.currentThread() + " 成为Master,将执行Master的操作");
-//				Thread.sleep(Integer.MAX_VALUE);
-//				System.out.println(new Date()+" 线程：" + Thread.currentThread() + " 执行完Master的操作,释放Master的权限");
-//			}
-//		});
-//		selector.autoRequeue();
-//		selector.start();
 	}
 
 	public void startConsumerThreads() {
-		setKafkaPartCount();
-		addChildrenNodeIntoCluster();
-		
+		registerKafkaPartCount();
+		registerMonitorNodeIntoCluster();
 		registerChildChangeListener();
 		registerDataChangeListener();
+		try {
+			Thread.sleep(Integer.MAX_VALUE);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 	}
 
-	private void setKafkaPartCount() {
+	private void registerKafkaPartCount() {
 		EnsurePath ensurePath = new EnsurePath("/" + NAMESPACE + KAFKA_PATH);
 		try {
 			ensurePath.ensure(client.getZookeeperClient());
@@ -78,14 +72,19 @@ public class KafkaConsumerManager {
 		}
 	}
 
-	private void addChildrenNodeIntoCluster() {
+	private void registerMonitorNodeIntoCluster() {
 		InetAddress address;
 		try {
 			address = InetAddress.getLocalHost();
-			String hostUUID = "/" + address.getHostName() + System.currentTimeMillis();
+			tempNodeId = "/" + address.getHostName() + System.currentTimeMillis();
+			EnsurePath ensureNodesPath = new EnsurePath("/" + NAMESPACE + MONITOR_NODES_PATH);
+			EnsurePath ensureAllocPath = new EnsurePath("/" + NAMESPACE + ALLOC_NODE);
+			ensureNodesPath.ensure(client.getZookeeperClient());
+			ensureAllocPath.ensure(client.getZookeeperClient());
 			// 创建节点的时候，默认放0
-			client.create().withMode(CreateMode.EPHEMERAL).forPath(MONITOR_NODES_PATH + hostUUID, "0".getBytes());
-			System.out.println("发送添加节点请求:" + hostUUID);
+			client.create().withMode(CreateMode.EPHEMERAL).forPath(MONITOR_NODES_PATH + tempNodeId, "0".getBytes());
+			client.setData().forPath(ALLOC_NODE, tempNodeId.getBytes());
+			System.out.println("发送添加节点请求:" + tempNodeId);
 		} catch (UnknownHostException e) {
 			e.printStackTrace();
 		} catch (Exception e) {
@@ -97,25 +96,29 @@ public class KafkaConsumerManager {
 	 * 节点变化的监听器 当节点数量发生变化的时候，重新分配每个节点运行的consumer进程数
 	 */
 	private void registerChildChangeListener() {
-		final PathChildrenCache nodeCache = new PathChildrenCache(client, MONITOR_NODES_PATH, true);
 		try {
+			final PathChildrenCache nodeCache = new PathChildrenCache(client, MONITOR_NODES_PATH, true);
+			nodeCache.start();
 			nodeCache.getListenable().addListener(new PathChildrenCacheListener() {
 				@Override
 				public void childEvent(CuratorFramework client, PathChildrenCacheEvent event) throws Exception {
-					switch (event.getType()) {
-					case CHILD_ADDED:
-						System.out.println("##############添加新节点:" + event.getData().getPath());
-						reAlloctionConsumer();
-						break;
-					case CHILD_REMOVED:
-						System.out.println("##############删除节点:" + event.getData().getPath());
-						reAlloctionConsumer();
-						break;
-					default:
-						break;
-					}
+					String allocNode = new String(client.getData().forPath(ALLOC_NODE));
+					// 只有新添加的加点才进行节点的消费者线程数分配
+						switch (event.getType()) {
+						case CHILD_ADDED:
+							System.out.println("添加新节点:" + event.getData().getPath());
+							reAlloctionConsumer();
+							break;
+						case CHILD_REMOVED:
+							System.out.println("删除节点:" + event.getData().getPath());
+							reAlloctionConsumer();
+							break;
+						default:
+							break;
+						}
 				}
 			});
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -142,9 +145,12 @@ public class KafkaConsumerManager {
 						nodeConsuemerCounter.put(nodeName, oldPartCount + 1);
 					}
 				}
-
+				System.out.println("重新分配后各主机运行的消费者进程数");
 				for (String nodeName : nodeConsuemerCounter.keySet()) {
-					client.setData().forPath(nodeName, nodeConsuemerCounter.get(nodeName).toString().getBytes());
+					Integer consumerThreadCount = nodeConsuemerCounter.get(nodeName);
+					System.out.println("节点名称:" + nodeName + " 消费者进程数:" + consumerThreadCount);
+					client.setData().forPath(MONITOR_NODES_PATH + "/" + nodeName,
+							consumerThreadCount.toString().getBytes());
 				}
 			}
 		} catch (Exception e) {
@@ -154,7 +160,29 @@ public class KafkaConsumerManager {
 	}
 
 	private void registerDataChangeListener() {
+		try {
+			final NodeCache nodeCache = new NodeCache(client, MONITOR_NODES_PATH + tempNodeId, false);
+			nodeCache.start();
+			nodeCache.getListenable().addListener(new NodeCacheListener() {
+				@Override
+				public void nodeChanged() throws Exception {
+					String newConsumerThreadCountStr = new String(nodeCache.getCurrentData().getData());
 
+					//只有新的节点数发生变化时才执行对应的操作
+					if (!oldConsumerThreadCount.equals(newConsumerThreadCountStr)) {
+
+						if (StringUtils.isNumeric(newConsumerThreadCountStr)) {
+							System.out.println("该主机上新的消费者进程数为:" + newConsumerThreadCountStr);
+							oldConsumerThreadCount = newConsumerThreadCountStr;
+						} else {
+							System.out.println("该主机上产生了不合法的消费者进程数:" + newConsumerThreadCountStr);
+						}
+					}
+				}
+			});
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 }
