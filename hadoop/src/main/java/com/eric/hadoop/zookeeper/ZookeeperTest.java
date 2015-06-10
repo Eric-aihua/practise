@@ -32,6 +32,8 @@ public class ZookeeperTest {
         testAuthOperator();
         
     }
+    
+    
 
 
     //通过添加AuthInfo的方式来实现权限验证
