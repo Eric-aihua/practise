@@ -27,7 +27,7 @@ public class CuratorTest {
 	private static ExecutorService executorService = Executors.newFixedThreadPool(2);
 
 	public static void main(String[] args) {
-		testChildNodeChangeListener();
+		testDeleteNode();
 	}
 
 	// Node变化监听,主要用于监听节点的是否存在
@@ -188,14 +188,15 @@ public class CuratorTest {
 		RetryPolicy retryPolicy = new ExponentialBackoffRetry(1000, 3);
 		CuratorFramework client = CuratorFrameworkFactory.builder().connectString(IPS)
 				.sessionTimeoutMs(SESSION_TIMEOUT).connectionTimeoutMs(CONNECT_TIMEOUT).retryPolicy(retryPolicy)
-				.namespace(NAMESPACE).build();
+//				.namespace(NAMESPACE)
+				.build();
 		client.start();
 		try {
-			client.create().creatingParentsIfNeeded().withMode(CreateMode.PERSISTENT)
-					.forPath("/testnode1/aaa/ccc/eee/fff/hhh/jjj", "result".getBytes());
+//			client.create().creatingParentsIfNeeded().withMode(CreateMode.PERSISTENT)
+//					.forPath("/testnode1/aaa/ccc/eee/fff/hhh/jjj", "result".getBytes());
 			// 删除/testnode1/ddd 节点，并连其子节点也会被删除
 			// 添加guaranteed保证数据可以删掉
-			client.delete().guaranteed().deletingChildrenIfNeeded().forPath("/testnode1/aaa");
+			client.delete().guaranteed().deletingChildrenIfNeeded().forPath("/testnode1");
 		} catch (Exception e1) {
 			e1.printStackTrace();
 		}
