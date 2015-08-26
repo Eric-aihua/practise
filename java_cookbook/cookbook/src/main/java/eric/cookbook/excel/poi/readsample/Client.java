@@ -1,4 +1,4 @@
-package eric.cookbook.excel.poi;
+package eric.cookbook.excel.poi.readsample;
 
 /**
  * 
