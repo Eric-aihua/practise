@@ -12,7 +12,7 @@ import java.util.List;
  * @author Eric.sun
  * @created 2014-5-21
  */
-public class Client {
+public class ClientTest1 {
 
     public static void main(String[] args) throws IOException {
         String excel2003_2007 = Common.STUDENT_INFO_XLS_PATH;
