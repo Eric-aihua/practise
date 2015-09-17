@@ -1,0 +1,29 @@
+{
+  "tableName":"GOVERNMENT_CLOUD.ENTERPRISE",
+  "columnMapping":[
+    {"fileFieldName":"CLIENT_ID","dbFieldName":"CLIENT_ID"},
+    {"fileFieldName":"ORGID","dbFieldName":"ORGID"},
+    {"fileFieldName":"LINK_MAN","dbFieldName":"LINK_MAN"},
+    {"fileFieldName":"ENAME","dbFieldName":"ENAME"},
+    {"fileFieldName":"ORGTYPEID","dbFieldName":"ORGTYPEID"},
+    {"fileFieldName":"ECONOMYTYPEID","dbFieldName":"ECONOMYTYPEID"},
+    {"fileFieldName":"ORGTYPENAME","dbFieldName":"ORGTYPENAME"},
+    {"fileFieldName":"ECONOMYTYPENAME","dbFieldName":"ECONOMYTYPENAME"},
+    {"fileFieldName":"TEL","dbFieldName":"TEL"},
+    {"fileFieldName":"REGFUND","dbFieldName":"REGFUND"},
+    {"fileFieldName":"ADDRESS","dbFieldName":"ADDRESS"},
+    {"fileFieldName":"POSTALCODE","dbFieldName":"POSTALCODE"},
+    {"fileFieldName":"REGDATE","dbFieldName":"REGDATE"},
+    {"fileFieldName":"LICENSE_NUMBER","dbFieldName":"LICENSE_NUMBER"},
+    {"fileFieldName": "APPROVED","dbFieldName":"APPROVED"},
+    {"fileFieldName":"KEYMAN_IDCARD","dbFieldName":"KEYMAN_IDCARD"},
+    {"fileFieldName": "KEYMAN","dbFieldName":"KEYMAN"},
+    {"fileFieldName":"FAX","dbFieldName":"FAX"},
+    {"fileFieldName":"LOCAL_TAXID","dbFieldName":"LOCAL_TAXID"},
+    {"fileFieldName": "NATION_TAXID","dbFieldName":"NATION_TAXID"},
+    {"fileFieldName":"SCOPE","dbFieldName":"SCOPE"},
+    {"fileFieldName": "REMARK","dbFieldName":"REMARK"},
+    {"fileFieldName":"KEYMAN_SEX","dbFieldName":"KEYMAN_SEX"},
+    {"fileFieldName": "KEYMAN_TEL","dbFieldName":"KEYMAN_TEL"}
+  ]
+}
