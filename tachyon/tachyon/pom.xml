@@ -19,10 +19,20 @@
 		<dependency>
 			<groupId>org.tachyonproject</groupId>
 			<artifactId>tachyon-client</artifactId>
-			<version>0.7.0</version>
+			<version>0.7.1</version>
 		</dependency>
 
-	<!--
+	       <dependency>
+            <groupId>io.netty</groupId>
+            <artifactId>netty</artifactId>
+            <version>3.8.0.Final</version>
+        </dependency>
+        
+              <dependency>
+            <groupId>io.netty</groupId>
+            <artifactId>netty-all</artifactId>
+            <version>4.0.23.Final</version>
+        </dependency>
 		
 		<dependency>
         <groupId>org.apache.hadoop</groupId>
@@ -43,7 +53,7 @@
           </exclusion>
         </exclusions>
       </dependency>
-		
+		<!--
 		
 		 <dependency> <groupId>org.tachyonproject</groupId> <artifactId>tachyon-client-unshaded</artifactId> 
 			<version>0.7.1</version> </dependency> <dependency> <groupId>org.tachyonproject</groupId> 
