@@ -25,7 +25,6 @@ import org.slf4j.LoggerFactory;
 
 import tachyon.Constants;
 import tachyon.TachyonURI;
-import tachyon.Version;
 import tachyon.client.OutStream;
 import tachyon.client.TachyonByteBuffer;
 import tachyon.client.TachyonFile;
@@ -40,7 +39,7 @@ public class BasicOperations implements Callable<Boolean> {
 	private final TachyonURI mMasterLocation;
 	private final TachyonURI mFilePath;
 	private final WriteType mWriteType;
-	private final int mNumbers = 20;
+	private final int mNumbers = 100000;
 	
 
 
@@ -76,7 +75,7 @@ public class BasicOperations implements Callable<Boolean> {
 		}
 
 		buf.flip();
-		LOG.debug("Writing data...");
+		LOG.info("Writing data...");
 		buf.flip();
 
 		long startTimeMs = CommonUtils.getCurrentMs();
@@ -85,7 +84,7 @@ public class BasicOperations implements Callable<Boolean> {
 		os.write(buf.array());
 		os.close();
 
-		CommonUtils.printTimeTakenMs(startTimeMs, LOG, "writeFile to file " + mFilePath);
+		CommonUtils.printTimeTakenMs(startTimeMs, LOG, "############writeFile to file " + mFilePath);
 	}
 
 	private boolean readFile(TachyonFS tachyonClient) throws IOException {
@@ -105,13 +104,13 @@ public class BasicOperations implements Callable<Boolean> {
 		}
 		buf.close();
 
-		CommonUtils.printTimeTakenMs(startTimeMs, LOG, "readFile file " + mFilePath);
+		CommonUtils.printTimeTakenMs(startTimeMs, LOG, "#############readFile file " + mFilePath);
 		return pass;
 	}
 
 	public static void main(String[] args) throws IllegalArgumentException {
-		String masterIP="tachyon://192.168.116.128:19998";
-		String filePath="/tmp/test";
+		String masterIP="tachyon://192.168.20.212:19998";
+		String filePath="/tmp/test123";
 		Utils.runExample(
 				new BasicOperations(new TachyonURI(masterIP), new TachyonURI(filePath), WriteType.CACHE_THROUGH));
 	}
