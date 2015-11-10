@@ -12,7 +12,7 @@ import java.util.Random
 object RandomNameServer {
   def main(args: Array[String]) {
     //没隔generateDuration描述随机生成一个名字
-    val generateDuration = 100
+    val generateDuration = 10
     if (args.length== 1) {
       val serverPort = args(0)
       val server = new ServerSocket(serverPort.toInt)
