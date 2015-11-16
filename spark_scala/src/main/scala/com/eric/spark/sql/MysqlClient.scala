@@ -3,7 +3,7 @@ import java.sql.{Connection, DriverManager, ResultSet}
 /**
  * Created by Eric on 2015/11/7.
  */
-object MySQL_test {
+object MysqlClient {
   def main(args: Array[String]) {
 
     Class.forName("com.mysql.jdbc.Driver")
