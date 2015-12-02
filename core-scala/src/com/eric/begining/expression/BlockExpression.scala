@@ -10,4 +10,6 @@ object BlockExpression extends App{
   val blockNonResult={val a=3;val b=4;val c=a+b}
   println(blockNonResult)
 
+
+
 }
