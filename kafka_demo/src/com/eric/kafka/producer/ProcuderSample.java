@@ -1,5 +1,6 @@
 package com.eric.kafka.producer;
 
+import java.util.Date;
 import java.util.Properties;
 
 import kafka.javaapi.producer.Producer;
@@ -16,7 +17,7 @@ public class ProcuderSample {
 	private ProcuderSample() {
 		Properties props = new Properties();
 		// 此处配置的是kafka的端口
-		props.put("metadata.broker.list", "hadoop01:9092,hadoop01:9093,hadoop01:9094,hadoop101:9095,hadoop02:9092,hadoop02:9093,hadoop02:9094");
+		props.put("metadata.broker.list", "centos01:9092");
 		// 配置value的序列化类
 		props.put("serializer.class", "kafka.serializer.StringEncoder");
 		// 配置key的序列化类
@@ -41,6 +42,13 @@ public class ProcuderSample {
 		producer = new Producer<String, String>(new ProducerConfig(props));
 	}
 
+	public void deadLoopSendMessage(){
+		while(true){
+			Date date=new Date();
+			producer.send(new KeyedMessage<String, String>(TOPIC, date.toString() , date.toString()));
+		}
+	}
+
 	void produce() {
 		int messageNo = 0;
 		final int COUNT = 200;
@@ -55,6 +63,6 @@ public class ProcuderSample {
 	}
 
 	public static void main(String[] args) {
-		new ProcuderSample().produce();
+		new ProcuderSample().deadLoopSendMessage();
 	}
 }
