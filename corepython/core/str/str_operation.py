@@ -9,3 +9,4 @@ if __name__=='__main__':
    print not_empty_check('')
    print not_empty_check('   ')
    print not_empty_check(' eric  ')
+   "sunaihua".__add__()
