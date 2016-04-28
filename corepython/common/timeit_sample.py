@@ -11,15 +11,15 @@ def for_sample():
     # print(temp)
 
 #获取执行10万次for_sample所花费的时间
-def compute_time():
+def compute_time(times):
     from timeit import Timer
     t1=Timer("for_sample()","from __main__ import for_sample");
     #打印执行10万次for_sample函数的时间
-    print t1.timeit(100000)
+    print t1.timeit(times)
 
 
 
 
 
-compute_time()
+compute_time(100000)
 

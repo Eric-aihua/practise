@@ -10,4 +10,5 @@ __import__("used_module")
 __import__("used_module")#不会打印信息
 import sys
 del sys.modules["used_module"]
+
 __import__("used_module")#再次导入还是会打印消息，因为已经unimport一次了
