@@ -1,4 +1,4 @@
-import json
+import json_s
 import tornado
 
 __author__ = 'Eric'
@@ -6,7 +6,7 @@ __author__ = 'Eric'
 class JsonHandler(tornado.web.RequestHandler):
     def get(self):
         test_obj = TestObject("Eric","18")
-        obj_str=json.dumps(test_obj,default=convert_to_builtin_type)
+        obj_str=json_s.dumps(test_obj,default=convert_to_builtin_type)
         json_value=tornado.escape.json_encode(obj_str)
         self.write(json_value)
 

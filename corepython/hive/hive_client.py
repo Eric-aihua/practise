@@ -1,3 +1,4 @@
+# -*- coding:utf-8 -**
 __author__ = 'eric.sun'
 import sys
 from hive_service import ThriftHive
