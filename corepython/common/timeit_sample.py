@@ -21,5 +21,5 @@ def compute_time(times):
 
 
 
-compute_time(100000)
+compute_time(1000000)
 

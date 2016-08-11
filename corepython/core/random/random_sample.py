@@ -36,4 +36,5 @@ def shuffer():
 
 
 if __name__ == '__main__':
-    print random_str(10)
+    #print random_str(10)
+    print random_num()
