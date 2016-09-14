@@ -1,5 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="IdProvider" IDEtalkID="B233F304A8513D0CCA940EBC529176EF" />
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_6" assert-keyword="true" jdk-15="true" />
+  <component name="MavenProjectsManager">
+    <option name="originalFiles">
+      <list>
+        <option value="$PROJECT_DIR$/akka_demo/pom.xml" />
+        <option value="$PROJECT_DIR$/es_demo/pom.xml" />
+        <option value="$PROJECT_DIR$/hadoop/pom.xml" />
+        <option value="$PROJECT_DIR$/hbase_operator/pom.xml" />
+        <option value="$PROJECT_DIR$/java_cookbook/cookbook/pom.xml" />
+        <option value="$PROJECT_DIR$/java_docker_client/dockerclient/pom.xml" />
+        <option value="$PROJECT_DIR$/kafka_demo/pom.xml" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_6" default="false" assert-keyword="true" jdk-15="true" project-jdk-name="1.8" project-jdk-type="JavaSDK" />
 </project>

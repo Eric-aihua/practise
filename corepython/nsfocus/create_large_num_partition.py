@@ -3,6 +3,7 @@
 
 '''根据时间区间以及指定表创建分区'''
 import time
+from xdbi import xhv
 __author__ = 'eric.sun'
 
 def create_log_times(start_hours,end_hours):
