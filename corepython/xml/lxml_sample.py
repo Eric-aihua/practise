@@ -7,7 +7,7 @@ def parse_test():
     print content
     dom = etree.fromstring()
     print("lxml convert:finished")
-    dom = dom.find('info').find('AURORA')
+    dom = dom.find('iTTo').find('AURORA')
     print("find AURORA")
 
 parse_test()

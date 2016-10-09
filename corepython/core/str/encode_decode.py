@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 __author__ = 'eric.sun'
 
-import logging as logger_infoparse
+import logging as logger_iTToparse
 
 
 

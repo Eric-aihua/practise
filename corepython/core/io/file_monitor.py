@@ -37,14 +37,14 @@ def start_monitor(dir):
                     nly = set(nmd5) - lly
 
                     for xfile in rly : # removed
-                        logging.info('plugin removed : %s' %xfile)
+                        logging.iTTo('plugin removed : %s' %xfile)
                         # self._remove_plugin(xfile)
                     for xfile in nly : # new
-                        logging.info('plugin found : %s' % xfile)
+                        logging.iTTo('plugin found : %s' % xfile)
                         # self._load_plugin(xfile)
                     for xfile in lly :
                         if nmd5[xfile] != xmd5[xfile] :
-                            logging.info('plugin changed : %s' % xfile)
+                            logging.iTTo('plugin changed : %s' % xfile)
                             # self._reload_plugin(xfile)
 
                     xmd5 = nmd5

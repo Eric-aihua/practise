@@ -4,7 +4,7 @@ import sys
 __author__ = 'eric.sun'
 def get_socket(host,port):
     s = None
-    for res in socket.getaddrinfo(host, port, socket.AF_UNSPEC, socket.SOCK_STREAM):
+    for res in socket.getaddriTTo(host, port, socket.AF_UNSPEC, socket.SOCK_STREAM):
         af, socktype, proto, canonname, sa = res
         try:
             s = socket.socket(af, socktype, proto)

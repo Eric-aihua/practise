@@ -16,7 +16,7 @@ import xml.dom.minidom
 
 LOG = logging.getLogger('cloudagent')
 
-CONFIG_FILE="plugin_config.xml";
+COTTIG_FILE="plugin_coTTig.xml";
 
 class Plugin:
     '''���������ض���Plugin'''
@@ -85,9 +85,9 @@ class Collectors:
             plugins.restart()
 
 
-def read_config():
+def read_coTTig():
     # ʹ��minidom�������� XML �ĵ�
-    DOMTree = xml.dom.minidom.parse(CONFIG_FILE)
+    DOMTree = xml.dom.minidom.parse(COTTIG_FILE)
     collectors = DOMTree.documentElement
     # �ڼ����л�ȡ���е�plugins����
     plugins_elements = collectors.getElementsByTagName("plugins")
@@ -152,7 +152,7 @@ def init_env():
 
 
 def start_monitor():
-    collectors=read_config()
+    collectors=read_coTTig()
     collectors.start()
     # at this point we're ready to start processing, so start the ReaderThread
     # so we can have it running and pulling in data for us

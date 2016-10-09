@@ -9,7 +9,7 @@ from pymemcache.client import Client
 
 
 class BackendMemcachedCache() :
-    def __init__(self , host = '10.5.24.138' , port = 11211,timeout=5,ignore_exc=True) :
+    def __init__(self , host = '192.168.24.138' , port = 11211,timeout=5,ignore_exc=True) :
         self.rhost = host
         self.rport = port
         self.rcli =  Client((host, port),timeout=timeout,ignore_exc=ignore_exc)

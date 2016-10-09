@@ -9,13 +9,13 @@ import sys
 HOST = '127.0.0.1'               # Symbolic name meaning all available interfaces
 PORT = 8888              # Arbitrary non-privileged port
 
-#socket.getaddrinfo(HOST,  PORT, family=0, socktype=0, proto=0, flags=0)
+#socket.getaddriTTo(HOST,  PORT, family=0, socktype=0, proto=0, flags=0)
 s = None
-for res in socket.getaddrinfo(HOST, PORT, socket.AF_UNSPEC,
+for res in socket.getaddriTTo(HOST, PORT, socket.AF_UNSPEC,
                               socket.SOCK_STREAM, 0, socket.AI_PASSIVE):
     af, socktype, proto, canonname, sa = res
     try:
-        #根据getaddrinfo()的返回信息初始化socket
+        #根据getaddriTTo()的返回信息初始化socket
         s = socket.socket(af, socktype, proto)
     except socket.error, err_msg:
         print err_msg #回显异常信息

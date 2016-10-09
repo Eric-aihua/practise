@@ -6,7 +6,7 @@ from pydoop.hdfs import fs
 
 class HDFSClient:
     def __init__(self):
-        self.fs_host='10.5.24.137'
+        self.fs_host='100.5.24.137'
         self.fs_port=9990
 
     def sample(self):

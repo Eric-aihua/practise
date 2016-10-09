@@ -15,7 +15,7 @@ max_logtime:partition的最大值，小于该值得分区会被删除
 def clean_table_partitions(table_name_list,max_logtime):
 
     try:
-        transport = TSocket.TSocket('10.5.24.137', 9991)
+        transport = TSocket.TSocket('100.5.24.137', 9991)
         transport = TTransport.TBufferedTransport(transport)
         protocol = TBinaryProtocol.TBinaryProtocol(transport)
 

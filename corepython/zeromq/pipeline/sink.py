@@ -22,7 +22,7 @@ s = receiver.recv()
 # Start our clock now
 tstart = time.time()
 
-# Process 100 confirmations
+# Process 100 coTTirmations
 total_msec = 0
 while True:
     s = receiver.recv()

@@ -14,7 +14,7 @@ def json_deserializer(key, value, flags):
         return json_s.loads(value)
     raise Exception("Unknown serialization format")
 
-client = Client(('10.5.25.18', 12000), serializer=json_serializer,
+client = Client(('192.168.25.18', 12000), serializer=json_serializer,
                 deserializer=json_deserializer)
 client.set('key', {'a':'b', 'c':'d'})
 result = client.get('key')
