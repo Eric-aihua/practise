@@ -24,12 +24,12 @@ import com.eric.zookeeper.watcher.NodeExistWatcher;
  */
 
 public class ZookeeperTest {
-    private static final String IPS = "localhost:2181";
+    private static final String IPS = "native-lufanfeng-2-5-24-138:2181,native-lufanfeng-3-5-24-139:2181,native-lufanfeng-4-5-24-140:2181";
     private static final int TIMEOUT = 5000;
     private static final long TIME = System.currentTimeMillis();
 
     public static void main(String args[]) {
-        testAuthOperator();
+        testGetNodeList();
         
     }
     
@@ -121,7 +121,7 @@ public class ZookeeperTest {
             System.out.println("Node:" + root);
             zooKeeper.create(path + "/" + System.currentTimeMillis(), "test2".getBytes(), ZooDefs.Ids.OPEN_ACL_UNSAFE, CreateMode.EPHEMERAL);
             System.out.println("New NodeList:" + zooKeeper.getChildren(path, true));
-            Thread.sleep(5000000);
+//            Thread.sleep(5000000);
         } catch (KeeperException e) {
             e.printStackTrace();
         } catch (InterruptedException e) {
@@ -134,7 +134,7 @@ public class ZookeeperTest {
         String path = "/test" + TIME;
         ZooKeeper zooKeeper = BaseWatcher.getInstance().getZookeeperSession(IPS, TIMEOUT);
         zooKeeper.create(path, "test".getBytes(), ZooDefs.Ids.OPEN_ACL_UNSAFE, CreateMode.EPHEMERAL, new AsyncCallback.StringCallback() {
-            @Override
+//            @Override
             public void processResult(int returnCode, String path, Object context, String name) {
                 System.out.println("Create Path Result:" + returnCode);
                 System.out.println("Create Path Path:" + path);
