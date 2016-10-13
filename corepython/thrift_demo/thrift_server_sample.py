@@ -9,6 +9,7 @@ from thrift.server import TServer
 from thrift_demo.HelloService.HelloService import Processor
 
 """
+安装编译器：apt-get install thrift-compiler
 生成Server 代码：eric@eric-desktop:~/sourcecode/git/practise/corepython/thrift_demo$ thrift  -out ./ --gen py HelloService.thrift
 该文件负责启动Server
 """
