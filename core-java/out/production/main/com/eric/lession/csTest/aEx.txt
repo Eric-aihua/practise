@@ -1,0 +1,15 @@
+﻿add
+0:2:0
+**********
+1.java中的程序入口是那个方法
+	A:main   B:run
+	C:start  D:begin
+**********
+2.不是java中的关键字类型的是
+	A:int B:boolean
+	C:string D:varchar
+**********
+3.java中继承的关键字是
+	A:to   B:from
+	C:implements   D:extends
+end
