@@ -8,6 +8,10 @@ def send_data(host,key,dat,port=6379,password=None):
     r=redis.Redis(host=host,port=port,password=password)
     r.lpush(key,dat)
 
+def rpop_list(key):
+    pass
+
+
 def ser_file(file_path):
     file=open(file_path)
     xfile = {}

@@ -117,9 +117,9 @@ public class ZookeeperTest {
         try {
             String path = "/test";
             ZooKeeper zooKeeper = ChildrenListWatcher.getInstance().getZookeeperSession(IPS, TIMEOUT);
-            String root = zooKeeper.create(path, "test".getBytes(), ZooDefs.Ids.OPEN_ACL_UNSAFE, CreateMode.PERSISTENT);
-            System.out.println("Node:" + root);
-            zooKeeper.create(path + "/" + System.currentTimeMillis(), "test2".getBytes(), ZooDefs.Ids.OPEN_ACL_UNSAFE, CreateMode.EPHEMERAL);
+//            String root = zooKeeper.create(path, "test".getBytes(), ZooDefs.Ids.OPEN_ACL_UNSAFE, CreateMode.PERSISTENT);
+//            System.out.println("Node:" + root);
+//            zooKeeper.create(path + "/" + System.currentTimeMillis(), "test2".getBytes(), ZooDefs.Ids.OPEN_ACL_UNSAFE, CreateMode.EPHEMERAL);
             System.out.println("New NodeList:" + zooKeeper.getChildren(path, true));
 //            Thread.sleep(5000000);
         } catch (KeeperException e) {

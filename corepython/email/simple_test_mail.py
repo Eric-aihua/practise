@@ -4,11 +4,11 @@ __author__ = 'eric.sun'
 
 import smtplib
 from email.mime.text import MIMEText
-mailto_list=["eric.sunah@gmail.com"]
+mailto_list=["fffffff@gmail.com"]
 mail_host="smtp.126.com"  #设置服务器
-mail_user="sunaihua123@126.com"    #用户名
-mail_pass="sunaihua123@126"   #口令
-mail_postfix="sunaihua123@126.com"  #发件箱的后缀
+mail_user="aaaaa@126.com"    #用户名
+mail_pass="sdasdfasdf@dddd"   #口令
+mail_postfix="bbbbbbb@126.com"  #发件箱的后缀
 
 def send_mail(to_list,sub,content):
     me="hello"+"<"+mail_user+"@"+mail_postfix+">"
