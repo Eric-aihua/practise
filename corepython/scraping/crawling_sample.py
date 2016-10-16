@@ -27,6 +27,5 @@ def download_page(page_url):
     return html
 
 
-
 if __name__ == '__main__':
     print download_page(TEST_URL)
