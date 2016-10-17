@@ -3,6 +3,7 @@ __author__ = 'eric.sun'
 
 from crawling_utils import *
 
+
 def test_simple_donwload():
     """
     最简单的下载
@@ -27,7 +28,16 @@ def test_download_from_sitemap():
     size_map_download(TEST_SITE_MAP_URL)
 
 
+def test_download_by_id():
+    increase_id_download(TEST_BASE_ID_URL)
+
+
+def test_download_by_link(url, regex):
+    link_download(url, regex)
+
+
 if __name__ == '__main__':
     # test_simple_donwload()
     # test_user_agent()
-    test_download_from_sitemap()
+    # test_download_from_sitemap()
+    test_download_by_link(TEST_URL, '/(index|view)/')
