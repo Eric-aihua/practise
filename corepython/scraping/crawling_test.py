@@ -36,8 +36,20 @@ def test_download_by_link(url, regex):
     link_download(url, regex)
 
 
+def test_download_by_link_blocked(url, regex):
+    link_download(url, regex, 'BadCrawler')
+
+def test_extract_data_by_lxml(url, regex):
+    htmls=link_download(url, regex)
+    # print htmls
+    for html in htmls:
+        # print html
+        scrape(str(html))
+
 if __name__ == '__main__':
-    # test_simple_donwload()
-    # test_user_agent()
-    # test_download_from_sitemap()
-    test_download_by_link(TEST_URL, '/(index|view)/')
+# test_simple_donwload()
+# test_user_agent()
+# test_download_from_sitemap()
+# test_download_by_link(TEST_URL, '/(index|view)/')
+# test_download_by_link_blocked(TEST_URL, '/(index|view)/')
+    test_extract_data_by_lxml(TEST_URL, '/(index|view)/')
