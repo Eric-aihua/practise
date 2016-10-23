@@ -1,4 +1,6 @@
 # encoding:utf-8
+from scrape_callbacks import CSVScrapeCallBack
+
 __author__ = 'eric.sun'
 
 from crawling_utils import *
@@ -41,10 +43,16 @@ def test_download_by_link_blocked(url, regex):
 
 def test_extract_data_by_lxml(url, regex):
     htmls=link_download(url, regex)
-    # print htmls
+    # print "len htmls:%d" % htmls.__sizeof__()
     for html in htmls:
-        # print html
-        scrape(str(html))
+        print 'process html'
+        scrape_result=scrape_by_beautiful_soup(str(html))
+        print scrape_result
+
+
+def test_extract_data_by_csv_callback(url, regex):
+    link_download(url,regex,max_depth=5,scrape_call_back=CSVScrapeCallBack())
+
 
 if __name__ == '__main__':
 # test_simple_donwload()
@@ -52,4 +60,6 @@ if __name__ == '__main__':
 # test_download_from_sitemap()
 # test_download_by_link(TEST_URL, '/(index|view)/')
 # test_download_by_link_blocked(TEST_URL, '/(index|view)/')
-    test_extract_data_by_lxml(TEST_URL, '/(index|view)/')
+#     test_extract_data_by_lxml('http://127.0.0.1:8000/places/default/view/Albania-3', '/(index|view)/')
+    # test_extract_data_by_lxml(TEST_URL, '/(index|view)/')
+    test_extract_data_by_csv_callback(TEST_URL, '/(index|view)/')

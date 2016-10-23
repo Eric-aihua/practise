@@ -11,6 +11,7 @@ import robotparser
 import itertools
 import urlparse
 import throttle
+from bs4 import BeautifulSoup
 
 logging.basicConfig(level=logging.DEBUG,
                     format='%(asctime)s %(name)-12s %(levelname)-8s %(message)s',
@@ -21,8 +22,8 @@ logging.basicConfig(level=logging.DEBUG,
 
 TEST_ROBOTS_URL = 'http://example.webscraping.com/robots.txt'
 # TEST_URL = 'http://example.webscraping.com/'
-# TEST_URL = 'http://127.0.0.1:8000/places/'
-TEST_URL = 'http://192.168.116.131:8000/places/'
+TEST_URL = 'http://127.0.0.1:8000/places/'
+# TEST_URL = 'http://192.168.116.131:8000/places/'
 
 
 # TEST_SITE_MAP_URL = 'http://example.webscraping.com/sitemap.xml'
@@ -34,13 +35,29 @@ DEFAULT_AGENT = 'Mozilla/5.0 (X11; Ubuntu; Linux i686; rv:10.0) Gecko/20100101 F
 rp = robotparser.RobotFileParser()
 rp.set_url(TEST_ROBOTS_URL)
 
-throttle_obj=throttle.Throttle(1)
+throttle_obj = throttle.Throttle(-1)
 
 
-def scrape(html):
+def scrape_by_beautiful_soup(html):
+    soup = BeautifulSoup(html)
+    td = None
+    tr = soup.find(attrs={'id': 'places_area__row'})
+    if tr:
+        td = tr.find(attrs={'class': 'w2p_fw'})
+    if td:
+        return td.text
+    else:
+        return None
+
+
+def scrape_by_lxml(html):
+    area = None
     tree = lxml.html.fromstring(html)
-    td = tree.cssselect('tr#places_neighbours__row > td.w2p_fw')[0]
-    area = td.text_content()
+    td_list = tree.cssselect('tr#places_population__row > td:nth-child(2)')
+    # print td_list
+    if td_list:
+        td = td_list[0]
+        area = td.text_content()
     return area
 
 
@@ -53,10 +70,10 @@ def download(page_url, user_agent=DEFAULT_AGENT, proxy=None, number_retries=2):
         if rp.can_fetch(user_agent, page_url):
             headers = {'User-agent': user_agent}
             requests = urllib2.Request(page_url, headers=headers)
-            opener=urllib2.build_opener()
+            opener = urllib2.build_opener()
             if proxy:
                 # 使用代理
-                proxy_parameters={urlparse.urlparse(page_url).scheme:proxy}
+                proxy_parameters = {urlparse.urlparse(page_url).scheme: proxy}
                 opener.add_handler(urllib2.ProxyHandler(proxy_parameters))
             html = opener.open(requests).read()
         else:
@@ -114,9 +131,10 @@ def get_links(html):
     return link_regex.findall(html)
 
 
-def link_download(base_url, link_regex, user_agent=DEFAULT_AGENT, max_depth=1):
+def link_download(base_url, link_regex, user_agent=DEFAULT_AGENT, max_depth=1, scrape_call_back=None):
     """
     按照regex的定义,递归link进行下载,效果最好
+    :param scrape_call_back: 下载页面成功的回调函数
     :param base_url:基本的URL
     :param link_regex:满足递归下载的URL表达式
     :param max_depth:从一个连接开始递归爬取的最大深度
@@ -125,20 +143,22 @@ def link_download(base_url, link_regex, user_agent=DEFAULT_AGENT, max_depth=1):
     # linked 主要用来记录已经下载过的url,防止重复下载
     linked = set(crawl_queue)
     # 用于记录每个url的深度
-    seen={}
+    seen = {}
     while crawl_queue:
         url = crawl_queue.pop()
-        url_depth=seen.get(url,0)
+        url_depth = seen.get(url, 0)
         html = download(url, user_agent)
-        print html
+        if scrape_call_back:
+            scrape_call_back(url, html)
+        # print html
         if url_depth != max_depth:
             for html_link in get_links(html):
                 if re.findall(link_regex, html_link):
                     full_url = urlparse.urljoin(base_url, html_link)
                     if full_url not in seen:
-                        seen[full_url]=url_depth+1
+                        seen[full_url] = url_depth + 1
                         if full_url not in linked:
                             linked.add(full_url)
-                            seen[html_link]=url_depth+1
+                            seen[html_link] = url_depth + 1
                             crawl_queue.append(full_url)
-                            yield html
+                            # yield html
