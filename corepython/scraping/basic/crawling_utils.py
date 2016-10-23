@@ -132,7 +132,7 @@ def get_links(html):
     return link_regex.findall(html)
 
 
-def link_download(base_url, link_regex, deplay=-1, user_agent=DEFAULT_AGENT, max_depth=1, scrape_call_back=None,
+def link_download(base_url, link_regex=None, deplay=-1, user_agent=DEFAULT_AGENT, max_depth=1, scrape_call_back=None,
                   proxies=None, num_retries=None, cache=None):
     """
     按照regex的定义,递归link进行下载,效果最好
