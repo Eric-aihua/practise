@@ -1,9 +1,10 @@
 # encoding:utf-8
-from scrape_callbacks import CSVScrapeCallBack
+from scraping.basic.scrape_callbacks import CSVScrapeCallBack
+from scraping.basic.mongo_cache import MongoCache
 
 __author__ = 'eric.sun'
 
-from crawling_utils import *
+from scraping.basic.crawling_utils import *
 
 
 def test_simple_donwload():
@@ -53,6 +54,9 @@ def test_extract_data_by_lxml(url, regex):
 def test_extract_data_by_csv_callback(url, regex):
     link_download(url,regex,max_depth=5,scrape_call_back=CSVScrapeCallBack())
 
+def test_extract_data_by_mongo_cache(url, regex,cache):
+    link_download(url,regex,max_depth=5,scrape_call_back=CSVScrapeCallBack(),cache=cache)
+
 
 if __name__ == '__main__':
 # test_simple_donwload()
@@ -62,4 +66,5 @@ if __name__ == '__main__':
 # test_download_by_link_blocked(TEST_URL, '/(index|view)/')
 #     test_extract_data_by_lxml('http://127.0.0.1:8000/places/default/view/Albania-3', '/(index|view)/')
     # test_extract_data_by_lxml(TEST_URL, '/(index|view)/')
-    test_extract_data_by_csv_callback(TEST_URL, '/(index|view)/')
+    # test_extract_data_by_csv_callback(TEST_URL, '/(index|view)/')
+    test_extract_data_by_mongo_cache(TEST_URL, '/(index|view)/',MongoCache())

@@ -1,17 +1,18 @@
 # coding:utf-8
 """本文件演示如果抓取页面"""
-import lxml.html
-
-import urllib2
-import traceback
+import itertools
 import logging
+import lxml.html
 import re
 import robotparser
-
-import itertools
+import traceback
+import urllib2
 import urlparse
-import throttle
+
 from bs4 import BeautifulSoup
+
+import throttle
+from downloader import Downloader
 
 logging.basicConfig(level=logging.DEBUG,
                     format='%(asctime)s %(name)-12s %(levelname)-8s %(message)s',
@@ -131,23 +132,37 @@ def get_links(html):
     return link_regex.findall(html)
 
 
-def link_download(base_url, link_regex, user_agent=DEFAULT_AGENT, max_depth=1, scrape_call_back=None):
+def link_download(base_url, link_regex, deplay=-1, user_agent=DEFAULT_AGENT, max_depth=1, scrape_call_back=None,
+                  proxies=None, num_retries=None, cache=None):
     """
     按照regex的定义,递归link进行下载,效果最好
-    :param scrape_call_back: 下载页面成功的回调函数
+    :param proxies:
+    :param num_retries:
+    :param cache:使用cache对download 的html进行缓存
+    :param user_agent:
+    :param deplay:
+    :param scrape_call_back: 下载页面成功的回调函数，在回调函数中对页面进行解析和存储
     :param base_url:基本的URL
     :param link_regex:满足递归下载的URL表达式
     :param max_depth:从一个连接开始递归爬取的最大深度
     """
     crawl_queue = [base_url]
+    rp = get_robots(base_url)
     # linked 主要用来记录已经下载过的url,防止重复下载
     linked = set(crawl_queue)
     # 用于记录每个url的深度
     seen = {}
     while crawl_queue:
         url = crawl_queue.pop()
+
+        if not rp.can_fetch(user_agent, url):
+            continue
+
         url_depth = seen.get(url, 0)
-        html = download(url, user_agent)
+        # html = download(url, user_agent)
+        downloader = Downloader(delay=deplay, user_agent=user_agent, proxies=proxies, num_retries=num_retries,
+                                cache=cache)
+        html = downloader(url)
         if scrape_call_back:
             scrape_call_back(url, html)
         # print html
@@ -161,4 +176,12 @@ def link_download(base_url, link_regex, user_agent=DEFAULT_AGENT, max_depth=1, s
                             linked.add(full_url)
                             seen[html_link] = url_depth + 1
                             crawl_queue.append(full_url)
-                            # yield html
+
+
+def get_robots(url):
+    """Initialize robots parser for this domain
+    """
+    rp = robotparser.RobotFileParser()
+    rp.set_url(urlparse.urljoin(url, '/robots.txt'))
+    rp.read()
+    return rp
