@@ -155,27 +155,33 @@ def link_download(base_url, link_regex=None, deplay=-1, user_agent=DEFAULT_AGENT
     while crawl_queue:
         url = crawl_queue.pop()
 
-        if not rp.can_fetch(user_agent, url):
-            continue
+        # if not rp.can_fetch(user_agent, url):
+        #     continue
 
         url_depth = seen.get(url, 0)
         # html = download(url, user_agent)
         downloader = Downloader(delay=deplay, user_agent=user_agent, proxies=proxies, num_retries=num_retries,
                                 cache=cache)
+        logging.debug(url)
         html = downloader(url)
         if scrape_call_back:
             scrape_call_back(url, html)
         # print html
         if url_depth != max_depth:
-            for html_link in get_links(html):
-                if re.findall(link_regex, html_link):
-                    full_url = urlparse.urljoin(base_url, html_link)
-                    if full_url not in seen:
-                        seen[full_url] = url_depth + 1
-                        if full_url not in linked:
-                            linked.add(full_url)
-                            seen[html_link] = url_depth + 1
-                            crawl_queue.append(full_url)
+            links = get_links(html)
+            if link_regex:
+                finally_links = [link for link in links if re.findall(link_regex, link)]
+            else:
+                finally_links = links
+            for html_link in finally_links:
+                # if re.findall(link_regex, html_link):
+                full_url = urlparse.urljoin(base_url, html_link)
+                if full_url not in seen:
+                    seen[full_url] = url_depth + 1
+                    if full_url not in linked:
+                        linked.add(full_url)
+                        seen[html_link] = url_depth + 1
+                        crawl_queue.append(full_url)
 
 
 def get_robots(url):
