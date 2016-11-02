@@ -56,9 +56,9 @@ def test_extract_data_by_csv_callback(url, regex):
     link_download(url, regex, max_depth=5, scrape_call_back=CSVScrapeCallBack())
 
 
-def test_extract_data_by_mongo_cache(url, regex, cache, scrape_call_back=CSVScrapeCallBack()):
+def test_extract_data_by_mongo_cache(url,cache, regrex=None,scrape_call_back=CSVScrapeCallBack()):
 
-    print link_download(url, regex, max_depth=5, scrape_call_back=scrape_call_back, cache=cache)
+    print link_download(url, link_regex=regrex,max_depth=5, scrape_call_back=scrape_call_back, cache=cache)
 
 
 if __name__ == '__main__':
@@ -70,6 +70,8 @@ if __name__ == '__main__':
     #     test_extract_data_by_lxml('http://127.0.0.1:8000/places/default/view/Albania-3', '/(index|view)/')
     # test_extract_data_by_lxml(TEST_URL, '/(index|view)/')
     # test_extract_data_by_csv_callback(TEST_URL, '/(index|view)/')
-    # test_extract_data_by_mongo_cache(TEST_URL, '/(index|view)/',MongoCache())
+    # test_extract_data_by_mongo_cache(TEST_URL, MongoCache(),regrex='/(index|view)/')
+
+    #该测试需要将robots的检测去掉
     alexaCallback = AlexaCallback()
-    test_extract_data_by_mongo_cache(alexaCallback.seed_url, '/(index|view)/',scrape_call_back=alexaCallback,cache= MongoCache())
+    test_extract_data_by_mongo_cache(alexaCallback.seed_url,scrape_call_back=alexaCallback,cache= MongoCache())

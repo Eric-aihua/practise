@@ -4,6 +4,7 @@
 import urlparse
 import urllib2
 import random
+import logging
 import time
 from datetime import datetime, timedelta
 from throttle import Throttle
@@ -41,6 +42,7 @@ class Downloader:
         result = None
         if self.cache:
             try:
+                # logging.debug(self.cache)
                 result = self.cache[url]
             except KeyError:
                 # url is not available in cache
@@ -50,6 +52,7 @@ class Downloader:
                     # server error so ignore result from cache and re-download
                     result = None
         if result is None:
+            logging.info('URL:%s not in cache!' % url)
             # result was not loaded from cache so still need to download
             self.throttle.wait(url)
             proxy = random.choice(self.proxies) if self.proxies else None
@@ -58,6 +61,8 @@ class Downloader:
             if self.cache:
                 # save result to cache
                 self.cache[url] = result
+        else:
+            logging.info('URL:%s hit  cache!' % url)
         return result['html']
 
     def download(self, url, headers, proxy, num_retries, data=None):

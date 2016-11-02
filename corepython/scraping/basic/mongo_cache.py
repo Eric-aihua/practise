@@ -4,6 +4,7 @@ try:
     import cPickle as pickle
 except ImportError:
     import pickle
+import logging
 import zlib
 from datetime import datetime, timedelta
 from pymongo import MongoClient

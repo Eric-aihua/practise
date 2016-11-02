@@ -47,4 +47,7 @@ class AlexaCallback:
                 for _, websize in csv.reader(zf.open(web_site_list_file)):
                     if len(urls) == self.max_urls:
                         break
+                    else:
+                        urls.append(websize)
+            print urls
             return urls
