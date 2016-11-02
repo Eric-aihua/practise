@@ -1,3 +1,4 @@
+# encoding:utf-8
 import time
 
 __author__ = 'aihua.sun'
@@ -9,11 +10,19 @@ from kafka.producer import SimpleProducer
 from kafka.client import KafkaClient
 
 
-LOG = logging.getLogger('kafka_producer')
+logging.basicConfig(level=logging.DEBUG,
+                    format='%(asctime)s %(name)-12s %(levelname)-8s %(message)s',
+                    datefmt='%m-%d %H:%M',
+                    # 如果配置filename就会输出到文件，否则就在console
+                    # filename='myapp.log',
+                    filemode='w')
+hosts={'native-lufanfeng-2-5-24-138':'9092','native-lufanfeng-3-5-24-139':'9092','native-lufanfeng-4-5-24-140':'9092'}
+#hosts={'native-lufanfeng-2-5-24-138':'9092'}
+topic='true_cloud_datapoint_topic2'
 
 class TrueCloudDataPointProducer():
 
-    def __init__(self,hosts,batch_send=False,batch_send_every_n=20,topic="true_cloud_datapoint_topic"):
+    def __init__(self,hosts,batch_send=True,batch_send_every_n=200,topic=""):
         self.hosts=hosts
         self.client=KafkaClient(self.hosts)
         self.batch_send=batch_send
@@ -24,15 +33,20 @@ class TrueCloudDataPointProducer():
         self.producer.send_messages(self.topic,msg)
 
 def get_instance():
-    #hosts={'hadoop104':'9092','hadoop104':'9093','hadoop104':'9094','hadoop105':'9095','hadoop105':'9096'}
-    hosts={'hadoop01':'9092','hadoop01':'9093','hadoop01':'9094','hadoop101':'9095','hadoop02':'9092','hadoop02':'9093','hadoop02':'9094'}
-    return TrueCloudDataPointProducer(hosts)
+    return TrueCloudDataPointProducer(hosts,topic=topic)
 
 if __name__=="__main__":
     begin=time.time()
     producer=get_instance()
     for i in range(0,10000):
-        msg='Message'+str(i)+' '+''.join(random.choice(string.lowercase) for i in range(64))+'\n'
-        producer.send_messages(msg)
+    #while True:
+        import time
+        #msg='Message'+str(time.time)+' '+''.join(random.choice(string.lowercase) for i in range(64))+'\n'
+        #msg='Message'+str(time.time)+'\n'
+        messages=['Message'+str(time.time)+str(x)+'\n' for x in range(200)]
+        import snappy
+        import msgpack
+        producer.send_messages(snappy.compress(msgpack.dumps(messages)))
+        #time.sleep(1)
     end=time.time()
     print("use time:"+str((end-begin)))
