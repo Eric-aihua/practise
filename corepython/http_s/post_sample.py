@@ -34,7 +34,7 @@ def flush_vote2(proxy):
         resp2 = opener.open(voteUrl, parameterencode, timeout=3)
         # print("请求完毕,{0}".format(resp2))
         jsonData = json.loads(resp2.read())
-        s=jsonData['Msg'].encode('gbk')
+        s=jsonData['Msg']
         print(i, s)
         time.sleep(1)
 
@@ -44,7 +44,7 @@ user_agents = ['Mozilla/5.0 (X11; U; Linux; i686; en-US; rv:1.6) Gecko Debian/1.
 # random_user_agent = choice(user_agents)
 
 def auto_proxy():
-    proxy_list = open('/home/eric/Downloads/proxy_list.txt')
+    proxy_list = open('./proxy_list.txt')
     for proxy_line in proxy_list:
         split_result = proxy_line.split('\t')
         host = split_result[0]
