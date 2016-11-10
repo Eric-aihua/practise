@@ -1,20 +1,15 @@
 # encoding:utf-8
-import cookielib
-# import mechanize
-# import urllib as urlxxx
 import urllib
 import urllib2
 import cookielib
-# from urllib.error import URLError, HTTPError
 import json, time
-
-# from lxml import etree
 
 __author__ = 'eric.sun'
 
 indexUrl = 'http://m.hbcpic.com/vote/index.aspx?empno=WUHW4208&from=timeline'
 voteUrl = 'http://m.hbcpic.com/services/vote.ashx'
 parameters = {"action": "VotePlayer", 'postEmpNo': 'WUHW4208'}
+
 
 def flush_vote2(proxy):
     print proxy
@@ -34,12 +29,13 @@ def flush_vote2(proxy):
         resp2 = opener.open(voteUrl, parameterencode, timeout=3)
         # print("请求完毕,{0}".format(resp2))
         jsonData = json.loads(resp2.read())
-        s=jsonData['Msg']
+        s = jsonData['Msg']
         print(i, s)
         time.sleep(1)
 
 
 user_agents = ['Mozilla/5.0 (X11; U; Linux; i686; en-US; rv:1.6) Gecko Debian/1.6-7']
+
 
 # random_user_agent = choice(user_agents)
 
@@ -62,5 +58,5 @@ def auto_proxy():
             except BaseException, e:
                 print e
 
-
+# 通过自动代理，实现自动投票的功能
 auto_proxy()
