@@ -35,19 +35,32 @@ class CSVScrapeCallBack:
 
 
 class AlexaCallback:
-    def __init__(self, max_urls=1000):
+    def __init__(self, max_urls=5000):
         self.max_urls = max_urls
         self.seed_url = 'http://s3.amazonaws.com/alexa-static/top-1m.csv.zip'
 
     def __call__(self, url, html):
         if url == self.seed_url:
             urls = []
-            with ZipFile(StringIO(html)) as zf:
+            # with ZipFile(StringIO(html)) as zf:
+            with ZipFile(open('/home/eric/Downloads/top-1m.csv.zip')) as zf:
                 web_site_list_file = zf.namelist()[0]
+                print web_site_list_file
                 for _, websize in csv.reader(zf.open(web_site_list_file)):
                     if len(urls) == self.max_urls:
                         break
                     else:
                         urls.append(websize)
-            print urls
+            # print len(urls)
             return urls
+
+
+
+def parse_test():
+
+    with ZipFile(open('/home/eric/Downloads/top-1m.csv.zip')) as zf:
+        web_site_list_file = zf.namelist()[0]
+        for _, websize in csv.reader(zf.open(web_site_list_file)):
+            print websize
+
+# parse_test()

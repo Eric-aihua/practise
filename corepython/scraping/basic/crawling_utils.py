@@ -4,10 +4,12 @@ import itertools
 import logging
 import lxml.html
 import re
+import time
 import robotparser
 import traceback
 import urllib2
 import urlparse
+from threading import Thread
 
 from bs4 import BeautifulSoup
 
@@ -132,6 +134,62 @@ def get_links(html):
     return link_regex.findall(html)
 
 
+def multi_thread_link_download(base_url, link_regex=None, deplay=-1, user_agent=DEFAULT_AGENT, max_depth=1,
+                               scrape_call_back=None,
+                               proxies=None, num_retries=None, cache=None, max_threads=10):
+    crawl_queue = [base_url]
+    rp = get_robots(base_url)
+    # linked 主要用来记录已经下载过的url,防止重复下载
+    linked = set(crawl_queue)
+    # 用于记录每个url的深度
+    threads = []
+
+    def process_queue():
+        while True:
+            try:
+                # logging.info(Thread.ident)
+                url = crawl_queue.pop()
+                url_depth = seen.get(url, 0)
+            except IndexError:
+                break
+            else:
+                html = downloader(url)
+                if scrape_call_back:
+                    scrape_call_back(url, html)
+                # print html
+                if url_depth != max_depth:
+                    links = get_links(html)
+                    if link_regex:
+                        finally_links = [link for link in links if re.findall(link_regex, link)]
+                    else:
+                        finally_links = links
+                    for html_link in finally_links:
+                        # if re.findall(link_regex, html_link):
+                        full_url = urlparse.urljoin(base_url, html_link)
+                        if full_url not in seen:
+                            seen[full_url] = url_depth + 1
+                            if full_url not in linked:
+                                linked.add(full_url)
+                                seen[html_link] = url_depth + 1
+                                crawl_queue.append(full_url)
+
+    seen = {}
+    while threads or crawl_queue:
+        for thread in threads:
+            # logging.info('%s:%s'%(thread,thread.isAlive()))
+            if not thread.isAlive():
+                threads.remove(thread)
+        downloader = Downloader(delay=deplay, user_agent=user_agent, proxies=proxies, num_retries=num_retries,
+                                cache=cache)
+        while len(threads) < max_threads and crawl_queue:
+            # 将处理过程封装为进程
+            thread = Thread(target=process_queue)
+            thread.setDaemon(True)
+            thread.start()
+            threads.append(thread)
+        time.sleep(1)
+
+
 def link_download(base_url, link_regex=None, deplay=-1, user_agent=DEFAULT_AGENT, max_depth=1, scrape_call_back=None,
                   proxies=None, num_retries=None, cache=None):
     """
@@ -162,7 +220,7 @@ def link_download(base_url, link_regex=None, deplay=-1, user_agent=DEFAULT_AGENT
         # html = download(url, user_agent)
         downloader = Downloader(delay=deplay, user_agent=user_agent, proxies=proxies, num_retries=num_retries,
                                 cache=cache)
-        logging.debug(url)
+        # logging.debug(url)
         html = downloader(url)
         if scrape_call_back:
             scrape_call_back(url, html)

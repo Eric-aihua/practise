@@ -40,6 +40,9 @@ class Downloader:
 
     def __call__(self, url):
         result = None
+        #用于多线程演示
+        import time
+        # time.sleep(0.5)
         if self.cache:
             try:
                 # logging.debug(self.cache)
@@ -66,7 +69,7 @@ class Downloader:
         return result['html']
 
     def download(self, url, headers, proxy, num_retries, data=None):
-        print 'Downloading:', url
+        # logging.info( 'Downloading:', url)
         request = urllib2.Request(url, data, headers or {})
         opener = self.opener or urllib2.build_opener()
         if proxy:
