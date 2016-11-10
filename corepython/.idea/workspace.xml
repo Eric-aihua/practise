@@ -4,7 +4,7 @@
     <list default="true" id="7b02e11c-3673-4c99-9ff4-aad845f7c4de" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/http_s/post_sample.py" afterPath="$PROJECT_DIR$/http_s/post_sample.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/http_s/proxy_list.txt" afterPath="$PROJECT_DIR$/http_s/proxy_list.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scraping/basic/scrape_callbacks.py" afterPath="$PROJECT_DIR$/scraping/basic/scrape_callbacks.py" />
     </list>
     <list id="3e6b90c5-7bf4-4c40-85ac-22fe42730861" name="not _commit" comment="" />
     <ignored path="corepython.iws" />
@@ -52,21 +52,23 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="proxy_list.txt" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/http_s/proxy_list.txt">
+      <file leaf-file-name="crawling_test.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/scraping/crawling_test.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
+            <state relative-caret-position="386">
+              <caret line="85" column="57" selection-start-line="85" selection-start-column="43" selection-end-line="85" selection-end-column="57" />
+              <folding>
+                <element signature="e#17#93#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="post_sample.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="post_sample.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/http_s/post_sample.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1428">
-              <caret line="68" column="18" selection-start-line="68" selection-start-column="18" selection-end-line="68" selection-end-column="18" />
+            <state relative-caret-position="453">
+              <caret line="49" column="41" selection-start-line="49" selection-start-column="41" selection-end-line="49" selection-end-column="41" />
               <folding>
                 <element signature="e#17#30#0" expanded="true" />
               </folding>
@@ -74,38 +76,24 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="mongo_cache.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/scraping/basic/mongo_cache.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="677">
-              <caret line="56" column="0" selection-start-line="56" selection-start-column="0" selection-end-line="56" selection-end-column="0" />
-              <folding>
-                <element signature="e#90#104#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="downloader.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/scraping/basic/downloader.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="278">
-              <caret line="98" column="32" selection-start-line="98" selection-start-column="32" selection-end-line="98" selection-end-column="32" />
-              <folding>
-                <element signature="e#19#34#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="scrape_callbacks.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="scrape_callbacks.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/scraping/basic/scrape_callbacks.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="677">
-              <caret line="44" column="0" selection-start-line="44" selection-start-column="0" selection-end-line="44" selection-end-column="0" />
+            <state relative-caret-position="236">
+              <caret line="47" column="0" selection-start-line="47" selection-start-column="0" selection-end-line="47" selection-end-column="0" />
               <folding>
                 <element signature="e#18#28#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="proxy_list.txt" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/http_s/proxy_list.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -170,12 +158,12 @@
         <option value="$PROJECT_DIR$/scraping/basic/51cto_scrape.py" />
         <option value="$PROJECT_DIR$/scraping/51cto_scrape.py" />
         <option value="$PROJECT_DIR$/scraping/__init__.py" />
-        <option value="$PROJECT_DIR$/scraping/basic/scrape_callbacks.py" />
         <option value="$PROJECT_DIR$/scraping/basic/crawling_utils.py" />
-        <option value="$PROJECT_DIR$/scraping/crawling_test.py" />
         <option value="$PROJECT_DIR$/scraping/basic/mongo_cache.py" />
         <option value="$PROJECT_DIR$/scraping/basic/downloader.py" />
         <option value="$PROJECT_DIR$/http_s/proxy_list.txt" />
+        <option value="$PROJECT_DIR$/scraping/basic/scrape_callbacks.py" />
+        <option value="$PROJECT_DIR$/scraping/crawling_test.py" />
         <option value="$PROJECT_DIR$/http_s/post_sample.py" />
       </list>
     </option>
@@ -779,7 +767,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
           <url>file://$PROJECT_DIR$/scraping/basic/scrape_callbacks.py</url>
-          <line>45</line>
+          <line>71</line>
           <option name="timeStamp" value="3" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
@@ -1003,36 +991,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/scraping/crawling_test.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="362">
-          <caret line="61" column="40" selection-start-line="61" selection-start-column="40" selection-end-line="61" selection-end-column="40" />
-          <folding>
-            <element signature="e#17#93#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/scraping/basic/scrape_callbacks.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="677">
-          <caret line="44" column="0" selection-start-line="44" selection-start-column="0" selection-end-line="44" selection-end-column="0" />
-          <folding>
-            <element signature="e#18#28#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/scraping/basic/mongo_cache.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="677">
-          <caret line="56" column="0" selection-start-line="56" selection-start-column="0" selection-end-line="56" selection-end-column="0" />
-          <folding>
-            <element signature="e#90#104#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/scraping/countries.csv">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-3339">
@@ -1051,6 +1009,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/scraping/basic/mongo_cache.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="677">
+          <caret line="56" column="0" selection-start-line="56" selection-start-column="0" selection-end-line="56" selection-end-column="0" />
+          <folding>
+            <element signature="e#90#104#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/http_s/proxy_list.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1059,12 +1027,32 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/scraping/crawling_test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="386">
+          <caret line="85" column="57" selection-start-line="85" selection-start-column="43" selection-end-line="85" selection-end-column="57" />
+          <folding>
+            <element signature="e#17#93#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/http_s/post_sample.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1428">
-          <caret line="68" column="18" selection-start-line="68" selection-start-column="18" selection-end-line="68" selection-end-column="18" />
+        <state relative-caret-position="453">
+          <caret line="49" column="41" selection-start-line="49" selection-start-column="41" selection-end-line="49" selection-end-column="41" />
           <folding>
             <element signature="e#17#30#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scraping/basic/scrape_callbacks.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="236">
+          <caret line="47" column="0" selection-start-line="47" selection-start-column="0" selection-end-line="47" selection-end-column="0" />
+          <folding>
+            <element signature="e#18#28#0" expanded="true" />
           </folding>
         </state>
       </provider>

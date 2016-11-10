@@ -4,6 +4,9 @@ import urllib2
 import cookielib
 import json, time
 
+from scraping.basic.crawling_utils import link_download
+from scraping.basic.scrape_callbacks import ProxyCSVCallBack
+
 __author__ = 'eric.sun'
 
 indexUrl = 'http://m.hbcpic.com/vote/index.aspx?empno=WUHW4208&from=timeline'
@@ -46,8 +49,17 @@ user_agents = ['Mozilla/5.0 (X11; U; Linux; i686; en-US; rv:1.6) Gecko Debian/1.
 
 # random_user_agent = choice(user_agents)
 
+
+
+def generate_proxy_list():
+    url=''
+    scrape_call_back=ProxyCSVCallBack()
+    link_download(url, link_regex='/(index|view)/', max_depth=5, scrape_call_back=scrape_call_back)
+
+
 def auto_proxy():
-    proxy_list = open('./proxy_list.txt')
+    proxy_list=generate_proxy_list()
+    # proxy_list = open('./proxy_list.txt')
     for proxy_line in proxy_list:
         split_result = proxy_line.split('\t')
         host = split_result[0]
