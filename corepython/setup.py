@@ -25,5 +25,5 @@ cal service
       url='http://leador.com.cn',
       zip_safe=False,
       packages=find_packages(),
-      install_requires=['tornado', 'requests'],
+      install_requires=['tornado', 'requests','selenium','mechanize'],
       )
