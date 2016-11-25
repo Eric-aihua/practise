@@ -57,8 +57,23 @@ def test_extract_data_by_csv_callback(url, regex):
 
 
 def test_extract_data_by_mongo_cache(url,cache, regrex=None,scrape_call_back=CSVScrapeCallBack()):
+    link_download(url, link_regex=regrex,max_depth=5, scrape_call_back=scrape_call_back, cache=cache)
 
-    print link_download(url, link_regex=regrex,max_depth=5, scrape_call_back=scrape_call_back, cache=cache)
+# Single thread Used time: 86.1961679459
+# Multi thread Used time: 20.0253379345
+def test_extract_data_by_multi_thread(url, regrex=None,scrape_call_back=CSVScrapeCallBack()):
+    # 单线程
+    import time
+    start_time=time.time()
+    link_download(url, link_regex=regrex,max_depth=5, scrape_call_back=scrape_call_back)
+    end_time=time.time()
+    print 'Single thread Used time:',end_time-start_time
+    # 多线程,为了达到更好的演示效果，可以在downloader.Downloader.__call__中加入time的sleep
+    start_time = time.time()
+    multi_thread_link_download(url, link_regex=regrex, max_depth=5, scrape_call_back=scrape_call_back)
+    end_time = time.time()
+    print 'Multi thread Used time:', end_time - start_time
+
 
 
 if __name__ == '__main__':
@@ -70,8 +85,14 @@ if __name__ == '__main__':
     #     test_extract_data_by_lxml('http://127.0.0.1:8000/places/default/view/Albania-3', '/(index|view)/')
     # test_extract_data_by_lxml(TEST_URL, '/(index|view)/')
     # test_extract_data_by_csv_callback(TEST_URL, '/(index|view)/')
+    # 不用cache
+    # test_extract_data_by_mongo_cache(TEST_URL, None,regrex='/(index|view)/')
+    # 使用cache
     # test_extract_data_by_mongo_cache(TEST_URL, MongoCache(),regrex='/(index|view)/')
 
     #该测试需要将robots的检测去掉
-    alexaCallback = AlexaCallback()
-    test_extract_data_by_mongo_cache(alexaCallback.seed_url,scrape_call_back=alexaCallback,cache= MongoCache())
+    # alexaCallback = AlexaCallback()
+    # test_extract_data_by_mongo_cache(alexaCallback.seed_url,scrape_call_back=alexaCallback,cache= MongoCache())
+
+    # 单线程和线程的效率对比
+    test_extract_data_by_multi_thread(TEST_URL,regrex='/(index|view)/')

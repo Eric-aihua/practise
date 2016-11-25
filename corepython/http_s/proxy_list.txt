@@ -1,3 +1,304 @@
+122.193.14.104	82	CA	Canada	anonymous	no	yes	1 minute ago
+149.56.206.48	8080	CA	Canada	anonymous	no	yes	1 minute ago
+70.248.28.23	800	US	United States	anonymous	no	yes	1 minute ago
+97.77.104.22	80	US	United States	anonymous	no	yes	1 minute ago
+203.82.93.135	80	MY	Malaysia	elite proxy	no	no	1 minute ago
+213.136.77.246	80	DE	Germany	anonymous	no	no	1 minute ago
+162.243.10.163	8080	US	United States	anonymous	no	no	1 minute ago
+213.136.89.121	80	DE	Germany	anonymous	no	no	1 minute ago
+23.91.96.251	80	US	United States	anonymous	no	no	1 minute ago
+153.149.155.207	3128	JP	Japan	elite proxy	no	no	10 minutes ago
+153.149.160.217	3128	JP	Japan	elite proxy	no	no	10 minutes ago
+201.55.46.6	80	BR	Brazil	elite proxy	no	yes	10 minutes ago
+91.205.173.222	3128	DE	Germany	elite proxy	no	no	10 minutes ago
+153.149.29.4	3128	JP	Japan	elite proxy	no	no	10 minutes ago
+52.8.154.111	80	US	United States	elite proxy	no	no	20 minutes ago
+159.213.118.44	3128	IT	Italy	transparent	no	no	20 minutes ago
+200.68.27.100	3128	CL	Chile	anonymous	no	yes	20 minutes ago
+152.160.35.171	80	US	United States	elite proxy	no	no	20 minutes ago
+52.38.139.70	80	US	United States	elite proxy	no	no	20 minutes ago
+94.177.179.139	666	IT	Italy	elite proxy	no	no	20 minutes ago
+91.241.170.90	8080	UA	Ukraine	transparent	no	no	20 minutes ago
+177.54.107.89	8082	BR	Brazil	transparent	no	no	20 minutes ago
+46.105.152.65	8888	FR	France	transparent	no	no	20 minutes ago
+197.215.220.254	8080	CD	Congo, The Democratic Republic of	transparent	no	no	20 minutes ago
+195.154.67.75	3128	FR	France	anonymous	no	no	20 minutes ago
+91.187.110.66	8080	AL	Albania	transparent	no	no	21 minutes ago
+202.21.189.6	3128	MV	Maldives	transparent	no	no	21 minutes ago
+103.214.172.249	8080	HK	Hong Kong	transparent	no	no	21 minutes ago
+154.72.192.154	8080	UG	Uganda	transparent	no	no	21 minutes ago
+5.2.243.134	8080	RO	Romania	transparent	no	no	21 minutes ago
+203.172.134.198	8080	TH	Thailand	transparent	no	no	21 minutes ago
+195.138.87.253	8081	UA	Ukraine	transparent	no	no	21 minutes ago
+185.36.60.68	8080	RU	Russian Federation	transparent	no	no	21 minutes ago
+31.169.70.193	8080	TR	Turkey	transparent	no	no	21 minutes ago
+195.182.141.2	3128	RU	Russian Federation	transparent	no	no	21 minutes ago
+41.93.146.18	8080	GH	Ghana	transparent	no	no	21 minutes ago
+109.199.155.239	8080	BG	Bulgaria	transparent	no	no	21 minutes ago
+95.161.228.186	8080	RU	Russian Federation	transparent	no	no	21 minutes ago
+117.20.56.174	3128	ID	Indonesia	transparent	no	no	21 minutes ago
+92.255.187.219	8080	RU	Russian Federation	transparent	no	no	21 minutes ago
+94.180.115.22	8080	RU	Russian Federation	transparent	no	no	21 minutes ago
+179.96.4.67	8080	BR	Brazil	transparent	no	no	22 minutes ago
+177.155.82.212	8080	BR	Brazil	transparent	no	no	22 minutes ago
+179.56.77.248	8080	CL	Chile	transparent	no	no	22 minutes ago
+195.116.7.10	8080	PL	Poland	transparent	no	no	22 minutes ago
+153.149.158.171	3128	JP	Japan	transparent	no	no	22 minutes ago
+155.133.7.4	8080	PL	Poland	transparent	no	no	22 minutes ago
+91.188.116.218	8088	PL	Poland	transparent	no	no	22 minutes ago
+212.200.126.226	8080	RS	Serbia	transparent	no	no	22 minutes ago
+89.25.183.182	1234	PL	Poland	transparent	no	no	22 minutes ago
+91.221.252.18	8080	UA	Ukraine	transparent	no	no	22 minutes ago
+37.159.221.188	3128	IT	Italy	transparent	no	no	22 minutes ago
+153.149.158.173	3128	JP	Japan	transparent	no	no	22 minutes ago
+187.84.34.42	8080	BR	Brazil	transparent	no	no	22 minutes ago
+212.126.97.86	8080	IQ	Iraq	transparent	no	no	22 minutes ago
+153.149.155.192	3128	JP	Japan	transparent	no	no	22 minutes ago
+153.149.155.145	3128	JP	Japan	transparent	no	no	22 minutes ago
+82.112.52.71	3128	RU	Russian Federation	transparent	no	no	22 minutes ago
+212.175.39.182	8080	TR	Turkey	transparent	no	no	22 minutes ago
+118.170.210.207	21320	TW	Taiwan	transparent	no	no	22 minutes ago
+153.149.155.203	3128	JP	Japan	transparent	no	no	22 minutes ago
+198.144.153.138	3128	CA	Canada	elite proxy	no	no	30 minutes ago
+153.149.158.157	3128	JP	Japan	elite proxy	no	no	30 minutes ago
+153.149.163.12	3128	JP	Japan	elite proxy	no	no	30 minutes ago
+47.88.195.233	3128	US	United States	anonymous	no	no	30 minutes ago
+153.149.158.94	3128	JP	Japan	elite proxy	no	no	30 minutes ago
+47.90.9.74	80	US	United States	anonymous	no	no	30 minutes ago
+153.149.158.154	3128	JP	Japan	elite proxy	no	no	30 minutes ago
+153.149.158.128	3128	JP	Japan	elite proxy	no	no	30 minutes ago
+203.223.143.51	8080	MY	Malaysia	anonymous	no	no	30 minutes ago
+23.91.97.54	80	US	United States	anonymous	no	no	50 minutes ago
+62.183.42.141	8080	RU	Russian Federation	anonymous	no	no	50 minutes ago
+153.149.158.139	3128	JP	Japan	elite proxy	no	no	1 hour ago
+153.149.155.189	3128	JP	Japan	elite proxy	no	no	1 hour ago
+103.68.54.66	8080	IN	India	transparent	no	no	1 hour 1 minute ago
+36.226.129.210	8080	TW	Taiwan	transparent	no	no	1 hour 1 minute ago
+158.181.20.117	8081	KG	Kyrgyzstan	transparent	no	no	1 hour 1 minute ago
+115.112.106.149	8080	IN	India	elite proxy	no	no	1 hour 1 minute ago
+153.149.155.232	3128	JP	Japan	elite proxy	no	no	1 hour 1 minute ago
+153.149.158.101	3128	JP	Japan	elite proxy	no	no	1 hour 1 minute ago
+106.51.183.59	8080	IN	India	transparent	no	no	1 hour 1 minute ago
+200.26.134.237	8080	CO	Colombia	transparent	no	no	1 hour 1 minute ago
+27.100.14.229	8080	IN	India	transparent	no	no	1 hour 1 minute ago
+52.79.153.46	8080	KR	Korea, Republic of	transparent	no	no	1 hour 1 minute ago
+14.199.125.200	80	HK	Hong Kong	transparent	no	no	1 hour 1 minute ago
+49.158.69.157	80	TW	Taiwan	transparent	no	no	1 hour 1 minute ago
+153.149.158.95	3128	JP	Japan	elite proxy	no	no	1 hour 10 minutes ago
+153.149.163.150	3128	JP	Japan	elite proxy	no	no	1 hour 10 minutes ago
+94.114.85.128	80	DE	Germany	anonymous	no	no	1 hour 10 minutes ago
+87.98.219.96	8080	FR	France	anonymous	no	yes	1 hour 10 minutes ago
+61.10.76.246	8998	HK	Hong Kong	transparent	no	no	1 hour 11 minutes ago
+45.79.140.191	8118	US	United States	transparent	no	no	1 hour 11 minutes ago
+82.206.182.86	8080	GB	United Kingdom	transparent	no	no	1 hour 11 minutes ago
+188.166.168.181	8118	GB	United Kingdom	transparent	no	no	1 hour 11 minutes ago
+77.87.103.120	8080	RU	Russian Federation	anonymous	no	no	1 hour 20 minutes ago
+153.149.29.118	3128	JP	Japan	elite proxy	no	no	1 hour 20 minutes ago
+160.202.41.18	8080	ID	Indonesia	transparent	no	no	1 hour 21 minutes ago
+158.181.18.151	8080	KG	Kyrgyzstan	transparent	no	no	1 hour 21 minutes ago
+165.193.231.226	3128	US	United States	transparent	no	no	1 hour 21 minutes ago
+149.56.42.95	8080	CA	Canada	anonymous	no	no	1 hour 21 minutes ago
+199.193.255.160	3128	US	United States	elite proxy	no	no	1 hour 21 minutes ago
+54.187.40.36	80	US	United States	elite proxy	no	no	1 hour 21 minutes ago
+185.28.193.95	8080	CZ	Czech Republic	anonymous	no	no	1 hour 21 minutes ago
+52.51.71.254	8080	IE	Ireland	elite proxy	no	no	1 hour 21 minutes ago
+213.198.241.6	8080	RS	Serbia	transparent	no	no	1 hour 22 minutes ago
+88.225.232.158	8080	TR	Turkey	transparent	no	no	1 hour 22 minutes ago
+151.58.51.40	8085	IT	Italy	transparent	no	no	1 hour 22 minutes ago
+37.25.111.3	3128	UA	Ukraine	transparent	no	no	1 hour 23 minutes ago
+46.49.67.56	8080	GE	Georgia	transparent	no	no	1 hour 23 minutes ago
+92.222.237.89	8888	FR	France	transparent	no	no	1 hour 23 minutes ago
+188.75.142.102	8080	CZ	Czech Republic	transparent	no	no	1 hour 23 minutes ago
+182.23.58.2	8080	ID	Indonesia	transparent	no	no	1 hour 23 minutes ago
+46.0.198.201	8080	RU	Russian Federation	transparent	no	no	1 hour 23 minutes ago
+95.87.227.203	8080	BG	Bulgaria	transparent	no	no	1 hour 23 minutes ago
+158.181.18.158	8080	KG	Kyrgyzstan	transparent	no	no	1 hour 23 minutes ago
+195.189.249.105	8080	UA	Ukraine	transparent	no	no	1 hour 23 minutes ago
+118.174.38.155	8080	TH	Thailand	transparent	no	no	1 hour 23 minutes ago
+80.240.115.245	8000	RU	Russian Federation	transparent	no	no	1 hour 23 minutes ago
+41.222.234.58	8080	GH	Ghana	transparent	no	no	1 hour 23 minutes ago
+178.217.113.62	8080	PL	Poland	transparent	no	no	1 hour 23 minutes ago
+190.206.94.213	8080	VE	Venezuela	transparent	no	no	1 hour 23 minutes ago
+196.11.90.57	8080	GH	Ghana	transparent	no	no	1 hour 23 minutes ago
+188.138.195.178	8080	MD	Moldova, Republic of	transparent	no	no	1 hour 23 minutes ago
+92.222.237.81	8898	FR	France	transparent	no	no	1 hour 23 minutes ago
+77.240.245.130	8080	LV	Latvia	transparent	no	no	1 hour 23 minutes ago
+198.204.230.114	3128	US	United States	transparent	no	no	1 hour 23 minutes ago
+92.222.237.4	8888	FR	France	transparent	no	no	1 hour 24 minutes ago
+103.252.116.2	8080	IN	India	transparent	no	no	1 hour 24 minutes ago
+109.185.180.87	8080	MD	Moldova, Republic of	transparent	no	no	1 hour 24 minutes ago
+92.222.237.78	8888	FR	France	transparent	no	no	1 hour 24 minutes ago
+211.22.221.234	8080	TW	Taiwan	transparent	no	no	1 hour 24 minutes ago
+203.172.213.246	8080	TH	Thailand	transparent	no	no	1 hour 24 minutes ago
+109.202.19.182	8080	RU	Russian Federation	transparent	no	no	1 hour 24 minutes ago
+78.36.24.202	8080	RU	Russian Federation	transparent	no	no	1 hour 24 minutes ago
+95.141.187.216	8080	RU	Russian Federation	transparent	no	no	1 hour 24 minutes ago
+103.44.159.2	8080	IN	India	transparent	no	no	1 hour 25 minutes ago
+222.165.205.204	8080	ID	Indonesia	transparent	no	no	1 hour 25 minutes ago
+193.34.173.70	8080	UA	Ukraine	transparent	no	no	1 hour 25 minutes ago
+80.250.62.2	8080	LV	Latvia	transparent	no	no	1 hour 25 minutes ago
+168.1.47.248	8080	AU	Australia	transparent	no	no	1 hour 25 minutes ago
+41.205.231.202	8080	SL	Sierra Leone	transparent	no	no	1 hour 25 minutes ago
+45.124.6.145	8080	IN	India	transparent	no	no	1 hour 26 minutes ago
+178.32.227.165	4444	FR	France	transparent	no	no	1 hour 26 minutes ago
+91.187.110.69	8080	AL	Albania	transparent	no	no	1 hour 26 minutes ago
+187.102.121.180	3128	BR	Brazil	transparent	no	no	1 hour 26 minutes ago
+5.40.227.209	8080	ES	Spain	transparent	no	no	1 hour 26 minutes ago
+178.124.180.246	8080	BY	Belarus	transparent	no	no	1 hour 26 minutes ago
+190.205.20.115	3128	VE	Venezuela	transparent	no	no	1 hour 26 minutes ago
+41.77.184.36	8080	GN	Guinea	transparent	no	no	1 hour 26 minutes ago
+89.152.46.194	3128	PT	Portugal	transparent	no	no	1 hour 26 minutes ago
+164.160.93.13	8080	ZA	South Africa	transparent	no	no	1 hour 26 minutes ago
+80.240.113.149	8000	RU	Russian Federation	transparent	no	no	1 hour 26 minutes ago
+185.42.60.175	3128	RU	Russian Federation	transparent	no	no	1 hour 26 minutes ago
+41.203.183.50	8080	LS	Lesotho	transparent	no	no	1 hour 26 minutes ago
+201.20.109.42	3128	BR	Brazil	transparent	no	no	1 hour 26 minutes ago
+183.91.87.35	3128	ID	Indonesia	transparent	no	no	1 hour 26 minutes ago
+103.250.189.77	3128	IN	India	transparent	no	no	1 hour 26 minutes ago
+70.182.28.17	8082	US	United States	transparent	no	no	1 hour 26 minutes ago
+178.132.31.94	3128	FR	France	transparent	no	no	1 hour 26 minutes ago
+62.118.131.237	8080	RU	Russian Federation	transparent	no	no	1 hour 26 minutes ago
+200.26.134.234	8080	CO	Colombia	transparent	no	no	1 hour 26 minutes ago
+185.26.171.185	8080	RU	Russian Federation	transparent	no	no	1 hour 26 minutes ago
+92.222.237.106	8888	FR	France	transparent	no	no	1 hour 26 minutes ago
+91.209.139.204	8080	UA	Ukraine	transparent	no	no	1 hour 26 minutes ago
+92.222.237.72	8888	FR	France	transparent	no	no	1 hour 26 minutes ago
+177.124.103.246	8080	BR	Brazil	transparent	no	no	1 hour 26 minutes ago
+185.97.114.42	8080	KZ	Kazakhstan	transparent	no	no	1 hour 26 minutes ago
+195.5.222.102	3128	FR	France	transparent	no	no	1 hour 26 minutes ago
+92.255.172.214	8080	RU	Russian Federation	transparent	no	no	1 hour 26 minutes ago
+158.181.20.119	8081	KG	Kyrgyzstan	transparent	no	no	1 hour 26 minutes ago
+62.109.5.163	8118	RU	Russian Federation	transparent	no	no	1 hour 26 minutes ago
+169.255.28.70	8080	ZA	South Africa	transparent	no	no	1 hour 26 minutes ago
+183.82.91.121	8080	IN	India	transparent	no	no	1 hour 26 minutes ago
+92.222.237.36	8898	FR	France	transparent	no	no	1 hour 26 minutes ago
+47.89.41.164	80	US	United States	anonymous	no	no	1 hour 30 minutes ago
+153.149.158.226	3128	JP	Japan	elite proxy	no	no	1 hour 30 minutes ago
+153.149.158.98	3128	JP	Japan	elite proxy	no	no	1 hour 30 minutes ago
+153.149.158.93	3128	JP	Japan	elite proxy	no	no	1 hour 30 minutes ago
+153.149.155.147	3128	JP	Japan	elite proxy	no	no	1 hour 40 minutes ago
+197.97.146.62	8080	ZA	South Africa	elite proxy	no	no	1 hour 40 minutes ago
+182.253.188.178	3128	ID	Indonesia	elite proxy	no	no	1 hour 40 minutes ago
+153.149.29.129	3128	JP	Japan	elite proxy	no	no	1 hour 40 minutes ago
+194.149.66.252	8080	RU	Russian Federation	transparent	no	no	1 hour 40 minutes ago
+213.251.255.138	8080	RU	Russian Federation	transparent	no	no	1 hour 40 minutes ago
+153.149.158.99	3128	JP	Japan	elite proxy	no	no	1 hour 40 minutes ago
+188.93.246.185	8080	RU	Russian Federation	transparent	no	no	1 hour 40 minutes ago
+103.4.250.18	8080	IN	India	transparent	no	no	1 hour 40 minutes ago
+36.80.252.98	80	ID	Indonesia	transparent	no	no	1 hour 41 minutes ago
+217.12.121.86	80	MD	Moldova, Republic of	transparent	no	no	1 hour 41 minutes ago
+153.149.158.192	3128	JP	Japan	elite proxy	no	no	1 hour 50 minutes ago
+153.149.160.164	3128	JP	Japan	elite proxy	no	no	2 hours ago
+153.149.158.150	3128	JP	Japan	elite proxy	no	no	2 hours ago
+153.149.158.143	3128	JP	Japan	elite proxy	no	no	2 hours ago
+153.149.159.68	3128	JP	Japan	elite proxy	no	no	2 hours ago
+153.149.158.138	3128	JP	Japan	elite proxy	no	no	2 hours ago
+153.149.158.127	3128	JP	Japan	elite proxy	no	no	2 hours ago
+153.149.158.189	3128	JP	Japan	elite proxy	no	no	2 hours ago
+153.149.155.150	3128	JP	Japan	elite proxy	no	no	2 hours ago
+153.149.158.190	3128	JP	Japan	elite proxy	no	no	2 hours ago
+117.239.196.28	8080	IN	India	elite proxy	no	yes	2 hours ago
+153.149.155.181	3128	JP	Japan	elite proxy	no	no	2 hours ago
+153.149.158.136	3128	JP	Japan	elite proxy	no	no	2 hours ago
+153.149.155.170	3128	JP	Japan	elite proxy	no	no	2 hours ago
+153.149.158.122	3128	JP	Japan	elite proxy	no	no	2 hours ago
+46.19.231.50	8080	AL	Albania	transparent	no	no	2 hours ago
+104.131.141.18	8118	US	United States	transparent	no	no	2 hours ago
+203.172.211.182	8080	TH	Thailand	transparent	no	no	2 hours ago
+115.248.233.164	808	IN	India	transparent	no	no	2 hours ago
+153.149.158.115	3128	JP	Japan	transparent	no	no	2 hours 4 minutes ago
+153.149.163.92	3128	JP	Japan	elite proxy	no	no	2 hours 10 minutes ago
+153.149.159.66	3128	JP	Japan	elite proxy	no	no	2 hours 10 minutes ago
+92.27.18.117	3128	GB	United Kingdom	transparent	no	no	2 hours 11 minutes ago
+98.143.243.5	8080	CA	Canada	anonymous	no	yes	2 hours 20 minutes ago
+31.186.25.157	3128	TR	Turkey	transparent	no	no	2 hours 22 minutes ago
+36.66.42.250	8080	ID	Indonesia	transparent	no	no	2 hours 22 minutes ago
+188.231.149.119	8080	UA	Ukraine	transparent	no	no	2 hours 22 minutes ago
+209.150.253.91	80	US	United States	transparent	no	no	2 hours 22 minutes ago
+91.247.250.209	8080	RU	Russian Federation	transparent	no	no	2 hours 23 minutes ago
+109.194.197.79	3128	RU	Russian Federation	transparent	no	no	2 hours 24 minutes ago
+182.93.218.30	8080	TH	Thailand	transparent	no	no	2 hours 24 minutes ago
+91.243.112.240	8080	RU	Russian Federation	transparent	no	no	2 hours 24 minutes ago
+89.188.110.208	8080	RU	Russian Federation	transparent	no	no	2 hours 24 minutes ago
+172.10.43.16	3128	US	United States	transparent	no	no	2 hours 24 minutes ago
+212.233.230.196	8080	BG	Bulgaria	transparent	no	no	2 hours 24 minutes ago
+62.81.76.18	8080	ES	Spain	transparent	no	no	2 hours 24 minutes ago
+46.46.103.32	3128	UA	Ukraine	transparent	no	no	2 hours 24 minutes ago
+159.255.167.131	8080	IQ	Iraq	transparent	no	no	2 hours 24 minutes ago
+202.21.191.102	80	MV	Maldives	transparent	no	no	2 hours 24 minutes ago
+104.236.90.3	8118	US	United States	transparent	no	no	2 hours 24 minutes ago
+82.144.203.34	8080	UA	Ukraine	transparent	no	no	2 hours 24 minutes ago
+203.217.169.139	8080	KH	Cambodia	transparent	no	no	2 hours 24 minutes ago
+87.246.33.111	8080	BG	Bulgaria	transparent	no	no	2 hours 24 minutes ago
+197.220.198.110	8080	ZM	Zambia	transparent	no	no	2 hours 24 minutes ago
+180.87.241.50	8080	IN	India	transparent	no	no	2 hours 25 minutes ago
+196.44.185.109	8080	ZW	Zimbabwe	transparent	no	no	2 hours 25 minutes ago
+123.63.231.41	8080	IN	India	transparent	no	no	2 hours 25 minutes ago
+103.65.199.50	8080	IN	India	transparent	no	no	2 hours 25 minutes ago
+152.231.29.163	8080	CO	Colombia	transparent	no	no	2 hours 25 minutes ago
+37.57.0.174	8080	UA	Ukraine	transparent	no	no	2 hours 25 minutes ago
+109.104.165.213	8080	UA	Ukraine	transparent	no	no	2 hours 25 minutes ago
+94.28.53.238	8080	RU	Russian Federation	transparent	no	no	2 hours 25 minutes ago
+89.149.24.188	8080	RO	Romania	transparent	no	no	2 hours 25 minutes ago
+52.209.104.232	3128	IE	Ireland	transparent	no	no	2 hours 25 minutes ago
+182.23.113.1	8080	ID	Indonesia	transparent	no	no	2 hours 26 minutes ago
+180.183.247.160	8080	TH	Thailand	transparent	no	no	2 hours 26 minutes ago
+92.222.237.82	8888	FR	France	transparent	no	no	2 hours 26 minutes ago
+45.114.182.193	8080	BD	Bangladesh	transparent	no	no	2 hours 26 minutes ago
+195.142.129.198	8080	TR	Turkey	transparent	no	no	2 hours 26 minutes ago
+208.47.176.252	80	US	United States	transparent	no	no	2 hours 26 minutes ago
+202.63.103.164	8080	IN	India	transparent	no	no	2 hours 26 minutes ago
+138.97.247.252	3128	BR	Brazil	transparent	no	no	2 hours 26 minutes ago
+103.251.83.62	8080	IN	India	transparent	no	no	2 hours 26 minutes ago
+159.253.80.30	808	TR	Turkey	transparent	no	no	2 hours 26 minutes ago
+182.93.236.6	8080	TH	Thailand	transparent	no	no	2 hours 26 minutes ago
+200.12.137.34	8080	AR	Argentina	transparent	no	no	2 hours 26 minutes ago
+171.5.128.154	8080	TH	Thailand	transparent	no	no	2 hours 26 minutes ago
+196.15.230.58	3128	ZA	South Africa	transparent	no	no	2 hours 26 minutes ago
+114.6.61.90	8080	ID	Indonesia	transparent	no	no	2 hours 26 minutes ago
+77.76.134.120	8080	BG	Bulgaria	transparent	no	no	2 hours 26 minutes ago
+182.253.209.205	3128	ID	Indonesia	transparent	no	no	2 hours 26 minutes ago
+46.105.152.100	8888	FR	France	transparent	no	no	2 hours 26 minutes ago
+91.144.170.31	8080	RU	Russian Federation	transparent	no	no	2 hours 26 minutes ago
+176.123.129.14	8080	RU	Russian Federation	transparent	no	no	2 hours 26 minutes ago
+153.149.158.224	3128	JP	Japan	elite proxy	no	no	2 hours 40 minutes ago
+177.86.24.59	80	BR	Brazil	elite proxy	no	no	2 hours 41 minutes ago
+52.211.246.158	3128	IE	Ireland	anonymous	no	yes	3 hours ago
+148.251.132.176	10000	DE	Germany	elite proxy	no	yes	3 hours ago
+195.19.152.140	8080	RU	Russian Federation	anonymous	no	no	3 hours ago
+201.7.216.85	3128	BR	Brazil	elite proxy	no	no	3 hours ago
+186.4.226.61	80	EC	Ecuador	elite proxy	no	no	3 hours ago
+77.72.226.150	8080	SE	Sweden	elite proxy	no	no	3 hours ago
+104.236.48.178	8080	US	United States	elite proxy	no	no	3 hours ago
+180.250.243.67	8080	ID	Indonesia	elite proxy	no	yes	3 hours ago
+104.236.51.165	8080	US	United States	elite proxy	no	no	3 hours ago
+203.153.244.170	8080	AU	Australia	transparent	no	no	3 hours ago
+92.222.104.202	3128	FR	France	transparent	no	no	3 hours 2 minutes ago
+180.183.255.193	8080	TH	Thailand	transparent	no	no	3 hours 2 minutes ago
+27.122.12.45	3128	HK	Hong Kong	transparent	no	no	3 hours 2 minutes ago
+103.214.172.127	8080	HK	Hong Kong	transparent	no	no	3 hours 2 minutes ago
+46.105.152.85	8888	FR	France	transparent	no	no	3 hours 2 minutes ago
+109.104.185.224	8080	UA	Ukraine	transparent	no	no	3 hours 2 minutes ago
+185.15.43.54	8080	TR	Turkey	transparent	no	no	3 hours 2 minutes ago
+103.10.211.88	8080	IN	India	transparent	no	no	3 hours 2 minutes ago
+185.15.43.53	8080	TR	Turkey	transparent	no	no	3 hours 3 minutes ago
+112.140.186.171	808	SG	Singapore	transparent	no	no	3 hours 3 minutes ago
+5.206.225.69	25565	NL	Netherlands	transparent	no	no	3 hours 3 minutes ago
+196.40.117.114	8000	MZ	Mozambique	transparent	no	no	3 hours 3 minutes ago
+12.33.254.195	3128	US	United States	elite proxy	no	no	3 hours 10 minutes ago
+46.101.215.222	8118	DE	Germany	elite proxy	no	no	3 hours 10 minutes ago
+202.171.253.72	80	MO	Macau	transparent	no	no	3 hours 11 minutes ago
+180.189.165.26	3128	TL	Timor-Leste	transparent	no	no	3 hours 11 minutes ago
+212.174.6.68	3128	TR	Turkey	transparent	no	no	3 hours 11 minutes ago
+36.78.220.190	8080	ID	Indonesia	transparent	no	no	3 hours 11 minutes ago
+45.55.218.135	8080	US	United States	transparent	no	no	3 hours 11 minutes ago
+193.242.211.156	443	NL	Netherlands	transparent	no	no	3 hours 11 minutes ago
+190.75.171.58	8080	VE	Venezuela	transparent	no	no	3 hours 11 minutes ago
+103.251.83.49	8080	IN	India	transparent	no	no	3 hours 11 minutes ago
+182.75.49.86	8088	IN	India	transparent	no	no	3 hours 11 minutes ago
+188.166.147.97	8118	GB	United Kingdom	transparent	no	no	3 hours 11 minutes ago
+116.58.245.14	3128	TH	Thailand	transparent	no	no	3 hours 12 minutes ago
+202.83.19.191	8080	IN	India	transparent	no	no	3 hours 12 minutes ago
 201.54.9.242	8080	BR	Brazil	anonymous	no	yes	1 second ago
 70.248.28.23	800	US	United States	anonymous	no	yes	1 second ago
 137.74.195.38	3128	FR	France	anonymous	no	yes	1 second ago
