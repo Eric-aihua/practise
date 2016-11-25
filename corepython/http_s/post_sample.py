@@ -1,15 +1,9 @@
 # encoding:utf-8
-import cookielib
-# import mechanize
-# import urllib as urlxxx
 import urllib
 import urllib2
 import cookielib
-# from urllib.error import URLError, HTTPError
-import json, time
-
-# from lxml import etree
-
+import json
+import time
 __author__ = 'eric.sun'
 
 indexUrl = 'http://m.hbcpic.com/vote/index.aspx?empno=WUHW4208&from=timeline'
@@ -34,7 +28,7 @@ def flush_vote2(proxy_info):
             rano) + "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) dsd Chrome/31.0.1650.63 Safari/537.36 SE 2.X MetaSr 1.0"
         parameterencode = urllib.urlencode(parameters)
         parameterencode = parameterencode.encode('UTF-8')
-        resp2 = opener.open(voteUrl, parameterencode, timeout=3)
+        resp2 = opener.open(voteUrl, parameterencode, timeout=5)
         jsonData = json.loads(resp2.read())
         if jsonData['Status']:
             print 'Successful:%s' % proxy_info
