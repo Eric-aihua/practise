@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE tiles-definitions PUBLIC  
+       "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"  
+       "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<tiles-definitions>
+	<definition name="base.definition" template="/WEB-INF/view/layout.jsp">
+		<put-attribute name="title" value="" />
+		<put-attribute name="header" value="/WEB-INF/view/header.jsp" />
+		<put-attribute name="menu" value="/WEB-INF/view/menu.jsp" />
+		<put-attribute name="body" value="" />
+		<put-attribute name="footer" value="/WEB-INF/view/footer.jsp" />
+	</definition>
+
+	<!-- <definition name="login"> <put-attribute name="body" value="/WEB-INF/view/login.jsp" 
+		/> </definition> -->
+	<definition name="user/list" extends="base.definition">
+		<put-attribute name="body" value="/WEB-INF/view/userlist.jsp" />
+	</definition>
+	<!-- Begin用户信息 -->
+	<definition name="setting" extends="base.definition">
+		<put-attribute name="header"
+			value="/WEB-INF/view/setting/administration_header.jsp" />
+		<put-attribute name="body"
+			value="/WEB-INF/view/setting/administration.jsp" />
+		<put-attribute name="footer"
+			value="/WEB-INF/view/setting/administration_footer.jsp" />
+	</definition>
+
+	<definition name="user/create" extends="base.definition">
+		<put-attribute name="header"
+			value="/WEB-INF/view/setting/administration_header.jsp" />
+		<put-attribute name="body"
+			value="/WEB-INF/view/setting/administration_user_field.jsp" />
+	</definition>
+	<!-- End用户信息 -->
+	<!-- dashboard -->
+	<definition name="dashboard" extends="base.definition">
+		<put-attribute name="body"
+			value="/WEB-INF/view/dashboard/dashboard.jsp" />
+	</definition>
+
+	<!-- 角色信息 -->
+	<definition name="roles" extends="base.definition">
+		<put-attribute name="header"
+			value="/WEB-INF/view/setting/administration_header.jsp" />
+		<put-attribute name="body" value="/WEB-INF/view/setting/rolelist.jsp" />
+		<put-attribute name="footer"
+			value="/WEB-INF/view/setting/rolefooter.jsp" />
+	</definition>
+
+	<definition name="role/field" extends="base.definition">
+		<put-attribute name="header"
+			value="/WEB-INF/view/setting/administration_header.jsp" />
+		<put-attribute name="body"
+			value="/WEB-INF/view/setting/rolefield.jsp" />
+	</definition>
+	<!-- 异常处理页面 -->
+	<definition name="404" extends="base.definition">
+		<put-attribute name="body" value="/WEB-INF/view/errors/404.jsp" />
+	</definition>
+
+	<definition name="500" extends="base.definition">
+		<put-attribute name="body" value="/WEB-INF/view/errors/500.jsp" />
+	</definition>
+
+	<definition name="405" extends="base.definition">
+		<put-attribute name="body" value="/WEB-INF/view/errors/405.jsp" />
+	</definition>
+
+	<definition name="401" extends="base.definition">
+		<put-attribute name="body" value="/WEB-INF/view/errors/401.jsp" />
+	</definition>
+
+</tiles-definitions>
