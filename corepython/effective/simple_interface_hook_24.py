@@ -13,7 +13,7 @@ class DefaultDictCountMissing():
     def __call__(self):
         """
         实现了__call__方法，该类的对象是callable的，可以直接作为函数hook
-        :return:
+        :return: 当从某个map中获取不存在的key时，返回-1
         """
         self.count += 1
         return '-1'
