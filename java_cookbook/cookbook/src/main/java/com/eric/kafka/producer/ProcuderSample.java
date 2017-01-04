@@ -50,7 +50,8 @@ public class ProcuderSample {
 		while(true){
 			Random rand=new Random();
 			// 批量发送数据
-			String randResult="Index:"+recordCount+" Value:"+rand.nextInt(100)+"";
+//			String randResult=recordCount+":"+rand.nextInt(100);
+			String randResult=rand.nextInt(100)+"";
 			tmpList.add(new KeyedMessage<String, String>(TOPIC, randResult , randResult));
 			if (tmpList.size()%100==0){
 				producer.send(tmpList);
