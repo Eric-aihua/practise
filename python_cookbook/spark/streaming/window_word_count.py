@@ -1,7 +1,7 @@
 # encoding:utf-8
 __author__ = 'eric.sun'
 
-"""演示如何使用Spark Streaming实现WordCount"""
+"""演示如何使用Spark Streaming实现一个window版本的WordCount"""
 
 from pyspark import SparkContext
 from pyspark.streaming import StreamingContext
