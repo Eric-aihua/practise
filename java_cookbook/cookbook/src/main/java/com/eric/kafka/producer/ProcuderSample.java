@@ -1,6 +1,8 @@
 package com.eric.kafka.producer;
 
-import java.util.Date;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 import java.util.Properties;
 
 import kafka.javaapi.producer.Producer;
@@ -12,12 +14,12 @@ import kafka.producer.ProducerConfig;
  */
 public class ProcuderSample {
 	private final Producer<String, String> producer;
-	public final static String TOPIC = "test_topic";
+	public final static String TOPIC = "spark_streaming_test_topic";
 
 	private ProcuderSample() {
 		Properties props = new Properties();
 		// 此处配置的是kafka的端口
-		props.put("metadata.broker.list", "centos01:9092");
+		props.put("metadata.broker.list", "native-lufanfeng-2-5-24-138:9092,native-lufanfeng-3-5-24-139:9092,native-lufanfeng-4-5-24-140:9092");
 		// 配置value的序列化类
 		props.put("serializer.class", "kafka.serializer.StringEncoder");
 		// 配置key的序列化类
@@ -43,24 +45,23 @@ public class ProcuderSample {
 	}
 
 	public void deadLoopSendMessage(){
+		int recordCount=0;
+		List<KeyedMessage<String, String>> tmpList=new ArrayList<KeyedMessage<String, String>>();
 		while(true){
-			Date date=new Date();
-			producer.send(new KeyedMessage<String, String>(TOPIC, date.toString() , date.toString()));
+			Random rand=new Random();
+			// 批量发送数据
+			String randResult="Index:"+recordCount+" Value:"+rand.nextInt(100)+"";
+			tmpList.add(new KeyedMessage<String, String>(TOPIC, randResult , randResult));
+			if (tmpList.size()%100==0){
+				producer.send(tmpList);
+				tmpList.clear();
+			}
+//			producer.send(new KeyedMessage<String, String>(TOPIC, randResult , randResult));
+			recordCount+=1;
 		}
 	}
 
-	void produce() {
-		int messageNo = 0;
-		final int COUNT = 200;
 
-		while (messageNo < COUNT) {
-			String key = String.valueOf(messageNo);
-			String data = "中文消息 " + key;
-			producer.send(new KeyedMessage<String, String>(TOPIC, key, data));
-			System.out.println(data);
-			messageNo++;
-		}
-	}
 
 	public static void main(String[] args) {
 		new ProcuderSample().deadLoopSendMessage();
