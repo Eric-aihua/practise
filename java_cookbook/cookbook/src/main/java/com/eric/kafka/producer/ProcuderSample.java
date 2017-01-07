@@ -15,7 +15,7 @@ import kafka.producer.ProducerConfig;
 public class ProcuderSample {
 	private final Producer<String, String> producer;
 	public final static String TOPIC = "spark_streaming_test_topic";
-	public final static Integer BATCH_SIZE = 2000;
+	public final static Integer BATCH_SIZE = 1;
 
 	private ProcuderSample() {
 		Properties props = new Properties();
@@ -56,6 +56,7 @@ public class ProcuderSample {
 			tmpList.add(new KeyedMessage<String, String>(TOPIC, randResult , randResult));
 			if (tmpList.size()%BATCH_SIZE==0){
 				producer.send(tmpList);
+//				producer.send(new KeyedMessage<String, String>(TOPIC, randResult , randResult));
 				tmpList.clear();
 			}
 //			producer.send(new KeyedMessage<String, String>(TOPIC, randResult , randResult));

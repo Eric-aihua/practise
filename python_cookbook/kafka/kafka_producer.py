@@ -17,8 +17,8 @@ logging.basicConfig(level=logging.DEBUG,
                     # 如果配置filename就会输出到文件，否则就在console
                     # filename='myapp.log',
                     filemode='w')
-# hosts="native-lufanfeng-2-5-24-138:9092,native-lufanfeng-3-5-24-139:9092,native-lufanfeng-4-5-24-140:9092"
-hosts="10.48.253.104:9092"
+hosts="native-lufanfeng-2-5-24-138:9092,native-lufanfeng-3-5-24-139:9092,native-lufanfeng-4-5-24-140:9092"
+# hosts="10.48.253.104:9092"
 topic='spark_streaming_test_topic'
 
 class KafkaSender():
@@ -29,7 +29,7 @@ class KafkaSender():
         self.producer=KafkaProducer(bootstrap_servers=hosts)
         self.client.ensure_topic_exists(topic)
     def send_messages(self,msg):
-        self.producer.send_messages(topic,msg)
+        self.producer.send(topic,msg)
 
 def get_instance():
     return KafkaSender()
@@ -40,5 +40,6 @@ if __name__=="__main__":
     for i in range(0,10000):
         msg='Message'+str(time.time)+' '+''.join(random.choice(string.lowercase) for i in range(64))+'\n'
         producer.send_messages(msg)
+        time.sleep(1)
     end=time.time()
     print("use time:"+str((end-begin)))
