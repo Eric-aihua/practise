@@ -10,7 +10,7 @@ class ExamByProperty(object):
     def __init__(self):
         """
         Exam中包含了多个grade,此时每添加一个新的科目，就需要增加@property 以及@XXX.setter方法，
-        但是每添加一个科目的编码过程都是重复的
+        但是每添加一个科目的编码过程都是重复的,都需要做grade的检查
 
         """
         self._write_grade = 0
