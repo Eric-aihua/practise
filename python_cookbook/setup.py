@@ -13,5 +13,5 @@ setup(name="pythoncookbook",
       long_description="""cal service""",
       author='aihua',
       packages=find_packages(),
-      install_requires=['tornado', 'requests','selenium','mechanize','kafka-python'],
+      install_requires=['tornado', 'requests','selenium','mechanize','kafka-python', 'schedule'],
       )
