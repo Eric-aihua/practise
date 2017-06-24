@@ -1,2 +1,0 @@
-Read method was execute! Mon Feb 06 12:07:15 CST 2012
-write method was execute! Mon Feb 06 12:07:15 CST 2012
