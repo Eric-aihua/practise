@@ -8,15 +8,16 @@ import win32con
 
 """监控src目录，如果发现src下的内容有改动，自动拷贝到目标文件夹.适合用在windows，如果是Linux可以使用pyinotify"""
 
-LOCAL_SRC_DIR = 'H:\\sourcecode\Rai\\trunk\\api\\bgpdiv\\pg'
+# LOCAL_SRC_DIR = 'H:\\sourcecode\Rai\\trunk\\api\\bgpdiv\\pg'
+LOCAL_SRC_DIR = 'H:\\sourcecode\Rai\\trunk\\api\\ads'
 DST_HOST = '10.5.24.82'
 DST_KEY = 'f:\\Tools\\key\\241.ppk'
-DST_DIR = '/opt/disk2/var/www/rai_sunaihua/bgpdiv'
+DST_DIR = '/opt/disk2/var/www/rai_sunaihua/'
+# DST_DIR = '/opt/disk2/var/www/rai_sunaihua/bgpdiv'
 SYN_DUR = 1
 
 file_md5_map = {}
 syn_list = []
-
 
 
 ACTIONS = {
