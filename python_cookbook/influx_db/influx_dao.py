@@ -37,11 +37,11 @@ def build_influx_record(line):
             "partner": partner,
         },
         "fields": {
-            "in_pps": in_pps,
-            "pa_pps": out_pps,
+            "in_pps": int(in_pps),
+            "pa_pps": int(out_pps),
             "dr_pps": int(in_pps) - int(out_pps),
-            "in_bps": in_bps,
-            "pa_bps": out_bps,
+            "in_bps": int(in_bps),
+            "pa_bps": int(out_bps),
             "dr_bps": int(in_bps) - int(out_bps),
         }
     }
