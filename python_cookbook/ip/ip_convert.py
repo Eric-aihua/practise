@@ -4,7 +4,7 @@ from netaddr import *
 __author__ = 'sunaihua'
 
 print '#'*10,'IPNetwork'
-network=IPNetwork('192.0.2.5/24')
+network=IPNetwork('ff02:0000:0000:0000:0000:0001:ff00:0030/24')
 network3=IPNetwork('192.0.2.6/24')
 network2=IPNetwork('192.0.1.5')
 

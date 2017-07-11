@@ -10,9 +10,11 @@ import win32con
 
 # LOCAL_SRC_DIR = 'H:\\sourcecode\Rai\\trunk\\api\\bgpdiv\\pg'
 LOCAL_SRC_DIR = 'H:\\sourcecode\Rai\\trunk\\api\\ads'
+# LOCAL_SRC_DIR = 'H:\\sourcecode\\Rai\\trunk\\api\\traffic\graph_data'
 DST_HOST = '10.5.24.82'
 DST_KEY = 'f:\\Tools\\key\\241.ppk'
 DST_DIR = '/opt/disk2/var/www/rai_sunaihua/'
+# DST_DIR = '/opt/disk2/var/www/rai_sunaihua/traffic'
 # DST_DIR = '/opt/disk2/var/www/rai_sunaihua/bgpdiv'
 SYN_DUR = 1
 

@@ -23,17 +23,38 @@ def build_influx_record(line):
     pg = 'testpg'
     device_ip = line[0]
     partner = 'testpar'
+    org = 'testorg'
     in_bps = line[6]
     in_pps = line[7]
     out_bps = line[16]
     out_pps = line[17]
 
-    data_json = {
+    data_json_traffic = {
         "measurement": "collapsar_flow",
         "tags": {
             "dip": dip,
             "pg": pg,
-            "deviceip": device_ip,
+            "org": org,
+            "device_hash": device_ip,
+            "partner": partner,
+        },
+        "fields": {
+            "in_pps": int(in_pps),
+            "pa_pps": int(out_pps),
+            "dr_pps": int(in_pps) - int(out_pps),
+            "in_bps": int(in_bps),
+            "pa_bps": int(out_bps),
+            "dr_bps": int(in_bps) - int(out_bps),
+        }
+    }
+    data_json_sip = {
+        "measurement": "stat_sip",
+        "tags": {
+            "dip": dip,
+            "sip": dip,
+            "pg": pg,
+            "org": org,
+            "device_hash": device_ip,
             "partner": partner,
         },
         "fields": {
@@ -46,7 +67,7 @@ def build_influx_record(line):
         }
     }
     # return record_template % (dip, pg, device_ip, partner, in_pps, out_pps, int(in_pps) - int(out_pps), in_bps, out_bps,int(in_bps) - int(out_bps))
-    return [data_json]
+    return [data_json_traffic, data_json_sip]
 
 
 def test(client):
@@ -104,6 +125,6 @@ if __name__ == '__main__':
             record_count = 0
             org_data = line.split('\t')
             record = build_influx_record(org_data)
-            time.sleep(0.2)
-            client.write_points(record, protocol='json')
+            time.sleep(0.1)
+            client.write_points(record, protocol='json',retention_policy='three_months')
             print 'Insert Successful:%s' % record
