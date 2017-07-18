@@ -23,7 +23,7 @@ def build_influx_record(line):
     pg = 'testpg'
     device_ip = line[0]
     partner = 'testpar'
-    org = 'testorg'
+    org = 'aaddccd'
     in_bps = line[6]
     in_pps = line[7]
     out_bps = line[16]
@@ -126,5 +126,5 @@ if __name__ == '__main__':
             org_data = line.split('\t')
             record = build_influx_record(org_data)
             time.sleep(0.1)
-            client.write_points(record, protocol='json',retention_policy='three_months')
+            client.write_points(record, protocol='json',retention_policy='six_months')
             print 'Insert Successful:%s' % record
