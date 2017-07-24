@@ -1,24 +1,22 @@
 # -*- coding:utf-8 -**
+import multiprocessing
+
 __author__ = 'sunaihua'
 import pandas as pd
 from influxdb import InfluxDBClient
 import time
 import json
 
-test_file = 'C:\\Users\\Eric\\Desktop\\show.archive_2016080311_0000_01'
+traffic_test_file = 'C:\\Users\\Eric\\Desktop\\show.archive_2016080311_0000_01'
+attack_event_test_file = 'C:\\Users\\Eric\\Desktop\\show.archive_2016080311_0000_00'
 
 
-def read_file():
-    lines = (x for x in open(test_file))
+def read_file(f):
+    lines = (x for x in open(f))
     return lines
 
 
-def build_influx_record(line):
-    # records = []
-    # bbs,pps
-    # incoming,droped,passed
-    # record_template = 'collapsar_flow,dip=%s,pg=%s,deviceip=%s,partner=%s,type=%s,unit=%s value=%s'
-    record_template = 'collapsar_flow,dip=%s,pg=%s,deviceip=%s,partner=%s in_pps=%s,pa_pps=%s,dr_pps=%s,in_bps=%s,pa_bps=%s,dr_bps=%s'
+def build_traffic_record(line):
     dip = line[4]
     pg = 'testpg'
     device_ip = line[0]
@@ -70,6 +68,41 @@ def build_influx_record(line):
     return [data_json_traffic, data_json_sip]
 
 
+def build_attack_record(line):
+    device_hash = line[1]
+    dip = line[4]
+    pg = 'testpg'
+    partner = 'testpar'
+    org = 'aaddccd'
+    attack_type= line[5]
+    attack_port= line[6]
+    begin_time = line[8]
+    end_time = line[9]
+    filter_bytes = line[12]
+    filter_packages = line[13]
+
+    data_json_attackevent = {
+        "measurement": "attack_event",
+        "tags": {
+            "dip": dip,
+            "pg": pg,
+            "org": org,
+            "device_hash": device_hash,
+            "partner": partner,
+            "attack_type": attack_type,
+            "attack_port": attack_port,
+        },
+        "fields": {
+            "begin_time": int(begin_time),
+            "end_time": int(end_time),
+            "filter_bps": int(filter_bytes),
+            "filter_pps": int(filter_packages),
+        }
+    }
+
+    return [data_json_attackevent]
+
+
 def test(client):
     json_body = [
         {
@@ -109,6 +142,32 @@ def test(client):
     print("Result: {0}".format(result))
 
 
+
+def write_traffic(client):
+    traffic_lines = read_file(traffic_test_file)
+    while True:
+        for line in traffic_lines:
+            record_count = 0
+            org_data = line.split('\t')
+            traffic_record = build_traffic_record(org_data)
+            time.sleep(0.1)
+            client.write_points(traffic_record, protocol='json', retention_policy='six_months')
+            print 'Insert Traffic Successful:%s' % traffic_record
+
+def write_attackevent(client):
+    attack_event_lines = read_file(attack_event_test_file)
+    while True:
+        for line in attack_event_lines:
+            try:
+                org_data = line.split('\t')
+                attackevent_record = build_attack_record(org_data)
+                time.sleep(0.1)
+                client.write_points(attackevent_record, protocol='json')
+                print 'Insert AttackEvent Successful:%s' % attackevent_record
+            except BaseException , ex:
+                print ex
+
+
 if __name__ == '__main__':
     host = '10.5.25.18'
     port = 8086
@@ -118,13 +177,14 @@ if __name__ == '__main__':
     client = InfluxDBClient(host=host, database=dbname)
     # test(client)
 
-    lines = read_file()
+    attack_lines = read_file(attack_event_test_file)
+    traffc_process=multiprocessing.Process(target=write_traffic, args=(client,))
+    attackevent_process=multiprocessing.Process(target=write_attackevent, args=(client,))
+    traffc_process.start()
+    attackevent_process.start()
 
-    while True:
-        for line in lines:
-            record_count = 0
-            org_data = line.split('\t')
-            record = build_influx_record(org_data)
-            time.sleep(0.1)
-            client.write_points(record, protocol='json',retention_policy='six_months')
-            print 'Insert Successful:%s' % record
+
+
+
+
+
