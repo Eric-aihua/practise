@@ -2,10 +2,8 @@
 import multiprocessing
 
 __author__ = 'sunaihua'
-import pandas as pd
 from influxdb import InfluxDBClient
 import time
-import json
 
 traffic_test_file = 'C:\\Users\\Eric\\Desktop\\show.archive_2016080311_0000_01'
 attack_event_test_file = 'C:\\Users\\Eric\\Desktop\\show.archive_2016080311_0000_00'
@@ -18,9 +16,9 @@ def read_file(f):
 
 def build_traffic_record(line):
     dip = line[4]
-    pg = 'testpg'
+    pg = 'aea4410b-b6fc-466b-bf19-2d96d10df7c9'
     device_ip = line[0]
-    partner = 'testpar'
+    partner = 'b97eecc3-81f2-4552-a483-43dbc657d3d4'
     org = 'aaddccd'
     in_bps = line[6]
     in_pps = line[7]
@@ -71,11 +69,11 @@ def build_traffic_record(line):
 def build_attack_record(line):
     device_hash = line[1]
     dip = line[4]
-    pg = 'testpg'
-    partner = 'testpar'
+    pg = 'aea4410b-b6fc-466b-bf19-2d96d10df7c9'
+    partner = 'b97eecc3-81f2-4552-a483-43dbc657d3d4'
     org = 'aaddccd'
-    attack_type= line[5]
-    attack_port= line[6]
+    attack_type = line[5]
+    attack_port = line[6]
     begin_time = line[8]
     end_time = line[9]
     filter_bytes = line[12]
@@ -142,7 +140,6 @@ def test(client):
     print("Result: {0}".format(result))
 
 
-
 def write_traffic(client):
     traffic_lines = read_file(traffic_test_file)
     while True:
@@ -151,8 +148,9 @@ def write_traffic(client):
             org_data = line.split('\t')
             traffic_record = build_traffic_record(org_data)
             time.sleep(0.1)
-            client.write_points(traffic_record, protocol='json', retention_policy='six_months')
+            client.write_points(traffic_record, protocol='json', retention_policy='six_months', time_precision='s')
             print 'Insert Traffic Successful:%s' % traffic_record
+
 
 def write_attackevent(client):
     attack_event_lines = read_file(attack_event_test_file)
@@ -162,9 +160,9 @@ def write_attackevent(client):
                 org_data = line.split('\t')
                 attackevent_record = build_attack_record(org_data)
                 time.sleep(0.1)
-                client.write_points(attackevent_record, protocol='json')
+                client.write_points(attackevent_record, protocol='json', time_precision='s')
                 print 'Insert AttackEvent Successful:%s' % attackevent_record
-            except BaseException , ex:
+            except BaseException, ex:
                 print ex
 
 
@@ -178,13 +176,7 @@ if __name__ == '__main__':
     # test(client)
 
     attack_lines = read_file(attack_event_test_file)
-    traffc_process=multiprocessing.Process(target=write_traffic, args=(client,))
-    attackevent_process=multiprocessing.Process(target=write_attackevent, args=(client,))
+    traffc_process = multiprocessing.Process(target=write_traffic, args=(client,))
+    attackevent_process = multiprocessing.Process(target=write_attackevent, args=(client,))
     traffc_process.start()
     attackevent_process.start()
-
-
-
-
-
-
