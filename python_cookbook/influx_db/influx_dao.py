@@ -14,9 +14,9 @@ def read_file(f):
     return lines
 
 
-def build_traffic_record(line):
+def build_traffic_record(line, current_time):
     dip = line[4]
-    pg = 'aea4410b-b6fc-466b-bf19-2d96d10df7c9'
+    pg = '2ecc5d68-4f3a-4a04-9c75-18241b477397'
     device_ip = line[0]
     partner = 'b97eecc3-81f2-4552-a483-43dbc657d3d4'
     org = 'aaddccd'
@@ -31,9 +31,10 @@ def build_traffic_record(line):
             "dip": dip,
             "pg": pg,
             "org": org,
-            "device_hash": device_ip,
+            # "device_hash": device_ip,
             "partner": partner,
         },
+        "time": current_time,
         "fields": {
             "in_pps": int(in_pps),
             "pa_pps": int(out_pps),
@@ -50,9 +51,10 @@ def build_traffic_record(line):
             "sip": dip,
             "pg": pg,
             "org": org,
-            "device_hash": device_ip,
+            # "device_hash": device_ip,
             "partner": partner,
         },
+        "time": current_time,
         "fields": {
             "in_pps": int(in_pps),
             "pa_pps": int(out_pps),
@@ -66,10 +68,10 @@ def build_traffic_record(line):
     return [data_json_traffic, data_json_sip]
 
 
-def build_attack_record(line):
-    device_hash = line[1]
+def build_attack_record(line,current_time):
+    # device_hash = line[1]
     dip = line[4]
-    pg = 'aea4410b-b6fc-466b-bf19-2d96d10df7c9'
+    pg = '2ecc5d68-4f3a-4a04-9c75-18241b477397'
     partner = 'b97eecc3-81f2-4552-a483-43dbc657d3d4'
     org = 'aaddccd'
     attack_type = line[5]
@@ -85,11 +87,12 @@ def build_attack_record(line):
             "dip": dip,
             "pg": pg,
             "org": org,
-            "device_hash": device_hash,
+            # "device_hash": device_hash,
             "partner": partner,
             "attack_type": attack_type,
             "attack_port": attack_port,
         },
+        "time": current_time,
         "fields": {
             "begin_time": int(begin_time),
             "end_time": int(end_time),
@@ -143,27 +146,52 @@ def test(client):
 def write_traffic(client):
     traffic_lines = read_file(traffic_test_file)
     while True:
-        for line in traffic_lines:
-            record_count = 0
+        points = []
+        for index, line in enumerate(traffic_lines):
+            if index % 100 == 0:
+                current_time = int(time.time())
             org_data = line.split('\t')
-            traffic_record = build_traffic_record(org_data)
-            time.sleep(0.1)
-            client.write_points(traffic_record, protocol='json', retention_policy='six_months', time_precision='s')
-            print 'Insert Traffic Successful:%s' % traffic_record
-
+            traffic_record = build_traffic_record(org_data, current_time)
+            if index % 100 == 0:
+                points.extend(traffic_record)
+                client.write_points(points, protocol='json', retention_policy='six_months', time_precision='s')
+                points = []
+                if index > 0:
+                    time.sleep(30)
+                print '%s Insert Traffic Successful' % time.ctime()
+            else:
+                points.extend(traffic_record)
 
 def write_attackevent(client):
-    attack_event_lines = read_file(attack_event_test_file)
+    attack_event_lines = read_file(traffic_test_file)
     while True:
-        for line in attack_event_lines:
-            try:
-                org_data = line.split('\t')
-                attackevent_record = build_attack_record(org_data)
-                time.sleep(0.1)
-                client.write_points(attackevent_record, protocol='json', time_precision='s')
-                print 'Insert AttackEvent Successful:%s' % attackevent_record
-            except BaseException, ex:
-                print ex
+        points = []
+        for index, line in enumerate(attack_event_lines):
+            if index % 100 == 0:
+                current_time = int(time.time())
+            org_data = line.split('\t')
+            attackevent_record = build_attack_record(org_data, current_time)
+            if index % 100 == 0:
+                points.extend(attackevent_record)
+                client.write_points(points, protocol='json', time_precision='s')
+                points = []
+                if index > 0:
+                    time.sleep(30)
+                print '%s Insert AttackEvent Successful' % time.ctime()
+            else:
+                points.extend(attackevent_record)
+
+# def write_attackevent(client):
+#     attack_event_lines = read_file(attack_event_test_file)
+#     while True:
+#         for line in attack_event_lines:
+#             try:
+#                 org_data = line.split('\t')
+#                 attackevent_record = build_attack_record(org_data)
+#                 client.write_points(attackevent_record, protocol='json', time_precision='s')
+#                 print 'Insert AttackEvent Successful:%s' % attackevent_record
+#             except BaseException, ex:
+#                 print ex
 
 
 if __name__ == '__main__':

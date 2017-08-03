@@ -2,21 +2,20 @@ package com.eric.storm.sample;
 
 import org.apache.storm.Config;
 import org.apache.storm.LocalCluster;
-import org.apache.storm.StormSubmitter;
-import org.apache.storm.shade.org.apache.commons.lang.StringUtils;
 import org.apache.storm.spout.SpoutOutputCollector;
+import org.apache.storm.task.OutputCollector;
 import org.apache.storm.task.TopologyContext;
 import org.apache.storm.topology.BasicOutputCollector;
 import org.apache.storm.topology.OutputFieldsDeclarer;
 import org.apache.storm.topology.TopologyBuilder;
 import org.apache.storm.topology.base.BaseBasicBolt;
+import org.apache.storm.topology.base.BaseRichBolt;
 import org.apache.storm.topology.base.BaseRichSpout;
 import org.apache.storm.tuple.Fields;
 import org.apache.storm.tuple.Tuple;
 import org.apache.storm.tuple.Values;
 import org.apache.storm.utils.Utils;
 
-import java.io.*;
 import java.util.*;
 
 /*
@@ -26,13 +25,15 @@ public class WordCountTopolopgyAllInJava {
 
     // 定义一个喷头，用于产生数据。该类继承自BaseRichSpout
     public static class RandomSentenceSpout extends BaseRichSpout {
-        SpoutOutputCollector _collector;
-        Random _rand;
+        private SpoutOutputCollector _collector;
+        private Random _rand;
+        private Map<String,Values> pending;
 
         @Override
         public void open(Map conf, TopologyContext context, SpoutOutputCollector collector) {
             _collector = collector;
             _rand = new Random();
+            pending=new HashMap<String, Values>();
         }
 
         @Override
@@ -40,26 +41,32 @@ public class WordCountTopolopgyAllInJava {
 
             // 睡眠一段时间后再产生一个数据
             Utils.sleep(100);
-
             // 句子数组
             String[] sentences = new String[]{"the cow jumped over the moon", "an apple a day keeps the doctor away",
                     "four score and seven years ago", "snow white and the seven dwarfs", "i am at two with nature"};
-
             // 随机选择一个句子
             String sentence = sentences[_rand.nextInt(sentences.length)];
-
-            // 发射该句子给Bolt
-            _collector.emit(new Values(sentence));
+            Values tmpValues=new Values(sentence);
+            String msgID=UUID.randomUUID().toString();
+            pending.put(msgID,tmpValues);
+            // 发射该句子给Bolt,每个tuple都有一个唯一标识
+            _collector.emit(tmpValues,msgID);
         }
 
-        // 确认函数
+        // 确认函数:成功处理的tuple,其id会从pending列表中删除
         @Override
         public void ack(Object id) {
+            System.out.println("Msg:"+id+" send successful!");
+            pending.remove(id);
+
         }
 
-        // 处理失败的时候调用
+        // 失败处理函数:处理失败的时候重新发送一次tuple,
         @Override
         public void fail(Object id) {
+            System.out.println("Msg:"+id+" send failed,will try again!");
+            Values failedMsg=pending.get(id);
+            _collector.emit(failedMsg,id);
         }
 
         @Override
@@ -70,9 +77,22 @@ public class WordCountTopolopgyAllInJava {
     }
 
     // 定义个Bolt，用于将句子切分为单词
-    public static class SplitSentence extends BaseBasicBolt {
+    public static class SplitSentence extends BaseRichBolt {
+        private OutputCollector collector;
+
         @Override
-        public void execute(Tuple tuple, BasicOutputCollector collector) {
+        public void declareOutputFields(OutputFieldsDeclarer declarer) {
+            // 定义一个字段
+            declarer.declare(new Fields("word"));
+        }
+
+        @Override
+        public void prepare(Map map, TopologyContext topologyContext, OutputCollector outputCollector) {
+            collector=outputCollector;
+        }
+
+        @Override
+        public void execute(Tuple tuple) {
             // 接收到一个句子
             String sentence = tuple.getString(0);
             // 把句子切割为单词
@@ -81,12 +101,7 @@ public class WordCountTopolopgyAllInJava {
             while (iter.hasMoreElements()) {
                 collector.emit(new Values(iter.nextToken()));
             }
-        }
-
-        @Override
-        public void declareOutputFields(OutputFieldsDeclarer declarer) {
-            // 定义一个字段
-            declarer.declare(new Fields("word"));
+            collector.ack(tuple);
         }
     }
 
@@ -95,6 +110,7 @@ public class WordCountTopolopgyAllInJava {
     // 定义一个Bolt，用于单词计数
     public static class WordCount extends BaseBasicBolt {
         Map<String, Long> counts = new HashMap<String, Long>();
+
 
         @Override
         public void execute(Tuple tuple, BasicOutputCollector collector) {
