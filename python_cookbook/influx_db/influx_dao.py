@@ -7,6 +7,7 @@ import time
 
 traffic_test_file = 'C:\\Users\\Eric\\Desktop\\show.archive_2016080311_0000_01'
 attack_event_test_file = 'C:\\Users\\Eric\\Desktop\\show.archive_2016080311_0000_00'
+batch_size = 1
 
 
 def read_file(f):
@@ -68,7 +69,7 @@ def build_traffic_record(line, current_time):
     return [data_json_traffic, data_json_sip]
 
 
-def build_attack_record(line,current_time):
+def build_attack_record(line, current_time):
     # device_hash = line[1]
     dip = line[4]
     pg = '2ecc5d68-4f3a-4a04-9c75-18241b477397'
@@ -81,6 +82,7 @@ def build_attack_record(line,current_time):
     filter_bytes = line[12]
     filter_packages = line[13]
 
+
     data_json_attackevent = {
         "measurement": "attack_event",
         "tags": {
@@ -90,7 +92,7 @@ def build_attack_record(line,current_time):
             # "device_hash": device_hash,
             "partner": partner,
             "attack_type": attack_type,
-            "attack_port": attack_port,
+            # "attack_port": attack_port,
         },
         "time": current_time,
         "fields": {
@@ -100,7 +102,6 @@ def build_attack_record(line,current_time):
             "filter_pps": int(filter_packages),
         }
     }
-
     return [data_json_attackevent]
 
 
@@ -148,60 +149,47 @@ def write_traffic(client):
     while True:
         points = []
         for index, line in enumerate(traffic_lines):
-            if index % 100 == 0:
+            if index % batch_size == 0:
                 current_time = int(time.time())
             org_data = line.split('\t')
             traffic_record = build_traffic_record(org_data, current_time)
-            if index % 100 == 0:
+            if index % batch_size == 0:
                 points.extend(traffic_record)
                 client.write_points(points, protocol='json', retention_policy='six_months', time_precision='s')
                 points = []
                 if index > 0:
-                    time.sleep(30)
+                    time.sleep(1)
                 print '%s Insert Traffic Successful' % time.ctime()
             else:
                 points.extend(traffic_record)
+
 
 def write_attackevent(client):
     attack_event_lines = read_file(traffic_test_file)
     while True:
         points = []
         for index, line in enumerate(attack_event_lines):
-            if index % 100 == 0:
+            if index % batch_size == 0:
                 current_time = int(time.time())
             org_data = line.split('\t')
             attackevent_record = build_attack_record(org_data, current_time)
-            if index % 100 == 0:
+            if index % batch_size == 0:
                 points.extend(attackevent_record)
                 client.write_points(points, protocol='json', time_precision='s')
                 points = []
                 if index > 0:
-                    time.sleep(30)
+                    time.sleep(1)
                 print '%s Insert AttackEvent Successful' % time.ctime()
             else:
                 points.extend(attackevent_record)
 
-# def write_attackevent(client):
-#     attack_event_lines = read_file(attack_event_test_file)
-#     while True:
-#         for line in attack_event_lines:
-#             try:
-#                 org_data = line.split('\t')
-#                 attackevent_record = build_attack_record(org_data)
-#                 client.write_points(attackevent_record, protocol='json', time_precision='s')
-#                 print 'Insert AttackEvent Successful:%s' % attackevent_record
-#             except BaseException, ex:
-#                 print ex
-
-
 if __name__ == '__main__':
-    host = '10.5.25.18'
+    host = '10.67.13.238'
     port = 8086
     dbname = 'cloudportal'
     # Temporarily used to avoid line protocol time conversion issues #412, #426, #431.
 
     client = InfluxDBClient(host=host, database=dbname)
-    # test(client)
 
     attack_lines = read_file(attack_event_test_file)
     traffc_process = multiprocessing.Process(target=write_traffic, args=(client,))
