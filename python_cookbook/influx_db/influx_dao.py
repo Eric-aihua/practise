@@ -7,7 +7,7 @@ import time
 
 traffic_test_file = 'C:\\Users\\Eric\\Desktop\\show.archive_2016080311_0000_01'
 attack_event_test_file = 'C:\\Users\\Eric\\Desktop\\show.archive_2016080311_0000_00'
-batch_size = 1
+batch_size = 10
 
 
 def read_file(f):
@@ -92,7 +92,6 @@ def build_attack_record(line, current_time):
             # "device_hash": device_hash,
             "partner": partner,
             "attack_type": attack_type,
-            # "attack_port": attack_port,
         },
         "time": current_time,
         "fields": {
@@ -100,8 +99,10 @@ def build_attack_record(line, current_time):
             "end_time": int(end_time),
             "filter_bps": int(filter_bytes),
             "filter_pps": int(filter_packages),
+            "attack_port": attack_port
         }
     }
+    print data_json_attackevent
     return [data_json_attackevent]
 
 
@@ -165,7 +166,7 @@ def write_traffic(client):
 
 
 def write_attackevent(client):
-    attack_event_lines = read_file(traffic_test_file)
+    attack_event_lines = read_file(attack_event_test_file)
     while True:
         points = []
         for index, line in enumerate(attack_event_lines):
@@ -190,8 +191,6 @@ if __name__ == '__main__':
     # Temporarily used to avoid line protocol time conversion issues #412, #426, #431.
 
     client = InfluxDBClient(host=host, database=dbname)
-
-    attack_lines = read_file(attack_event_test_file)
     traffc_process = multiprocessing.Process(target=write_traffic, args=(client,))
     attackevent_process = multiprocessing.Process(target=write_attackevent, args=(client,))
     traffc_process.start()
