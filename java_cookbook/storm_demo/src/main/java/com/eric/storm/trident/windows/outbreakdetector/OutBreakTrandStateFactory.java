@@ -7,6 +7,8 @@ import org.apache.storm.trident.state.StateFactory;
 import java.util.Map;
 
 public class OutBreakTrandStateFactory implements StateFactory {
+    private static final long serialVersionUID = -6860219568547283565L;
+
     @Override
     public State makeState(Map map, IMetricsContext iMetricsContext, int i, int i1) {
         return null;

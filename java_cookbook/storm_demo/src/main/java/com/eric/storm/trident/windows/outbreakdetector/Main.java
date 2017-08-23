@@ -17,7 +17,7 @@ public class Main {
         LocalCluster localCluster=new LocalCluster();
         StormTopology stormTopology=OutBreakDetectionTopology.buildTopology();
         localCluster.submitTopology("OutBreakDetector",config,stormTopology);
-        Thread.sleep(30000);
+        Thread.sleep(10000);
         localCluster.shutdown();
     }
 }

@@ -101,6 +101,7 @@ public class WordCountTopolopgyAllInJava {
             while (iter.hasMoreElements()) {
                 collector.emit(new Values(iter.nextToken()));
             }
+            // 确认对数据进行处理
             collector.ack(tuple);
         }
     }
