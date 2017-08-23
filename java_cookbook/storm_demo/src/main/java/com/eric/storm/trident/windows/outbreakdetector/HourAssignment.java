@@ -28,6 +28,6 @@ public class HourAssignment extends BaseFunction {
         long hour=eventTimeStamp/1000/60/60;
         String[] withCityHourKey={city+event.getDiagCode()+hour};
         tridentCollector.emit(Arrays.asList(withCityHourKey));
-        logger.info("HourAssignment Result:"+withCityHourKey);
+        logger.info("HourAssignment Result:"+withCityHourKey.toString());
     }
 }

@@ -14,7 +14,7 @@ public class OutBreakDetectionTopology {
         Stream stream=tridentTopology.newStream("spout",diagnosisEventSpot);
         stream.each(new Fields("spout"),new DiseaseFilter()).
                 each(new Fields("spout"),new CityAssignment(),new Fields("withCity"))
-                .each(new Fields("withCity"),new HourAssignment(),new Fields("withCityHour")).
+                .each(new Fields("spout","withCity"),new HourAssignment(),new Fields("withCityHour")).
                 groupBy(new Fields("withCityHour")).
                 persistentAggregate(new OutBreakTrandStateFactory(), new Count(),new Fields("count")).newValuesStream()
                 .each(new Fields("withCityHour"),new OutBreakDetector(),new Fields("alter")).each(new Fields("alter"),new DispatchAlter(),new Fields());
