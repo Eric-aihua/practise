@@ -23,7 +23,7 @@ public class GraphTopology {
         Stream stream=tridentTopology.newStream("twitter-graph",kafkaSpout);
         Fields JsonFields=new Fields("timestamp","message");
         stream.each(new Fields("twitter_stream"),new JSONProjectFunction(JsonFields),JsonFields).project(JsonFields)
-                .partitionPersist(new GraphStateFactory(new TitanGraphFactory()),JsonFields,new GraphUpdater(new TwitterGraphTupleProcessor()),new Fields());
+                .partitionPersist(new GraphStateFactory(new Neo4JGraphFactory()),JsonFields,new GraphUpdater(new TwitterGraphTupleProcessor()),new Fields());
         return tridentTopology.build();
     }
 }

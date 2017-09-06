@@ -8,7 +8,7 @@ __author__ = 'sunaihua'
 # SQL = "SELECT sum(avg_dr_bps) as dr_bps, sum(max_dr_bps) as max_dr_bps,sum(avg_in_bps) as in_bps,sum(max_in_bps) as max_in_bps,sum(avg_pa_bps) as pa_bps FROM one_year.collapsar_flow_5m WHERE ( org='zWJyGF' or org='97eXGR' or org='aaddccd' ) AND partner='b97eecc3-81f2-4552-a483-43dbc657d3d4' AND  time >= 1500519959s and time <= 1501124759s group by time(5m) fill(0)"
 SQL = "SELECT sum(filter_bps) as filter_bps FROM attack_event WHERE pg='1ecc5d68-4f3a-4a04-9c75-18241b477397' AND  time >= 1501656211s and time <= 1501667011s group by time(30s),attack_type fill(0)"
 
-host = '10.5.25.18'
+host = '10.5.30.24'
 dbname = 'cloudportal'
 client = InfluxDBClient(host=host, database=dbname)
 """
@@ -60,6 +60,19 @@ class TestInfluxDBQuery(TestCase):
         print list(result.get_points(tags={'attack_type': '0'}))
         print list(result.get_points(tags={'attack_type': '1'}))
         print convert_result_format(result)
+
+    def testSummryQuery(self):
+        sql="select sum(filter_bps)*30 as nomal_filter_bps from attack_event where pg='2ecc5d68-4f3a-4a04-9c75-18241b477397' AND dip='61.4.185.48' AND   begin_time > 1470193130 and begin_time < 1470193260"
+        result = client.query(sql, epoch='s')
+        print list(result.get_points())[0].get("nomal_filter_bps",0)
+        print list(result.keys())
+        print list(result.items())
+
+    def testTrafficQuery(self):
+        sql = "SELECT sum(dr_bps) as dr_bps, sum(dr_bps) as max_dr_bps,sum(in_bps) as in_bps,sum(in_bps) as max_in_bps,sum(pa_bps) as pa_bps FROM six_months.collapsar_flow WHERE pg='916391cd-c3bd-4918-82b9-5343be086c16' AND  time >= 1503292028s and time <= 1503295628s group by time(30s) fill(0)"
+        result = client.query(sql, epoch='s')
+        print result.get_points()
+        print list(result.get_points())
 
 
 if __name__ == '__main__':

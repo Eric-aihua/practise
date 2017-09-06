@@ -10,19 +10,19 @@ import win32con
 
 # LOCAL_SRC_DIR = 'H:\\sourcecode\Rai\\trunk\\api\\bgpdiv\\pg'
 # LOCAL_SRC_DIR = 'H:\\sourcecode\Rai\\trunk\\api\\ads'
-# LOCAL_SRC_DIR = 'H:\\sourcecode\\Rai\\trunk\\api\\traffic\graph_data'
-LOCAL_SRC_DIR = 'H:\\sourcecode\\Rai\\trunk\\api\\attack\graph_data'
-# LOCAL_SRC_DIR = 'H:\\sourcecode\\Rai\\trunk\\api\\traffic\utils'
+# LOCAL_SRC_DIR = 'H:\\sourcecode\\Rai\\trunk\\api\\report'
+# LOCAL_SRC_DIR = 'H:\\sourcecode\\Rai\\trunk\\api\\attack\\tabs'
+LOCAL_SRC_DIR = 'H:\\sourcecode\\Rai\\trunk\\api\\report\\management'
 DST_HOST = '10.5.24.82'
 DST_KEY = 'f:\\Tools\\key\\241.ppk'
-DST_DIR = '/opt/disk2/var/www/rai_sunaihua/attack'
-# DST_DIR = '/opt/disk2/var/www/rai_sunaihua/traffic'
+# DST_DIR = '/opt/disk2/var/www/rai_sunaihua/attack'
+DST_DIR = '/opt/disk2/var/www/rai_sunaihua/report/management'
+# DST_DIR = '/opt/disk2/var/www/rai_sunaihua/'
 # DST_DIR = '/opt/disk2/var/www/rai_sunaihua/bgpdiv'
 SYN_DUR = 1
 
 file_md5_map = {}
 syn_list = []
-
 
 ACTIONS = {
     1: "Created",
@@ -46,7 +46,7 @@ hDir = win32file.CreateFile(
 
 if __name__ == '__main__':
     while 1:
-        has_change=False
+        has_change = False
         results = win32file.ReadDirectoryChangesW(
             hDir,
             # handle: Handle to the directory to be monitored. This directory must be opened with the FILE_LIST_DIRECTORY access right.
@@ -57,13 +57,17 @@ if __name__ == '__main__':
             win32con.FILE_NOTIFY_CHANGE_DIR_NAME,
             None,
             None)
-
+        # print results
         for action, file in results:
             full_filename = os.path.join(LOCAL_SRC_DIR, file)
             if full_filename.endswith('.py'):
-                has_change=True
-                break;
-        print 'file has change: %s start to sync' % full_filename
-        cmd='pscp -i %s -r %s root@%s:%s'%(DST_KEY,LOCAL_SRC_DIR,DST_HOST,DST_DIR)
-        print cmd
-        os.system(cmd)
+                print 'file has change: %s' % full_filename
+                abs_path = full_filename.replace('\\', os.path.sep)
+                native_path= abs_path[len(LOCAL_SRC_DIR):]
+                has_change = True
+                str_native_path=native_path.replace(os.path.sep,'/')
+                dst_file_path= '%s%s'%(DST_DIR,str_native_path)
+                # cmd = 'pscp -i %s -r %s root@%s:%s' % (DST_KEY, LOCAL_SRC_DIR, DST_HOST, dst_file_path)
+                cmd = 'pscp -i %s %s root@%s:%s' % (DST_KEY, abs_path, DST_HOST, dst_file_path)
+                print cmd
+                os.system(cmd)

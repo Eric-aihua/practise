@@ -8,6 +8,7 @@ import time
 traffic_test_file = 'C:\\Users\\Eric\\Desktop\\show.archive_2016080311_0000_01'
 attack_event_test_file = 'C:\\Users\\Eric\\Desktop\\show.archive_2016080311_0000_00'
 batch_size = 10
+sleep_seconds=5
 
 
 def read_file(f):
@@ -159,7 +160,7 @@ def write_traffic(client):
                 client.write_points(points, protocol='json', retention_policy='six_months', time_precision='s')
                 points = []
                 if index > 0:
-                    time.sleep(1)
+                    time.sleep(sleep_seconds)
                 print '%s Insert Traffic Successful' % time.ctime()
             else:
                 points.extend(traffic_record)
@@ -179,13 +180,15 @@ def write_attackevent(client):
                 client.write_points(points, protocol='json', time_precision='s')
                 points = []
                 if index > 0:
-                    time.sleep(1)
+                    time.sleep(sleep_seconds)
                 print '%s Insert AttackEvent Successful' % time.ctime()
             else:
                 points.extend(attackevent_record)
 
 if __name__ == '__main__':
-    host = '10.67.13.238'
+    # host = '10.67.13.238'
+    # host = '127.0.0.1'
+    host = '10.5.31.24'
     port = 8086
     dbname = 'cloudportal'
     # Temporarily used to avoid line protocol time conversion issues #412, #426, #431.
