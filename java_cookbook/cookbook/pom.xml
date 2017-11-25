@@ -104,6 +104,20 @@
             <version>2.15</version>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/org.neo4j/neo4j -->
+        <dependency>
+            <groupId>org.neo4j</groupId>
+            <artifactId>neo4j</artifactId>
+            <version>3.2.3</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.neo4j.driver/neo4j-java-driver -->
+        <dependency>
+            <groupId>org.neo4j.driver</groupId>
+            <artifactId>neo4j-java-driver</artifactId>
+            <version>1.4.3</version>
+        </dependency>
+
         <!--junit-->
         <dependency>
             <groupId>junit</groupId>

@@ -78,7 +78,33 @@
             <version>2.6.0</version>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/org.neo4j/neo4j -->
+        <dependency>
+            <groupId>org.neo4j</groupId>
+            <artifactId>neo4j</artifactId>
+            <version>3.2.3</version>
+        </dependency>
 
+        <!-- https://mvnrepository.com/artifact/org.neo4j/neo4j-cypher -->
+        <dependency>
+            <groupId>org.neo4j</groupId>
+            <artifactId>neo4j-cypher</artifactId>
+            <version>3.2.3</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.neo4j/neo4j-rest-graphdb -->
+        <dependency>
+            <groupId>org.neo4j</groupId>
+            <artifactId>neo4j-rest-graphdb</artifactId>
+            <version>2.0.0</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.neo4j.driver/neo4j-java-driver -->
+        <dependency>
+            <groupId>org.neo4j.driver</groupId>
+            <artifactId>neo4j-java-driver</artifactId>
+            <version>1.4.3</version>
+        </dependency>
         <dependency>
             <groupId>commons-collections</groupId>
             <artifactId>commons-collections</artifactId>
@@ -88,6 +114,20 @@
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
             <version>15.0</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/io.druid/druid-processing -->
+        <dependency>
+            <groupId>io.druid</groupId>
+            <artifactId>druid-processing</artifactId>
+            <version>0.10.1</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/io.druid/druid-api -->
+        <dependency>
+            <groupId>io.druid</groupId>
+            <artifactId>druid-api</artifactId>
+            <version>0.10.1</version>
+            <scope>provided</scope>
         </dependency>
     </dependencies>
 

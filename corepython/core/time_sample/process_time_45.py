@@ -8,9 +8,11 @@ import datetime
 
 
 def process_time_zone_by_time():
-    now=time.time()
+    # now=time.time()
+    now=1504158000
     print now
     time_tuple=time.localtime(now)
+    print time_tuple
     time_format='%Y-%m-%d %H:%M:%S'
     # time tuple转换成固定格式的字符串
     time_str=time.strftime(time_format,time_tuple)
@@ -21,13 +23,9 @@ def process_time_zone_by_time():
     # 将time tuple 转换成秒
     print time.mktime(time_tuple2)
 
-
-
-
-def process_time_zone_by_datetime():
+def get_time_info():
     pass
 
 
 if __name__ == '__main__':
     process_time_zone_by_time()
-    process_time_zone_by_datetime()
