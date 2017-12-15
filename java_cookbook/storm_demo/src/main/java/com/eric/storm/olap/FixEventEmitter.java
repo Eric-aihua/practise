@@ -18,7 +18,6 @@ public class FixEventEmitter<T> implements ITridentSpout.Emitter<Long>,Serializa
 
     private static final long serialVersionUID = -778756559681342455L;
     public static AtomicInteger succesfulTransactions=new AtomicInteger(0);
-    public static AtomicInteger uids=new AtomicInteger(0);
 
     @Override
     public void emitBatch(TransactionAttempt transactionAttempt, Long aLong, TridentCollector tridentCollector) {

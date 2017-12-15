@@ -57,6 +57,12 @@
             <version>1.1.0</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.apache.storm</groupId>
+            <artifactId>storm-druid</artifactId>
+            <version>1.1.0</version>
+        </dependency>
+
         <!-- https://mvnrepository.com/artifact/org.twitter4j/twitter4j-core -->
         <dependency>
             <groupId>org.twitter4j</groupId>
@@ -78,6 +84,14 @@
             <version>2.6.0</version>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/com.metamx/tranquility -->
+        <dependency>
+            <groupId>com.metamx</groupId>
+            <artifactId>tranquility_2.10</artifactId>
+            <version>0.4.2</version>
+        </dependency>
+
+
         <!-- https://mvnrepository.com/artifact/org.neo4j/neo4j -->
         <dependency>
             <groupId>org.neo4j</groupId>
@@ -93,11 +107,11 @@
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/org.neo4j/neo4j-rest-graphdb -->
-        <dependency>
-            <groupId>org.neo4j</groupId>
-            <artifactId>neo4j-rest-graphdb</artifactId>
-            <version>2.0.0</version>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>org.neo4j</groupId>-->
+            <!--<artifactId>neo4j-rest-graphdb</artifactId>-->
+            <!--<version>2.0.0</version>-->
+        <!--</dependency>-->
 
         <!-- https://mvnrepository.com/artifact/org.neo4j.driver/neo4j-java-driver -->
         <dependency>
@@ -122,40 +136,67 @@
             <version>0.10.1</version>
         </dependency>
 
+
+        <dependency>
+            <groupId>io.druid</groupId>
+            <artifactId>tranquility-core_2.11</artifactId>
+            <version>0.8.2</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.sun.jersey</groupId>
+                    <artifactId>jersey-server</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>com.sun.jersey</groupId>
+                    <artifactId>jersey-core</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>mysql</groupId>
+                    <artifactId>mysql-connector-java</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <dependency>
+            <groupId>com.esotericsoftware</groupId>
+            <artifactId>kryo</artifactId>
+            <version>4.0.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.esotericsoftware</groupId>
+            <artifactId>kryo-shaded</artifactId>
+            <version>4.0.1</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/com.n3twork.druid/druid-processing -->
+        <dependency>
+            <groupId>com.n3twork.druid</groupId>
+            <artifactId>druid-processing</artifactId>
+            <version>0.6.105-hadoop2.4.0</version>
+        </dependency>
+
+
+        <!--<dependency>-->
+            <!--<groupId>io.druid</groupId>-->
+            <!--<artifactId>tranquility-core_2.11</artifactId>-->
+            <!--<version>0.10.1</version>-->
+        <!--</dependency>-->
+
         <!-- https://mvnrepository.com/artifact/io.druid/druid-api -->
         <dependency>
             <groupId>io.druid</groupId>
             <artifactId>druid-api</artifactId>
             <version>0.10.1</version>
-            <scope>provided</scope>
+            <!--<scope>provided</scope>-->
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/org.apache.httpcomponents/httpclient -->
-        <dependency>
-            <groupId>org.apache.httpcomponents</groupId>
-            <artifactId>httpclient</artifactId>
-            <version>4.5.4</version>
-        </dependency>
 
-        <!-- https://mvnrepository.com/artifact/org.apache.httpcomponents/httpcore -->
-        <dependency>
-            <groupId>org.apache.httpcomponents</groupId>
-            <artifactId>httpcore</artifactId>
-            <version>4.4.8</version>
-        </dependency>
-
-        <!-- https://mvnrepository.com/artifact/org.apache.httpcomponents/httpmime -->
-        <dependency>
-            <groupId>org.apache.httpcomponents</groupId>
-            <artifactId>httpmime</artifactId>
-            <version>4.5.4</version>
-        </dependency>
-
-        <dependency>
-            <groupId>net.sf.json-lib</groupId>
-            <artifactId>json-lib</artifactId>
-            <version>2.4</version>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>net.sf.json-lib</groupId>-->
+            <!--<artifactId>json-lib</artifactId>-->
+            <!--<version>2.4</version>-->
+        <!--</dependency>-->
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
@@ -223,32 +264,14 @@
             </executions>
         </plugin>
 
-        <!--<plugin>-->
-            <!--<groupId>org.codehaus.mojo</groupId>-->
-            <!--<artifactId>exec-maven-plugin</artifactId>-->
-            <!--<version>1.2.1</version>-->
-            <!--<executions>-->
-                <!--<execution>-->
-                    <!--<goals>-->
-                        <!--<goal>exec</goal>-->
-                    <!--</goals>-->
-                <!--</execution>-->
-            <!--</executions>-->
-            <!--<configuration>-->
-                <!--<executable>java</executable>-->
-                <!--<includeProjectDependencies>true</includeProjectDependencies>-->
-                <!--<includePluginDependencies>false</includePluginDependencies>-->
-                <!--<classpathScope>compile</classpathScope>-->
-                <!--<mainClass>${com.eric.storm.sample.WordCountTopolopgyAllInJava}</mainClass>-->
-            <!--</configuration>-->
-        <!--</plugin>-->
+
 
         <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-compiler-plugin</artifactId>
             <configuration>
-                <source>1.6</source>
-                <target>1.6</target>
+                <source>1.8</source>
+                <target>1.8</target>
             </configuration>
         </plugin>
     </plugins>

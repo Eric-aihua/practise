@@ -11,9 +11,11 @@ import java.io.Serializable;
 import java.util.Map;
 
 /**
- *
+ * 此处只是作为一个例子，真的要达到高可用的话，这里需要换成Transaction Spout,例如 Transaction Kafka Spout
  * Created by Eric on 2017/10/26.
  */
+
+// TODO 换成 Transaction Kafka Spout
 public class FixEventSpout implements ITridentSpout {
 
     private static final long serialVersionUID = -7784045935347555872L;
@@ -37,6 +39,7 @@ public class FixEventSpout implements ITridentSpout {
 
     @Override
     public Fields getOutputFields() {
+
         return new Fields("message");
     }
 }

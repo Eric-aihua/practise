@@ -16,8 +16,8 @@ public class MessageTypeFilter extends BaseFilter {
     private Logger logger= LoggerFactory.getLogger(this.getClass());
     @Override
     public boolean isKeep(TridentTuple tridentTuple) {
-        FixMessageDto dto=(FixMessageDto)tridentTuple.get(0);
-        if (dto.getPrice()>3){
+        Map<String,Object> dto=(Map<String,Object>)tridentTuple.get(0);
+        if ((int)dto.get("type")>3){
             logger.info("########################Pass dto:"+dto);
             return true;
         }

@@ -11,6 +11,9 @@ import org.apache.storm.generated.StormTopology;
 public class Main {
     public static void main(String args[]) throws InterruptedException {
         Config config=new Config();
+        config.setDebug(true);
+        config.put("druid.tranquility.zk.connect", "10.5.25.18:2181");
+        config.setNumWorkers(3);
         LocalCluster localCluster=new LocalCluster();
         StormTopology stormTopology= FinanceAnalyticsTopology.buildTopology();
         localCluster.submitTopology("Druid-Intergration",config,stormTopology);
