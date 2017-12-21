@@ -16,7 +16,7 @@ import java.util.Map;
  */
 
 // TODO 换成 Transaction Kafka Spout
-public class FixEventSpout implements ITridentSpout {
+public class TrafficStatSipSpout implements ITridentSpout {
 
     private static final long serialVersionUID = -7784045935347555872L;
     BatchCoordinator<Long> coordinator=new DefaultBatchCoordinator();

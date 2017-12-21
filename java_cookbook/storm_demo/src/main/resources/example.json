@@ -1,0 +1,151 @@
+{
+  "dataSources": [
+    {
+      "spec": {
+        "dataSchema": {
+          "dataSource": "wikipedia-java-client",
+          "parser": {
+            "type": "string",
+            "parseSpec": {
+              "format": "json",
+              "timestampSpec": {
+                "column": "timestamp",
+                "format": "auto"
+              },
+              "dimensionsSpec": {
+                "dimensions": [
+                  "page",
+                  "language",
+                  "user",
+                  "unpatrolled",
+                  "newPage",
+                  "robot",
+                  "anonymous",
+                  "namespace",
+                  "continent",
+                  "country",
+                  "region",
+                  "city"
+                ],
+                "dimensionExclusions": [],
+                "spatialDimensions": []
+              }
+            }
+          },
+          "metricsSpec": [
+            {
+              "type": "count",
+              "name": "count"
+            },
+            {
+              "type": "doubleSum",
+              "name": "added",
+              "fieldName": "added"
+            },
+            {
+              "type": "doubleSum",
+              "name": "deleted",
+              "fieldName": "deleted"
+            },
+            {
+              "type": "doubleSum",
+              "name": "delta",
+              "fieldName": "delta"
+            }
+          ],
+          "granularitySpec": {
+            "type": "uniform",
+            "segmentGranularity": "DAY",
+            "queryGranularity": "NONE"
+          }
+        },
+        "tuningConfig": {
+          "type": "realtime",
+          "maxRowsInMemory": 100000,
+          "intermediatePersistPeriod": "PT10m",
+          "windowPeriod": "PT10M"
+        }
+      }
+    },
+    {
+      "spec": {
+        "dataSchema": {
+          "dataSource": "stat_sip",
+          "parser": {
+            "type": "string",
+            "parseSpec": {
+              "format": "json",
+              "timestampSpec": {
+                "column": "timestamp",
+                "format": "auto"
+              },
+              "dimensionsSpec": {
+                "dimensions": [
+                  "org",
+                  "partner",
+                  "pg",
+                  "dip",
+                  "device_no",
+                  "sip"
+                ],
+                "dimensionExclusions": [],
+                "spatialDimensions": []
+              }
+            }
+          },
+          "metricsSpec": [
+            {
+              "type": "doubleMax",
+              "name": "max_in_bps",
+              "fieldName": "in_bps"
+            },
+            {
+              "type": "doubleMax",
+              "name": "max_dr_bps",
+              "fieldName": "dr_bps"
+            },
+            {
+              "type": "doubleMax",
+              "name": "max_pa_bps",
+              "fieldName": "pa_bps"
+            },
+
+            {
+              "type": "doubleMax",
+              "name": "max_in_pps",
+              "fieldName": "in_pps"
+            },
+            {
+              "type": "doubleMax",
+              "name": "max_dr_pps",
+              "fieldName": "dr_pps"
+            },
+            {
+              "type": "doubleMax",
+              "name": "max_pa_pps",
+              "fieldName": "pa_pps"
+            }
+          ],
+          "granularitySpec": {
+            "type": "uniform",
+            "segmentGranularity": "DAY",
+            "queryGranularity": "minute"
+          }
+        },
+        "tuningConfig": {
+          "type": "realtime",
+          "maxRowsInMemory": 100000,
+          "intermediatePersistPeriod": "PT10m",
+          "windowPeriod": "PT10M"
+        }
+      }
+    }
+  ],
+  "properties": {
+    "zookeeper.connect": "native-lufanfeng-2-5-24-138:2181,native-lufanfeng-3-5-24-139:2181,native-lufanfeng-4-5-24-140:2181",
+    "druid.selectors.indexing.serviceName": "druid/overlord",
+    "druid.discovery.curator.path": "/druid/discovery",
+    "druidBeam.taskLocator": "overlord",
+    "druidBeam.overlordPollPeriod": "PT5S"
+  }
+}

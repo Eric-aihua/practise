@@ -1,5 +1,7 @@
 package com.eric.storm.olap;
 
+import org.apache.commons.lang.builder.ToStringBuilder;
+
 import java.io.Serializable;
 
 /**
@@ -9,60 +11,32 @@ public class FixMessageDto  implements Serializable{
 
 
     private static final long serialVersionUID = 7011012703269908813L;
-    private String mid;
-    private String msgType;
-    private Float price;
-    private String symbol;
+    private String org;
+    private String partner;
+    private String pg;
+    private String dip;
+    private String deviceNo;
+    private String sip;
 
-    public FixMessageDto() {
-    }
 
-    public FixMessageDto(String mid, String msgType, Float price, String symbol) {
-        this.mid = mid;
-        this.msgType = msgType;
-        this.price = price;
-        this.symbol = symbol;
-    }
-
-    public String getMid() {
-        return mid;
-    }
-
-    public void setMid(String mid) {
-        this.mid = mid;
-    }
-
-    public String getMsgType() {
-        return msgType;
-    }
-
-    public void setMsgType(String msgType) {
-        this.msgType = msgType;
-    }
-
-    public Float getPrice() {
-        return price;
-    }
-
-    public void setPrice(Float price) {
-        this.price = price;
-    }
-
-    public String getSymbol() {
-        return symbol;
-    }
-
-    public void setSymbol(String symbol) {
-        this.symbol = symbol;
+    public FixMessageDto(String org, String partner, String pg, String dip, String deviceNo, String sip) {
+        this.org = org;
+        this.partner = partner;
+        this.pg = pg;
+        this.dip = dip;
+        this.deviceNo = deviceNo;
+        this.sip = sip;
     }
 
     @Override
     public String toString() {
-        return "FixMessageDto{" +
-                "mid='" + mid + '\'' +
-                ", msgType='" + msgType + '\'' +
-                ", price=" + price +
-                ", symbol='" + symbol + '\'' +
-                '}';
+        return new ToStringBuilder(this)
+                .append("org", org)
+                .append("partner", partner)
+                .append("pg", pg)
+                .append("dip", dip)
+                .append("deviceNo", deviceNo)
+                .append("sip", sip)
+                .toString();
     }
 }
