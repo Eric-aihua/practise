@@ -11,8 +11,11 @@ import org.apache.storm.generated.StormTopology;
 public class Main {
     public static void main(String args[]) throws InterruptedException {
         Config config=new Config();
+        config.setDebug(true);
+        config.setNumWorkers(3);
+        config.put("zk_cluster","native-lufanfeng-2-5-24-138:2181,native-lufanfeng-3-5-24-139:2181,native-lufanfeng-4-5-24-140:2181");
         LocalCluster localCluster=new LocalCluster();
-        StormTopology stormTopology= FinanceAnalyticsTopology.buildTopology();
+        StormTopology stormTopology= TrafficStatSipTopology.buildTopology(config);
         localCluster.submitTopology("Druid-Intergration",config,stormTopology);
         Thread.sleep(10000);
         localCluster.shutdown();
