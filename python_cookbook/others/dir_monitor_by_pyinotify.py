@@ -53,13 +53,6 @@ class MyEventHandler(pyinotify.ProcessEvent):
         print "OPEN event:", event.pathname
         logging.info("OPEN event : %s  %s" % (os.path.join(event.path, event.name), datetime.datetime.now()))
 
-    def sync_file(self,file):
-        full_filename = os.path.join(LOCAL_SRC_DIR, file)
-        print 'file has change: %s start to sync' % full_filename
-        if full_filename.endswith('.py'):
-            cmd = 'pscp -i %s -r %s root@%s:%s' % (DST_KEY, LOCAL_SRC_DIR, DST_HOST, DST_DIR)
-            print cmd
-            os.system(cmd)
 
 
 if __name__ == '__main__':

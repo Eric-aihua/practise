@@ -30,6 +30,7 @@ class KafkaSender():
         self.client.ensure_topic_exists(topic)
     def send_messages(self,msg):
         self.producer.send(topic,msg)
+        self.producer.flush()
 
 def get_instance():
     return KafkaSender()

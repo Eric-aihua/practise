@@ -8,21 +8,29 @@ import win32con
 
 """监控src目录，如果发现src下的内容有改动，自动拷贝到目标文件夹.适合用在windows，如果是Linux可以使用pyinotify"""
 
-# LOCAL_SRC_DIR = 'H:\\sourcecode\Rai\\trunk\\api\\bgpdiv\\pg'
-# LOCAL_SRC_DIR = 'H:\\sourcecode\Rai\\trunk\\api\\ads'
-# LOCAL_SRC_DIR = 'H:\\sourcecode\\Rai\\trunk\\api\\report'
-# LOCAL_SRC_DIR = 'H:\\sourcecode\\Rai\\trunk\\api\\attack\\tabs'
-LOCAL_SRC_DIR = 'H:\\sourcecode\\Rai\\trunk\\api\\report\\management'
-DST_HOST = '10.5.24.82'
 DST_KEY = 'f:\\Tools\\key\\241.ppk'
-# DST_DIR = '/opt/disk2/var/www/rai_sunaihua/attack'
-DST_DIR = '/opt/disk2/var/www/rai_sunaihua/report/management'
-# DST_DIR = '/opt/disk2/var/www/rai_sunaihua/'
-# DST_DIR = '/opt/disk2/var/www/rai_sunaihua/bgpdiv'
-SYN_DUR = 1
+
+LOCAL_SRC_DIR = 'H:\\sourcecode\\Rai\\trunk\\api'
+DST_DIR = '/opt/disk2/var/www/rai'
+DST_HOSTS = ['10.5.24.82']
+
+# LOCAL_SRC_DIR = 'H:\\sourcecode\\Rai\\trunk\\rai_report'
+# DST_HOSTS = ['10.5.31.33']
+# DST_DIR = '/opt/disk2/var/www/bailu/rai_report'
+
+# LOCAL_SRC_DIR = 'H:\\sourcecode\\Talas\\branches\\3.0\\dev'
+# DST_HOSTS = ['10.5.24.137','10.5.24.138','10.5.24.139','10.5.24.140']
+# DST_DIR = '/opt/PaaS/Talas/dev'
+
+# LOCAL_SRC_DIR = 'H:\\sourcecode\\Talas\\talas_plugins\\rai\\pluginb'
+# DST_HOSTS = ['10.5.24.5','10.5.24.6','10.5.24.8','10.5.24.9']
+# DST_DIR = '/opt/PaaS/Talas/var/streaming/pluginb/rai'
+
+
 
 file_md5_map = {}
 syn_list = []
+
 
 ACTIONS = {
     1: "Created",
@@ -60,14 +68,14 @@ if __name__ == '__main__':
         # print results
         for action, file in results:
             full_filename = os.path.join(LOCAL_SRC_DIR, file)
-            if full_filename.endswith('.py'):
+            if full_filename.endswith('.py') or full_filename.endswith('phtml') or full_filename.endswith('json'):
                 print 'file has change: %s' % full_filename
                 abs_path = full_filename.replace('\\', os.path.sep)
                 native_path= abs_path[len(LOCAL_SRC_DIR):]
                 has_change = True
                 str_native_path=native_path.replace(os.path.sep,'/')
                 dst_file_path= '%s%s'%(DST_DIR,str_native_path)
-                # cmd = 'pscp -i %s -r %s root@%s:%s' % (DST_KEY, LOCAL_SRC_DIR, DST_HOST, dst_file_path)
-                cmd = 'pscp -i %s %s root@%s:%s' % (DST_KEY, abs_path, DST_HOST, dst_file_path)
-                print cmd
-                os.system(cmd)
+                for host in DST_HOSTS:
+                    cmd = 'pscp -i %s %s root@%s:%s' % (DST_KEY, abs_path, host, dst_file_path)
+                    print cmd
+                    os.system(cmd)

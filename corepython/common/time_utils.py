@@ -8,7 +8,7 @@ TIME_FORMAT = '%Y-%m-%d %H:%M:%S'
 
 # 获取指定格式的时间
 def get_format_timestamp():
-    return time.strftime('%Y-%m-%d %H:%M:%S')
+    return time.strftime('%Y%m%d%H%M%S')
 
 def cmp_time():
     test_time=time.strptime('2016-12-01 11:24:35',TIME_FORMAT)
@@ -19,5 +19,5 @@ def cmp_time():
 
 if __name__ == '__main__':
     print get_format_timestamp()
-    cmp_time()
+    # cmp_time()
 

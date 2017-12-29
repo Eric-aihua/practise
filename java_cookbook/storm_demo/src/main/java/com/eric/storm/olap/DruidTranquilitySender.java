@@ -36,7 +36,9 @@ public class DruidTranquilitySender {
     /**
      * 在调用sendMsg之前执行
      */
-    public void startSender(){
+
+
+    public synchronized void  startSender(){
         sender.start();
     }
 
