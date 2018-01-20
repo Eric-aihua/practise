@@ -23,12 +23,12 @@ public class DruidState  implements State {
     public DruidState(DruidTranquilitySender sender, int partitionIndex) {
         this.partitionIndex=partitionIndex;
         this.sender=sender;
-        this.sender.startSender();
+//        this.sender.startSender();
     }
 
     @Override
     public void beginCommit(Long aLong) {
-//        this.sender.startSender();
+        this.sender.startSender();
     }
 
     @Override
