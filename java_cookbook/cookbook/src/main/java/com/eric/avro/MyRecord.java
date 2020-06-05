@@ -5,13 +5,12 @@
  */
 package com.eric.avro;
 
-import org.apache.avro.generic.GenericArray;
 import org.apache.avro.specific.SpecificData;
-import org.apache.avro.util.Utf8;
 import org.apache.avro.message.BinaryMessageEncoder;
 import org.apache.avro.message.BinaryMessageDecoder;
 import org.apache.avro.message.SchemaStore;
 
+@SuppressWarnings("all")
 @org.apache.avro.specific.AvroGenerated
 public class MyRecord extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
   private static final long serialVersionUID = -924659274939759343L;
@@ -19,9 +18,6 @@ public class MyRecord extends org.apache.avro.specific.SpecificRecordBase implem
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
 
   private static SpecificData MODEL$ = new SpecificData();
-static {
-    MODEL$.addLogicalTypeConversion(new org.apache.avro.data.TimeConversions.TimestampMillisConversion());
-  }
 
   private static final BinaryMessageEncoder<MyRecord> ENCODER =
       new BinaryMessageEncoder<MyRecord>(MODEL$, SCHEMA$);
@@ -30,16 +26,7 @@ static {
       new BinaryMessageDecoder<MyRecord>(MODEL$, SCHEMA$);
 
   /**
-   * Return the BinaryMessageEncoder instance used by this class.
-   * @return the message encoder used by this class
-   */
-  public static BinaryMessageEncoder<MyRecord> getEncoder() {
-    return ENCODER;
-  }
-
-  /**
    * Return the BinaryMessageDecoder instance used by this class.
-   * @return the message decoder used by this class
    */
   public static BinaryMessageDecoder<MyRecord> getDecoder() {
     return DECODER;
@@ -48,33 +35,23 @@ static {
   /**
    * Create a new BinaryMessageDecoder instance for this class that uses the specified {@link SchemaStore}.
    * @param resolver a {@link SchemaStore} used to find schemas by fingerprint
-   * @return a BinaryMessageDecoder instance for this class backed by the given SchemaStore
    */
   public static BinaryMessageDecoder<MyRecord> createDecoder(SchemaStore resolver) {
     return new BinaryMessageDecoder<MyRecord>(MODEL$, SCHEMA$, resolver);
   }
 
-  /**
-   * Serializes this MyRecord to a ByteBuffer.
-   * @return a buffer holding the serialized data for this instance
-   * @throws java.io.IOException if this instance could not be serialized
-   */
+  /** Serializes this MyRecord to a ByteBuffer. */
   public java.nio.ByteBuffer toByteBuffer() throws java.io.IOException {
     return ENCODER.encode(this);
   }
 
-  /**
-   * Deserializes a MyRecord from a ByteBuffer.
-   * @param b a byte buffer holding serialized data for an instance of this class
-   * @return a MyRecord instance decoded from the given buffer
-   * @throws java.io.IOException if the given bytes could not be deserialized into an instance of this class
-   */
+  /** Deserializes a MyRecord from a ByteBuffer. */
   public static MyRecord fromByteBuffer(
       java.nio.ByteBuffer b) throws java.io.IOException {
     return DECODER.decode(b);
   }
 
-  @Deprecated public java.time.Instant timestamp_with_logical_type;
+  @Deprecated public org.joda.time.DateTime timestamp_with_logical_type;
   @Deprecated public long timestamp_no_logical_type;
 
   /**
@@ -89,12 +66,11 @@ static {
    * @param timestamp_with_logical_type The new value for timestamp_with_logical_type
    * @param timestamp_no_logical_type The new value for timestamp_no_logical_type
    */
-  public MyRecord(java.time.Instant timestamp_with_logical_type, java.lang.Long timestamp_no_logical_type) {
-    this.timestamp_with_logical_type = timestamp_with_logical_type.truncatedTo(java.time.temporal.ChronoUnit.MILLIS);
+  public MyRecord(org.joda.time.DateTime timestamp_with_logical_type, java.lang.Long timestamp_no_logical_type) {
+    this.timestamp_with_logical_type = timestamp_with_logical_type;
     this.timestamp_no_logical_type = timestamp_no_logical_type;
   }
 
-  public org.apache.avro.specific.SpecificData getSpecificData() { return MODEL$; }
   public org.apache.avro.Schema getSchema() { return SCHEMA$; }
   // Used by DatumWriter.  Applications should not call.
   public java.lang.Object get(int field$) {
@@ -105,9 +81,14 @@ static {
     }
   }
 
+  protected static final org.apache.avro.data.TimeConversions.DateConversion DATE_CONVERSION = new org.apache.avro.data.TimeConversions.DateConversion();
+  protected static final org.apache.avro.data.TimeConversions.TimeConversion TIME_CONVERSION = new org.apache.avro.data.TimeConversions.TimeConversion();
+  protected static final org.apache.avro.data.TimeConversions.TimestampConversion TIMESTAMP_CONVERSION = new org.apache.avro.data.TimeConversions.TimestampConversion();
+  protected static final org.apache.avro.Conversions.DecimalConversion DECIMAL_CONVERSION = new org.apache.avro.Conversions.DecimalConversion();
+
   private static final org.apache.avro.Conversion<?>[] conversions =
       new org.apache.avro.Conversion<?>[] {
-      new org.apache.avro.data.TimeConversions.TimestampMillisConversion(),
+      TIMESTAMP_CONVERSION,
       null,
       null
   };
@@ -121,7 +102,7 @@ static {
   @SuppressWarnings(value="unchecked")
   public void put(int field$, java.lang.Object value$) {
     switch (field$) {
-    case 0: timestamp_with_logical_type = (java.time.Instant)value$; break;
+    case 0: timestamp_with_logical_type = (org.joda.time.DateTime)value$; break;
     case 1: timestamp_no_logical_type = (java.lang.Long)value$; break;
     default: throw new org.apache.avro.AvroRuntimeException("Bad index");
     }
@@ -131,33 +112,31 @@ static {
    * Gets the value of the 'timestamp_with_logical_type' field.
    * @return The value of the 'timestamp_with_logical_type' field.
    */
-  public java.time.Instant getTimestampWithLogicalType() {
+  public org.joda.time.DateTime getTimestampWithLogicalType() {
     return timestamp_with_logical_type;
   }
-
 
   /**
    * Sets the value of the 'timestamp_with_logical_type' field.
    * @param value the value to set.
    */
-  public void setTimestampWithLogicalType(java.time.Instant value) {
-    this.timestamp_with_logical_type = value.truncatedTo(java.time.temporal.ChronoUnit.MILLIS);
+  public void setTimestampWithLogicalType(org.joda.time.DateTime value) {
+    this.timestamp_with_logical_type = value;
   }
 
   /**
    * Gets the value of the 'timestamp_no_logical_type' field.
    * @return The value of the 'timestamp_no_logical_type' field.
    */
-  public long getTimestampNoLogicalType() {
+  public java.lang.Long getTimestampNoLogicalType() {
     return timestamp_no_logical_type;
   }
-
 
   /**
    * Sets the value of the 'timestamp_no_logical_type' field.
    * @param value the value to set.
    */
-  public void setTimestampNoLogicalType(long value) {
+  public void setTimestampNoLogicalType(java.lang.Long value) {
     this.timestamp_no_logical_type = value;
   }
 
@@ -175,11 +154,7 @@ static {
    * @return A new MyRecord RecordBuilder
    */
   public static com.eric.avro.MyRecord.Builder newBuilder(com.eric.avro.MyRecord.Builder other) {
-    if (other == null) {
-      return new com.eric.avro.MyRecord.Builder();
-    } else {
-      return new com.eric.avro.MyRecord.Builder(other);
-    }
+    return new com.eric.avro.MyRecord.Builder(other);
   }
 
   /**
@@ -188,21 +163,16 @@ static {
    * @return A new MyRecord RecordBuilder
    */
   public static com.eric.avro.MyRecord.Builder newBuilder(com.eric.avro.MyRecord other) {
-    if (other == null) {
-      return new com.eric.avro.MyRecord.Builder();
-    } else {
-      return new com.eric.avro.MyRecord.Builder(other);
-    }
+    return new com.eric.avro.MyRecord.Builder(other);
   }
 
   /**
    * RecordBuilder for MyRecord instances.
    */
-  @org.apache.avro.specific.AvroGenerated
   public static class Builder extends org.apache.avro.specific.SpecificRecordBuilderBase<MyRecord>
     implements org.apache.avro.data.RecordBuilder<MyRecord> {
 
-    private java.time.Instant timestamp_with_logical_type;
+    private org.joda.time.DateTime timestamp_with_logical_type;
     private long timestamp_no_logical_type;
 
     /** Creates a new Builder */
@@ -218,11 +188,11 @@ static {
       super(other);
       if (isValidValue(fields()[0], other.timestamp_with_logical_type)) {
         this.timestamp_with_logical_type = data().deepCopy(fields()[0].schema(), other.timestamp_with_logical_type);
-        fieldSetFlags()[0] = other.fieldSetFlags()[0];
+        fieldSetFlags()[0] = true;
       }
       if (isValidValue(fields()[1], other.timestamp_no_logical_type)) {
         this.timestamp_no_logical_type = data().deepCopy(fields()[1].schema(), other.timestamp_no_logical_type);
-        fieldSetFlags()[1] = other.fieldSetFlags()[1];
+        fieldSetFlags()[1] = true;
       }
     }
 
@@ -231,7 +201,7 @@ static {
      * @param other The existing instance to copy.
      */
     private Builder(com.eric.avro.MyRecord other) {
-      super(SCHEMA$);
+            super(SCHEMA$);
       if (isValidValue(fields()[0], other.timestamp_with_logical_type)) {
         this.timestamp_with_logical_type = data().deepCopy(fields()[0].schema(), other.timestamp_with_logical_type);
         fieldSetFlags()[0] = true;
@@ -246,19 +216,18 @@ static {
       * Gets the value of the 'timestamp_with_logical_type' field.
       * @return The value.
       */
-    public java.time.Instant getTimestampWithLogicalType() {
+    public org.joda.time.DateTime getTimestampWithLogicalType() {
       return timestamp_with_logical_type;
     }
-
 
     /**
       * Sets the value of the 'timestamp_with_logical_type' field.
       * @param value The value of 'timestamp_with_logical_type'.
       * @return This builder.
       */
-    public com.eric.avro.MyRecord.Builder setTimestampWithLogicalType(java.time.Instant value) {
+    public com.eric.avro.MyRecord.Builder setTimestampWithLogicalType(org.joda.time.DateTime value) {
       validate(fields()[0], value);
-      this.timestamp_with_logical_type = value.truncatedTo(java.time.temporal.ChronoUnit.MILLIS);
+      this.timestamp_with_logical_type = value;
       fieldSetFlags()[0] = true;
       return this;
     }
@@ -285,10 +254,9 @@ static {
       * Gets the value of the 'timestamp_no_logical_type' field.
       * @return The value.
       */
-    public long getTimestampNoLogicalType() {
+    public java.lang.Long getTimestampNoLogicalType() {
       return timestamp_no_logical_type;
     }
-
 
     /**
       * Sets the value of the 'timestamp_no_logical_type' field.
@@ -325,11 +293,9 @@ static {
     public MyRecord build() {
       try {
         MyRecord record = new MyRecord();
-        record.timestamp_with_logical_type = fieldSetFlags()[0] ? this.timestamp_with_logical_type : (java.time.Instant) defaultValue(fields()[0]);
-        record.timestamp_no_logical_type = fieldSetFlags()[1] ? this.timestamp_no_logical_type : (java.lang.Long) defaultValue(fields()[1]);
+        record.timestamp_with_logical_type = fieldSetFlags()[0] ? this.timestamp_with_logical_type : (org.joda.time.DateTime) defaultValue(fields()[0], record.getConversion(0));
+        record.timestamp_no_logical_type = fieldSetFlags()[1] ? this.timestamp_no_logical_type : (java.lang.Long) defaultValue(fields()[1], record.getConversion(1));
         return record;
-      } catch (org.apache.avro.AvroMissingFieldException e) {
-        throw e;
       } catch (java.lang.Exception e) {
         throw new org.apache.avro.AvroRuntimeException(e);
       }
@@ -355,13 +321,3 @@ static {
   }
 
 }
-
-
-
-
-
-
-
-
-
-

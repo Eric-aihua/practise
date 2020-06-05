@@ -16,10 +16,12 @@ import java.io.IOException;
 
 public class AvroSample {
     public static void main(String[] args) throws IOException {
-        GenericRecord record  = new GenericData.Record(MyRecord.getClassSchema());;
+//        GenericRecord record  = new GenericData.Record(MyRecord.getClassSchema());;
+        GenericRecord record  = new GenericData.Record(MyRecord.getClassSchema());
         Instant millis = Instant.now();
         //Insert data according to schema
         record.put("timestamp_with_logical_type", millis);
+        record.put("timestamp_no_logical_type", 1000);
 
         DataFileWriter<GenericRecord> dataFileWriter = null;
         DatumWriter<GenericRecord> datumWriter = new GenericDatumWriter<GenericRecord>();
