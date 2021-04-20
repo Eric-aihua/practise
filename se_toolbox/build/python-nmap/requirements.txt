@@ -11,7 +11,7 @@ nose==1.3.7
 pep8==1.7.0               # via flake8
 pluggy==0.3.1             # via tox
 pudb==2015.4.1
-py==1.4.31                # via tox
+py==1.10.0                # via tox
 pyflakes==1.0.0           # via flake8
 pygments==2.1             # via pudb
 tox==2.3.1
