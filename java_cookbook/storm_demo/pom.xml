@@ -89,7 +89,7 @@
         <dependency>
             <groupId>org.neo4j</groupId>
             <artifactId>neo4j</artifactId>
-            <version>3.2.3</version>
+            <version>3.5.0</version>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/org.neo4j/neo4j-cypher -->
